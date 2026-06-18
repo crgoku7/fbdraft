@@ -1,0 +1,7799 @@
+[
+  {
+    "id": 209331,
+    "player name": "Mohamed Salah",
+    "country": "Egypt",
+    "rating": 91,
+    "traits": [
+      "Low Driven Shot",
+      "Gamechanger",
+      "Whipped Pass",
+      "Inventive",
+      "Technical",
+      "First Touch"
+    ],
+    "positions": [
+      "RM",
+      "RW"
+    ]
+  },
+  {
+    "id": 231747,
+    "player name": "Kylian Mbappé",
+    "country": "France",
+    "rating": 91,
+    "traits": [
+      "Finesse Shot",
+      "Acrobatic",
+      "Low Driven Shot",
+      "Gamechanger",
+      "Rapid",
+      "First Touch"
+    ],
+    "positions": [
+      "ST",
+      "LW",
+      "LM"
+    ]
+  },
+  {
+    "id": 203376,
+    "player name": "Virgil van Dijk",
+    "country": "Holland",
+    "rating": 90,
+    "traits": [
+      "Precision Header",
+      "Pinged Pass",
+      "Jockey",
+      "Anticipate",
+      "Aerial Fortress",
+      "Bruiser"
+    ],
+    "positions": [
+      "CB"
+    ]
+  },
+  {
+    "id": 231443,
+    "player name": "Ousmane Dembélé",
+    "country": "France",
+    "rating": 90,
+    "traits": [
+      "Low Driven Shot",
+      "Pinged Pass",
+      "Inventive",
+      "Trickster",
+      "Quick Step"
+    ],
+    "positions": [
+      "ST",
+      "RW",
+      "CAM"
+    ]
+  },
+  {
+    "id": 231866,
+    "player name": "Rodri",
+    "country": "Spain",
+    "rating": 90,
+    "traits": [
+      "Power Shot",
+      "Long Ball Pass",
+      "Aerial Fortress",
+      "Press Proven",
+      "Bruiser"
+    ],
+    "positions": [
+      "CDM",
+      "CM"
+    ]
+  },
+  {
+    "id": 239085,
+    "player name": "Erling Haaland",
+    "country": "Norway",
+    "rating": 90,
+    "traits": [
+      "Chip Shot",
+      "Power Shot",
+      "Precision Header",
+      "Acrobatic",
+      "Gamechanger",
+      "Enforcer"
+    ],
+    "positions": [
+      "ST"
+    ]
+  },
+  {
+    "id": 252371,
+    "player name": "Jude Bellingham",
+    "country": "England",
+    "rating": 90,
+    "traits": [
+      "Low Driven Shot",
+      "Gamechanger",
+      "Inventive",
+      "Slide Tackle",
+      "Technical",
+      "First Touch"
+    ],
+    "positions": [
+      "CAM",
+      "CM"
+    ]
+  },
+  {
+    "id": 192119,
+    "player name": "Thibaut Courtois",
+    "country": "Belgium",
+    "rating": 89,
+    "traits": [
+      "Far Throw",
+      "Rush Out"
+    ],
+    "positions": [
+      "GK"
+    ]
+  },
+  {
+    "id": 202126,
+    "player name": "Harry Kane",
+    "country": "England",
+    "rating": 89,
+    "traits": [
+      "Precision Header",
+      "Low Driven Shot",
+      "Gamechanger",
+      "Long Ball Pass",
+      "First Touch"
+    ],
+    "positions": [
+      "ST"
+    ]
+  },
+  {
+    "id": 212622,
+    "player name": "Joshua Kimmich",
+    "country": "Germany",
+    "rating": 89,
+    "traits": [
+      "Finesse Shot",
+      "Whipped Pass",
+      "Anticipate",
+      "Press Proven",
+      "Relentless"
+    ],
+    "positions": [
+      "CDM",
+      "RB",
+      "CM"
+    ]
+  },
+  {
+    "id": 212831,
+    "player name": "Alisson",
+    "country": "Brazil",
+    "rating": 89,
+    "traits": [
+      "Far Throw",
+      "Deflector"
+    ],
+    "positions": [
+      "GK"
+    ]
+  },
+  {
+    "id": 230621,
+    "player name": "Gianluigi Donnarumma",
+    "country": "Italy",
+    "rating": 89,
+    "traits": [
+      "Footwork"
+    ],
+    "positions": [
+      "GK"
+    ]
+  },
+  {
+    "id": 233419,
+    "player name": "Raphinha",
+    "country": "Brazil",
+    "rating": 89,
+    "traits": [
+      "Finesse Shot",
+      "Power Shot",
+      "Trickster",
+      "Quick Step",
+      "Relentless"
+    ],
+    "positions": [
+      "LM",
+      "LW"
+    ]
+  },
+  {
+    "id": 235212,
+    "player name": "Achraf Hakimi",
+    "country": "Morocco",
+    "rating": 89,
+    "traits": [
+      "Low Driven Shot",
+      "Whipped Pass",
+      "Jockey",
+      "Anticipate",
+      "Press Proven",
+      "Quick Step"
+    ],
+    "positions": [
+      "RB",
+      "RM"
+    ]
+  },
+  {
+    "id": 238794,
+    "player name": "Vini Jr.",
+    "country": "Brazil",
+    "rating": 89,
+    "traits": [
+      "Finesse Shot",
+      "Chip Shot",
+      "Gamechanger",
+      "Inventive",
+      "Rapid",
+      "First Touch"
+    ],
+    "positions": [
+      "LW",
+      "ST",
+      "LM"
+    ]
+  },
+  {
+    "id": 239053,
+    "player name": "Federico Valverde",
+    "country": "Uruguay",
+    "rating": 89,
+    "traits": [
+      "Power Shot",
+      "Long Ball Pass",
+      "Intercept",
+      "Slide Tackle",
+      "Aerial Fortress",
+      "Rapid"
+    ],
+    "positions": [
+      "CM",
+      "CDM",
+      "RB"
+    ]
+  },
+  {
+    "id": 251854,
+    "player name": "Pedri",
+    "country": "Spain",
+    "rating": 89,
+    "traits": [
+      "Incisive Pass",
+      "Long Ball Pass",
+      "Tiki Taka",
+      "Technical",
+      "Relentless"
+    ],
+    "positions": [
+      "CM",
+      "CDM",
+      "CAM"
+    ]
+  },
+  {
+    "id": 255253,
+    "player name": "Vitinha",
+    "country": "Portugal",
+    "rating": 89,
+    "traits": [
+      "Finesse Shot",
+      "Incisive Pass",
+      "Long Ball Pass",
+      "Tiki Taka",
+      "Intercept",
+      "Relentless"
+    ],
+    "positions": [
+      "CM",
+      "CDM",
+      "CAM"
+    ]
+  },
+  {
+    "id": 256630,
+    "player name": "Florian Wirtz",
+    "country": "Germany",
+    "rating": 89,
+    "traits": [
+      "Finesse Shot",
+      "Chip Shot",
+      "Low Driven Shot",
+      "Inventive",
+      "Technical",
+      "First Touch"
+    ],
+    "positions": [
+      "CAM",
+      "ST",
+      "CM"
+    ]
+  },
+  {
+    "id": 277643,
+    "player name": "Lamine Yamal",
+    "country": "Spain",
+    "rating": 89,
+    "traits": [
+      "Finesse Shot",
+      "Gamechanger",
+      "Incisive Pass",
+      "Inventive",
+      "First Touch",
+      "Quick Step"
+    ],
+    "positions": [
+      "RM",
+      "RW"
+    ]
+  },
+  {
+    "id": 188545,
+    "player name": "Robert Lewandowski",
+    "country": "Poland",
+    "rating": 88,
+    "traits": [
+      "Finesse Shot",
+      "Power Shot",
+      "Precision Header",
+      "Low Driven Shot",
+      "Incisive Pass",
+      "First Touch"
+    ],
+    "positions": [
+      "ST"
+    ]
+  },
+  {
+    "id": 200389,
+    "player name": "Jan Oblak",
+    "country": "Slovenia",
+    "rating": 88,
+    "traits": [
+      "Far Throw",
+      "Far Reach"
+    ],
+    "positions": [
+      "GK"
+    ]
+  },
+  {
+    "id": 231478,
+    "player name": "Lautaro Martínez",
+    "country": "Argentina",
+    "rating": 88,
+    "traits": [
+      "Power Shot",
+      "Precision Header",
+      "Incisive Pass",
+      "Technical",
+      "Relentless",
+      "Enforcer"
+    ],
+    "positions": [
+      "ST"
+    ]
+  },
+  {
+    "id": 232580,
+    "player name": "Gabriel",
+    "country": "Brazil",
+    "rating": 88,
+    "traits": [
+      "Precision Header"
+    ],
+    "positions": [
+      "CB"
+    ]
+  },
+  {
+    "id": 233731,
+    "player name": "Alexander Isak",
+    "country": "Sweden",
+    "rating": 88,
+    "traits": [
+      "Power Shot",
+      "Low Driven Shot",
+      "Gamechanger",
+      "Rapid",
+      "First Touch"
+    ],
+    "positions": [
+      "ST"
+    ]
+  },
+  {
+    "id": 246669,
+    "player name": "Bukayo Saka",
+    "country": "England",
+    "rating": 88,
+    "traits": [
+      "Finesse Shot",
+      "Technical"
+    ],
+    "positions": [
+      "RW",
+      "RM"
+    ]
+  },
+  {
+    "id": 256790,
+    "player name": "Jamal Musiala",
+    "country": "Germany",
+    "rating": 88,
+    "traits": [
+      "Precision Header",
+      "Low Driven Shot",
+      "Gamechanger",
+      "Incisive Pass",
+      "Inventive",
+      "Trickster"
+    ],
+    "positions": [
+      "CAM",
+      "LM",
+      "CM",
+      "ST"
+    ]
+  },
+  {
+    "id": 177683,
+    "player name": "Yann Sommer",
+    "country": "Switzerland",
+    "rating": 87,
+    "traits": [],
+    "positions": [
+      "GK"
+    ]
+  },
+  {
+    "id": 192985,
+    "player name": "Kevin De Bruyne",
+    "country": "Belgium",
+    "rating": 87,
+    "traits": [
+      "Dead Ball",
+      "Incisive Pass",
+      "Pinged Pass",
+      "Inventive"
+    ],
+    "positions": [
+      "CM",
+      "CAM"
+    ]
+  },
+  {
+    "id": 207865,
+    "player name": "Marquinhos",
+    "country": "Brazil",
+    "rating": 87,
+    "traits": [
+      "Jockey",
+      "Anticipate",
+      "Aerial Fortress"
+    ],
+    "positions": [
+      "CB"
+    ]
+  },
+  {
+    "id": 212198,
+    "player name": "Bruno Fernandes",
+    "country": "Portugal",
+    "rating": 87,
+    "traits": [
+      "Dead Ball",
+      "Gamechanger",
+      "Incisive Pass",
+      "Long Ball Pass",
+      "Tiki Taka",
+      "Inventive"
+    ],
+    "positions": [
+      "CAM",
+      "CM"
+    ]
+  },
+  {
+    "id": 213331,
+    "player name": "Jonathan Tah",
+    "country": "Germany",
+    "rating": 87,
+    "traits": [
+      "Precision Header",
+      "Aerial Fortress"
+    ],
+    "positions": [
+      "CB"
+    ]
+  },
+  {
+    "id": 215441,
+    "player name": "Serhou Guirassy",
+    "country": "Guinea",
+    "rating": 87,
+    "traits": [
+      "Chip Shot",
+      "Precision Header",
+      "Acrobatic",
+      "Low Driven Shot",
+      "First Touch"
+    ],
+    "positions": [
+      "ST"
+    ]
+  },
+  {
+    "id": 215698,
+    "player name": "Mike Maignan",
+    "country": "France",
+    "rating": 87,
+    "traits": [
+      "Long Ball Pass",
+      "Footwork",
+      "Deflector"
+    ],
+    "positions": [
+      "GK"
+    ]
+  },
+  {
+    "id": 220901,
+    "player name": "David Raya",
+    "country": "Spain",
+    "rating": 87,
+    "traits": [
+      "Footwork"
+    ],
+    "positions": [
+      "GK"
+    ]
+  },
+  {
+    "id": 222665,
+    "player name": "Martin Ødegaard",
+    "country": "Norway",
+    "rating": 87,
+    "traits": [
+      "Pinged Pass",
+      "Inventive",
+      "Technical",
+      "First Touch"
+    ],
+    "positions": [
+      "CM",
+      "CAM"
+    ]
+  },
+  {
+    "id": 224232,
+    "player name": "Nicolò Barella",
+    "country": "Italy",
+    "rating": 87,
+    "traits": [
+      "Incisive Pass",
+      "Pinged Pass",
+      "Long Ball Pass",
+      "Jockey",
+      "Intercept",
+      "Press Proven"
+    ],
+    "positions": [
+      "CM"
+    ]
+  },
+  {
+    "id": 228702,
+    "player name": "Frenkie de Jong",
+    "country": "Holland",
+    "rating": 87,
+    "traits": [
+      "Incisive Pass",
+      "Inventive",
+      "Press Proven"
+    ],
+    "positions": [
+      "CM",
+      "CDM"
+    ]
+  },
+  {
+    "id": 232293,
+    "player name": "Victor Osimhen",
+    "country": "Nigeria",
+    "rating": 87,
+    "traits": [
+      "Chip Shot",
+      "Precision Header",
+      "Acrobatic",
+      "Gamechanger",
+      "Rapid"
+    ],
+    "positions": [
+      "ST"
+    ]
+  },
+  {
+    "id": 234378,
+    "player name": "Declan Rice",
+    "country": "England",
+    "rating": 87,
+    "traits": [
+      "Dead Ball",
+      "Whipped Pass",
+      "Block",
+      "Intercept",
+      "Aerial Fortress",
+      "Press Proven",
+      "Relentless"
+    ],
+    "positions": [
+      "CDM",
+      "CM"
+    ]
+  },
+  {
+    "id": 237383,
+    "player name": "Alessandro Bastoni",
+    "country": "Italy",
+    "rating": 87,
+    "traits": [
+      "Pinged Pass",
+      "Long Ball Pass",
+      "Whipped Pass",
+      "Block",
+      "Relentless"
+    ],
+    "positions": [
+      "CB"
+    ]
+  },
+  {
+    "id": 239837,
+    "player name": "Alexis Mac Allister",
+    "country": "Argentina",
+    "rating": 87,
+    "traits": [
+      "Power Shot",
+      "Dead Ball",
+      "Gamechanger",
+      "Block",
+      "Press Proven"
+    ],
+    "positions": [
+      "CM",
+      "CDM"
+    ]
+  },
+  {
+    "id": 241486,
+    "player name": "Jules Koundé",
+    "country": "France",
+    "rating": 87,
+    "traits": [
+      "Long Ball Pass",
+      "Slide Tackle",
+      "Aerial Fortress",
+      "Quick Step",
+      "Relentless"
+    ],
+    "positions": [
+      "RB",
+      "CB",
+      "RM"
+    ]
+  },
+  {
+    "id": 241651,
+    "player name": "Viktor Gyökeres",
+    "country": "Sweden",
+    "rating": 87,
+    "traits": [
+      "Finesse Shot",
+      "Power Shot",
+      "Acrobatic",
+      "Low Driven Shot",
+      "Press Proven",
+      "Quick Step"
+    ],
+    "positions": [
+      "ST"
+    ]
+  },
+  {
+    "id": 243715,
+    "player name": "William Saliba",
+    "country": "France",
+    "rating": 87,
+    "traits": [
+      "Long Ball Pass",
+      "Jockey"
+    ],
+    "positions": [
+      "CB"
+    ]
+  },
+  {
+    "id": 246191,
+    "player name": "Julián Alvarez",
+    "country": "Argentina",
+    "rating": 87,
+    "traits": [
+      "Finesse Shot"
+    ],
+    "positions": [
+      "ST"
+    ]
+  },
+  {
+    "id": 247635,
+    "player name": "Khvicha Kvaratskhelia",
+    "country": "Georgia",
+    "rating": 87,
+    "traits": [
+      "Finesse Shot",
+      "Gamechanger",
+      "Incisive Pass",
+      "Technical",
+      "Trickster"
+    ],
+    "positions": [
+      "LW",
+      "RW",
+      "LM"
+    ]
+  },
+  {
+    "id": 256079,
+    "player name": "Moisés Caicedo",
+    "country": "Ecuador",
+    "rating": 87,
+    "traits": [
+      "Pinged Pass",
+      "Tiki Taka",
+      "Intercept",
+      "Anticipate",
+      "Press Proven",
+      "Relentless"
+    ],
+    "positions": [
+      "CDM",
+      "CM"
+    ]
+  },
+  {
+    "id": 257534,
+    "player name": "Cole Palmer",
+    "country": "England",
+    "rating": 87,
+    "traits": [
+      "Finesse Shot",
+      "Low Driven Shot",
+      "Gamechanger",
+      "Incisive Pass",
+      "Technical",
+      "First Touch"
+    ],
+    "positions": [
+      "CAM",
+      "RM",
+      "ST"
+    ]
+  },
+  {
+    "id": 158023,
+    "player name": "Lionel Messi",
+    "country": "Argentina",
+    "rating": 86,
+    "traits": [
+      "Finesse Shot",
+      "Dead Ball",
+      "Gamechanger",
+      "Incisive Pass",
+      "Technical",
+      "Quick Step"
+    ],
+    "positions": [
+      "RW",
+      "ST",
+      "CAM",
+      "RM"
+    ]
+  },
+  {
+    "id": 192448,
+    "player name": "Marc-André ter Stegen",
+    "country": "Germany",
+    "rating": 86,
+    "traits": [
+      "Long Ball Pass",
+      "Footwork",
+      "Rush Out"
+    ],
+    "positions": [
+      "GK"
+    ]
+  },
+  {
+    "id": 205452,
+    "player name": "Antonio Rüdiger",
+    "country": "Germany",
+    "rating": 86,
+    "traits": [
+      "Long Ball Pass",
+      "Jockey",
+      "Block",
+      "Bruiser"
+    ],
+    "positions": [
+      "CB"
+    ]
+  },
+  {
+    "id": 208128,
+    "player name": "Hakan Çalhanoğlu",
+    "country": "Turkey",
+    "rating": 86,
+    "traits": [
+      "Dead Ball",
+      "Long Ball Pass",
+      "Inventive",
+      "Technical",
+      "First Touch",
+      "Relentless"
+    ],
+    "positions": [
+      "CDM",
+      "CM"
+    ]
+  },
+  {
+    "id": 211110,
+    "player name": "Paulo Dybala",
+    "country": "Argentina",
+    "rating": 86,
+    "traits": [
+      "Finesse Shot",
+      "Dead Ball",
+      "Incisive Pass",
+      "Inventive",
+      "Technical",
+      "First Touch"
+    ],
+    "positions": [
+      "CAM",
+      "ST"
+    ]
+  },
+  {
+    "id": 231281,
+    "player name": "Trent Alexander-Arnold",
+    "country": "England",
+    "rating": 86,
+    "traits": [
+      "Dead Ball",
+      "Incisive Pass",
+      "Long Ball Pass",
+      "Relentless"
+    ],
+    "positions": [
+      "RB",
+      "RM"
+    ]
+  },
+  {
+    "id": 235073,
+    "player name": "Gregor Kobel",
+    "country": "Switzerland",
+    "rating": 86,
+    "traits": [
+      "Far Throw",
+      "Deflector"
+    ],
+    "positions": [
+      "GK"
+    ]
+  },
+  {
+    "id": 237678,
+    "player name": "Ibrahima Konaté",
+    "country": "France",
+    "rating": 86,
+    "traits": [
+      "Aerial Fortress",
+      "Bruiser"
+    ],
+    "positions": [
+      "CB"
+    ]
+  },
+  {
+    "id": 239818,
+    "player name": "Rúben Dias",
+    "country": "Portugal",
+    "rating": 86,
+    "traits": [
+      "Long Ball Pass"
+    ],
+    "positions": [
+      "CB"
+    ]
+  },
+  {
+    "id": 240638,
+    "player name": "Tijjani Reijnders",
+    "country": "Holland",
+    "rating": 86,
+    "traits": [
+      "Finesse Shot",
+      "Power Shot",
+      "Incisive Pass",
+      "Technical"
+    ],
+    "positions": [
+      "CM",
+      "CDM",
+      "CAM"
+    ]
+  },
+  {
+    "id": 241096,
+    "player name": "Sandro Tonali",
+    "country": "Italy",
+    "rating": 86,
+    "traits": [
+      "Slide Tackle",
+      "Relentless",
+      "Enforcer"
+    ],
+    "positions": [
+      "CDM",
+      "CM"
+    ]
+  },
+  {
+    "id": 247827,
+    "player name": "Michael Olise",
+    "country": "France",
+    "rating": 86,
+    "traits": [
+      "Finesse Shot",
+      "Whipped Pass",
+      "Inventive",
+      "Technical"
+    ],
+    "positions": [
+      "RM",
+      "RW"
+    ]
+  },
+  {
+    "id": 247851,
+    "player name": "Bruno Guimarães",
+    "country": "Brazil",
+    "rating": 86,
+    "traits": [
+      "Gamechanger",
+      "Incisive Pass",
+      "Long Ball Pass",
+      "Press Proven",
+      "Relentless"
+    ],
+    "positions": [
+      "CM",
+      "CDM"
+    ]
+  },
+  {
+    "id": 252145,
+    "player name": "Nuno Mendes",
+    "country": "Portugal",
+    "rating": 86,
+    "traits": [
+      "Pinged Pass",
+      "Whipped Pass",
+      "Jockey",
+      "Anticipate",
+      "Rapid"
+    ],
+    "positions": [
+      "LB",
+      "LM"
+    ]
+  },
+  {
+    "id": 256196,
+    "player name": "Willian Pacho",
+    "country": "Ecuador",
+    "rating": 86,
+    "traits": [
+      "Jockey",
+      "Block",
+      "Anticipate"
+    ],
+    "positions": [
+      "CB"
+    ]
+  },
+  {
+    "id": 256516,
+    "player name": "Nico Williams",
+    "country": "Spain",
+    "rating": 86,
+    "traits": [
+      "Finesse Shot",
+      "Gamechanger",
+      "Inventive",
+      "Quick Step",
+      "Relentless"
+    ],
+    "positions": [
+      "LM",
+      "RM",
+      "LW"
+    ]
+  },
+  {
+    "id": 20801,
+    "player name": "Cristiano Ronaldo",
+    "country": "Portugal",
+    "rating": 85,
+    "traits": [
+      "Precision Header",
+      "Acrobatic",
+      "Low Driven Shot",
+      "Gamechanger",
+      "Aerial Fortress",
+      "Trickster"
+    ],
+    "positions": [
+      "ST"
+    ]
+  },
+  {
+    "id": 165153,
+    "player name": "Karim Benzema",
+    "country": "France",
+    "rating": 85,
+    "traits": [
+      "Finesse Shot",
+      "Gamechanger",
+      "Incisive Pass",
+      "First Touch",
+      "Relentless"
+    ],
+    "positions": [
+      "ST",
+      "CAM"
+    ]
+  },
+  {
+    "id": 185122,
+    "player name": "Péter Gulácsi",
+    "country": "Hungary",
+    "rating": 85,
+    "traits": [
+      "Footwork"
+    ],
+    "positions": [
+      "GK"
+    ]
+  },
+  {
+    "id": 193080,
+    "player name": "De Gea",
+    "country": "Spain",
+    "rating": 85,
+    "traits": [
+      "Far Throw",
+      "Footwork"
+    ],
+    "positions": [
+      "GK"
+    ]
+  },
+  {
+    "id": 194765,
+    "player name": "Antoine Griezmann",
+    "country": "France",
+    "rating": 85,
+    "traits": [
+      "Finesse Shot",
+      "Gamechanger",
+      "Incisive Pass",
+      "Long Ball Pass",
+      "Inventive",
+      "Technical"
+    ],
+    "positions": [
+      "ST",
+      "LM",
+      "CAM"
+    ]
+  },
+  {
+    "id": 199503,
+    "player name": "Granit Xhaka",
+    "country": "Switzerland",
+    "rating": 85,
+    "traits": [
+      "Finesse Shot",
+      "Power Shot",
+      "Incisive Pass",
+      "Aerial Fortress",
+      "Bruiser"
+    ],
+    "positions": [
+      "CDM",
+      "CM"
+    ]
+  },
+  {
+    "id": 200104,
+    "player name": "Heung Min Son",
+    "country": "Korea Republic",
+    "rating": 85,
+    "traits": [
+      "Low Driven Shot",
+      "Gamechanger",
+      "Whipped Pass",
+      "First Touch"
+    ],
+    "positions": [
+      "LW",
+      "ST",
+      "LM"
+    ]
+  },
+  {
+    "id": 202811,
+    "player name": "Emiliano Martínez",
+    "country": "Argentina",
+    "rating": 85,
+    "traits": [
+      "Footwork",
+      "Rush Out"
+    ],
+    "positions": [
+      "GK"
+    ]
+  },
+  {
+    "id": 204525,
+    "player name": "Iñigo Martínez",
+    "country": "Spain",
+    "rating": 85,
+    "traits": [
+      "Long Ball Pass",
+      "Slide Tackle"
+    ],
+    "positions": [
+      "CB"
+    ]
+  },
+  {
+    "id": 204963,
+    "player name": "Carvajal",
+    "country": "Spain",
+    "rating": 85,
+    "traits": [
+      "Whipped Pass",
+      "Block",
+      "Relentless"
+    ],
+    "positions": [
+      "RB",
+      "RM"
+    ]
+  },
+  {
+    "id": 210257,
+    "player name": "Ederson",
+    "country": "Brazil",
+    "rating": 85,
+    "traits": [
+      "Pinged Pass",
+      "Cross Claimer"
+    ],
+    "positions": [
+      "GK"
+    ]
+  },
+  {
+    "id": 215914,
+    "player name": "N'Golo Kanté",
+    "country": "France",
+    "rating": 85,
+    "traits": [
+      "Press Proven",
+      "Relentless"
+    ],
+    "positions": [
+      "CDM",
+      "CM"
+    ]
+  },
+  {
+    "id": 216393,
+    "player name": "Youri Tielemans",
+    "country": "Belgium",
+    "rating": 85,
+    "traits": [
+      "Power Shot",
+      "Incisive Pass",
+      "Press Proven"
+    ],
+    "positions": [
+      "CM",
+      "CDM",
+      "CAM"
+    ]
+  },
+  {
+    "id": 226268,
+    "player name": "Federico Dimarco",
+    "country": "Italy",
+    "rating": 85,
+    "traits": [
+      "Finesse Shot",
+      "Power Shot",
+      "Dead Ball",
+      "Low Driven Shot",
+      "Whipped Pass",
+      "First Touch"
+    ],
+    "positions": [
+      "LB",
+      "LM"
+    ]
+  },
+  {
+    "id": 226271,
+    "player name": "Fabián Ruiz",
+    "country": "Spain",
+    "rating": 85,
+    "traits": [
+      "Finesse Shot",
+      "Long Ball Pass",
+      "Tiki Taka",
+      "First Touch"
+    ],
+    "positions": [
+      "CM",
+      "CDM"
+    ]
+  },
+  {
+    "id": 228093,
+    "player name": "Marcus Thuram",
+    "country": "France",
+    "rating": 85,
+    "traits": [
+      "Precision Header",
+      "Aerial Fortress",
+      "Rapid"
+    ],
+    "positions": [
+      "ST"
+    ]
+  },
+  {
+    "id": 229558,
+    "player name": "Dayot Upamecano",
+    "country": "France",
+    "rating": 85,
+    "traits": [
+      "Pinged Pass",
+      "Long Ball Pass",
+      "Jockey",
+      "Bruiser"
+    ],
+    "positions": [
+      "CB"
+    ]
+  },
+  {
+    "id": 230869,
+    "player name": "Unai Simón",
+    "country": "Spain",
+    "rating": 85,
+    "traits": [
+      "Pinged Pass",
+      "Footwork",
+      "Rush Out"
+    ],
+    "positions": [
+      "GK"
+    ]
+  },
+  {
+    "id": 234236,
+    "player name": "Patrik Schick",
+    "country": "Czech Republic",
+    "rating": 85,
+    "traits": [
+      "Precision Header",
+      "Acrobatic",
+      "Low Driven Shot"
+    ],
+    "positions": [
+      "ST"
+    ]
+  },
+  {
+    "id": 237238,
+    "player name": "Scott McTominay",
+    "country": "Scotland",
+    "rating": 85,
+    "traits": [
+      "Precision Header",
+      "Low Driven Shot",
+      "Incisive Pass",
+      "Aerial Fortress",
+      "Technical",
+      "Enforcer"
+    ],
+    "positions": [
+      "CM",
+      "CAM"
+    ]
+  },
+  {
+    "id": 237692,
+    "player name": "Phil Foden",
+    "country": "England",
+    "rating": 85,
+    "traits": [
+      "Low Driven Shot",
+      "Gamechanger",
+      "Inventive",
+      "Technical",
+      "First Touch"
+    ],
+    "positions": [
+      "RW",
+      "CM",
+      "LW",
+      "RM"
+    ]
+  },
+  {
+    "id": 239580,
+    "player name": "Bremer",
+    "country": "Brazil",
+    "rating": 85,
+    "traits": [
+      "Precision Header",
+      "Long Ball Pass",
+      "Block",
+      "Aerial Fortress",
+      "Bruiser"
+    ],
+    "positions": [
+      "CB"
+    ]
+  },
+  {
+    "id": 241084,
+    "player name": "Luis Díaz",
+    "country": "Colombia",
+    "rating": 85,
+    "traits": [
+      "Low Driven Shot",
+      "Inventive",
+      "Technical",
+      "Quick Step"
+    ],
+    "positions": [
+      "LM",
+      "LW",
+      "ST"
+    ]
+  },
+  {
+    "id": 243014,
+    "player name": "Bryan Mbeumo",
+    "country": "Cameroon",
+    "rating": 85,
+    "traits": [
+      "Inventive",
+      "Rapid",
+      "First Touch",
+      "Quick Step"
+    ],
+    "positions": [
+      "RW",
+      "RM",
+      "ST"
+    ]
+  },
+  {
+    "id": 243812,
+    "player name": "Rodrygo",
+    "country": "Brazil",
+    "rating": 85,
+    "traits": [
+      "Finesse Shot",
+      "Dead Ball",
+      "Gamechanger",
+      "Inventive",
+      "Technical"
+    ],
+    "positions": [
+      "RW",
+      "ST",
+      "RM"
+    ]
+  },
+  {
+    "id": 244260,
+    "player name": "Dani Olmo",
+    "country": "Spain",
+    "rating": 85,
+    "traits": [
+      "Finesse Shot",
+      "Gamechanger",
+      "Incisive Pass",
+      "Tiki Taka",
+      "Technical",
+      "First Touch"
+    ],
+    "positions": [
+      "CAM",
+      "CM",
+      "ST"
+    ]
+  },
+  {
+    "id": 246104,
+    "player name": "Ryan Gravenberch",
+    "country": "Holland",
+    "rating": 85,
+    "traits": [
+      "Intercept",
+      "Press Proven"
+    ],
+    "positions": [
+      "CDM",
+      "CM"
+    ]
+  },
+  {
+    "id": 247819,
+    "player name": "Nico Schlotterbeck",
+    "country": "Germany",
+    "rating": 85,
+    "traits": [
+      "Long Ball Pass",
+      "Jockey",
+      "Block",
+      "Anticipate",
+      "Long Throw"
+    ],
+    "positions": [
+      "CB"
+    ]
+  },
+  {
+    "id": 271421,
+    "player name": "Désiré Doué",
+    "country": "France",
+    "rating": 85,
+    "traits": [
+      "Gamechanger",
+      "Inventive",
+      "First Touch",
+      "Press Proven",
+      "Quick Step"
+    ],
+    "positions": [
+      "RW",
+      "LW",
+      "CM",
+      "RM"
+    ]
+  },
+  {
+    "id": 272834,
+    "player name": "João Neves",
+    "country": "Portugal",
+    "rating": 85,
+    "traits": [
+      "Long Ball Pass",
+      "Tiki Taka",
+      "Aerial Fortress",
+      "Relentless"
+    ],
+    "positions": [
+      "CM",
+      "CDM"
+    ]
+  },
+  {
+    "id": 167495,
+    "player name": "Manuel Neuer",
+    "country": "Germany",
+    "rating": 84,
+    "traits": [
+      "Long Ball Pass",
+      "Far Throw"
+    ],
+    "positions": [
+      "GK"
+    ]
+  },
+  {
+    "id": 186153,
+    "player name": "Wojciech Szczęsny",
+    "country": "Poland",
+    "rating": 84,
+    "traits": [
+      "Far Throw"
+    ],
+    "positions": [
+      "GK"
+    ]
+  },
+  {
+    "id": 192505,
+    "player name": "Romelu Lukaku",
+    "country": "Belgium",
+    "rating": 84,
+    "traits": [
+      "Power Shot",
+      "Low Driven Shot",
+      "Incisive Pass",
+      "Press Proven",
+      "Enforcer"
+    ],
+    "positions": [
+      "ST"
+    ]
+  },
+  {
+    "id": 197781,
+    "player name": "Isco",
+    "country": "Spain",
+    "rating": 84,
+    "traits": [
+      "Finesse Shot",
+      "Dead Ball",
+      "Gamechanger",
+      "Incisive Pass",
+      "Inventive",
+      "Technical"
+    ],
+    "positions": [
+      "CAM",
+      "LM",
+      "CM"
+    ]
+  },
+  {
+    "id": 198176,
+    "player name": "Stefan de Vrij",
+    "country": "Holland",
+    "rating": 84,
+    "traits": [
+      "Bruiser"
+    ],
+    "positions": [
+      "CB"
+    ]
+  },
+  {
+    "id": 199845,
+    "player name": "Francesco Acerbi",
+    "country": "Italy",
+    "rating": 84,
+    "traits": [
+      "Precision Header",
+      "Long Ball Pass",
+      "Slide Tackle",
+      "Aerial Fortress",
+      "Bruiser"
+    ],
+    "positions": [
+      "CB"
+    ]
+  },
+  {
+    "id": 204485,
+    "player name": "Riyad Mahrez",
+    "country": "Algeria",
+    "rating": 84,
+    "traits": [
+      "Finesse Shot",
+      "Dead Ball",
+      "Low Driven Shot",
+      "Incisive Pass",
+      "Inventive",
+      "Technical",
+      "First Touch"
+    ],
+    "positions": [
+      "RM",
+      "RW"
+    ]
+  },
+  {
+    "id": 204638,
+    "player name": "Willi Orban",
+    "country": "Hungary",
+    "rating": 84,
+    "traits": [
+      "Aerial Fortress",
+      "Bruiser"
+    ],
+    "positions": [
+      "CB"
+    ]
+  },
+  {
+    "id": 204935,
+    "player name": "Jordan Pickford",
+    "country": "England",
+    "rating": 84,
+    "traits": [
+      "Long Ball Pass",
+      "Far Throw",
+      "Footwork"
+    ],
+    "positions": [
+      "GK"
+    ]
+  },
+  {
+    "id": 210035,
+    "player name": "Grimaldo",
+    "country": "Spain",
+    "rating": 84,
+    "traits": [
+      "Finesse Shot",
+      "Dead Ball",
+      "Inventive",
+      "First Touch"
+    ],
+    "positions": [
+      "LM",
+      "LB",
+      "LW"
+    ]
+  },
+  {
+    "id": 210514,
+    "player name": "João Cancelo",
+    "country": "Portugal",
+    "rating": 84,
+    "traits": [
+      "Whipped Pass",
+      "Inventive",
+      "Block",
+      "Technical",
+      "First Touch"
+    ],
+    "positions": [
+      "RB",
+      "LB",
+      "RM"
+    ]
+  },
+  {
+    "id": 212616,
+    "player name": "Rodrigo De Paul",
+    "country": "Argentina",
+    "rating": 84,
+    "traits": [
+      "Finesse Shot",
+      "Incisive Pass",
+      "Long Ball Pass",
+      "Technical"
+    ],
+    "positions": [
+      "CM",
+      "CDM",
+      "CAM"
+    ]
+  },
+  {
+    "id": 216549,
+    "player name": "Alexander Sørloth",
+    "country": "Norway",
+    "rating": 84,
+    "traits": [
+      "Power Shot",
+      "Precision Header",
+      "Low Driven Shot",
+      "Gamechanger",
+      "Enforcer"
+    ],
+    "positions": [
+      "ST",
+      "RW",
+      "RM"
+    ]
+  },
+  {
+    "id": 218667,
+    "player name": "Bernardo Silva",
+    "country": "Portugal",
+    "rating": 84,
+    "traits": [
+      "Low Driven Shot",
+      "Gamechanger",
+      "Whipped Pass",
+      "Technical",
+      "Relentless"
+    ],
+    "positions": [
+      "CM",
+      "RM",
+      "CDM",
+      "CAM"
+    ]
+  },
+  {
+    "id": 220502,
+    "player name": "Mattia Zaccagni",
+    "country": "Italy",
+    "rating": 84,
+    "traits": [
+      "Finesse Shot",
+      "Dead Ball",
+      "Gamechanger",
+      "Incisive Pass",
+      "Inventive",
+      "Intercept",
+      "Technical"
+    ],
+    "positions": [
+      "LM",
+      "LW"
+    ]
+  },
+  {
+    "id": 220697,
+    "player name": "James Maddison",
+    "country": "England",
+    "rating": 84,
+    "traits": [
+      "Finesse Shot",
+      "Dead Ball",
+      "Gamechanger",
+      "Incisive Pass",
+      "Whipped Pass",
+      "Inventive"
+    ],
+    "positions": [
+      "CM",
+      "CAM",
+      "CDM"
+    ]
+  },
+  {
+    "id": 221697,
+    "player name": "Ollie Watkins",
+    "country": "England",
+    "rating": 84,
+    "traits": [
+      "Chip Shot",
+      "Precision Header",
+      "Low Driven Shot",
+      "Relentless"
+    ],
+    "positions": [
+      "ST"
+    ]
+  },
+  {
+    "id": 222077,
+    "player name": "Manuel Locatelli",
+    "country": "Italy",
+    "rating": 84,
+    "traits": [
+      "Long Ball Pass",
+      "Inventive",
+      "Jockey",
+      "Block",
+      "Anticipate",
+      "Aerial Fortress",
+      "Relentless"
+    ],
+    "positions": [
+      "CDM",
+      "CM"
+    ]
+  },
+  {
+    "id": 223848,
+    "player name": "Sergej Milinković-Savić",
+    "country": "Serbia",
+    "rating": 84,
+    "traits": [
+      "Dead Ball",
+      "Precision Header",
+      "Incisive Pass",
+      "Pinged Pass",
+      "Inventive",
+      "Aerial Fortress",
+      "First Touch"
+    ],
+    "positions": [
+      "CM",
+      "CDM",
+      "CAM"
+    ]
+  },
+  {
+    "id": 224293,
+    "player name": "Rúben Neves",
+    "country": "Portugal",
+    "rating": 84,
+    "traits": [
+      "Dead Ball",
+      "Long Ball Pass",
+      "Whipped Pass",
+      "Inventive",
+      "Intercept",
+      "Aerial Fortress"
+    ],
+    "positions": [
+      "CDM",
+      "CM"
+    ]
+  },
+  {
+    "id": 226161,
+    "player name": "Marcos Llorente",
+    "country": "Spain",
+    "rating": 84,
+    "traits": [
+      "Power Shot",
+      "Whipped Pass",
+      "Rapid",
+      "Quick Step",
+      "Relentless"
+    ],
+    "positions": [
+      "RB",
+      "CM",
+      "RM"
+    ]
+  },
+  {
+    "id": 226851,
+    "player name": "Benjamin Pavard",
+    "country": "France",
+    "rating": 84,
+    "traits": [],
+    "positions": [
+      "CB"
+    ]
+  },
+  {
+    "id": 227796,
+    "player name": "Christian Pulisic",
+    "country": "United States",
+    "rating": 84,
+    "traits": [
+      "Dead Ball",
+      "Low Driven Shot",
+      "Incisive Pass",
+      "Quick Step"
+    ],
+    "positions": [
+      "RW",
+      "RM",
+      "CAM"
+    ]
+  },
+  {
+    "id": 230899,
+    "player name": "Ademola Lookman",
+    "country": "Nigeria",
+    "rating": 84,
+    "traits": [
+      "Dead Ball",
+      "Low Driven Shot",
+      "Gamechanger",
+      "First Touch",
+      "Quick Step"
+    ],
+    "positions": [
+      "ST",
+      "CAM"
+    ]
+  },
+  {
+    "id": 231521,
+    "player name": "Exequiel Palacios",
+    "country": "Argentina",
+    "rating": 84,
+    "traits": [
+      "Anticipate"
+    ],
+    "positions": [
+      "CM",
+      "CDM"
+    ]
+  },
+  {
+    "id": 232656,
+    "player name": "Theo Hernández",
+    "country": "France",
+    "rating": 84,
+    "traits": [
+      "Dead Ball",
+      "Block",
+      "Anticipate",
+      "Rapid",
+      "Quick Step",
+      "Bruiser"
+    ],
+    "positions": [
+      "LB",
+      "LM"
+    ]
+  },
+  {
+    "id": 233096,
+    "player name": "Denzel Dumfries",
+    "country": "Holland",
+    "rating": 84,
+    "traits": [
+      "Precision Header",
+      "Rapid",
+      "Quick Step",
+      "Long Throw"
+    ],
+    "positions": [
+      "RB",
+      "RM"
+    ]
+  },
+  {
+    "id": 234396,
+    "player name": "Alphonso Davies",
+    "country": "Canada",
+    "rating": 84,
+    "traits": [
+      "Rapid",
+      "Quick Step"
+    ],
+    "positions": [
+      "LB",
+      "LM"
+    ]
+  },
+  {
+    "id": 234577,
+    "player name": "Diogo Costa",
+    "country": "Portugal",
+    "rating": 84,
+    "traits": [
+      "Long Ball Pass",
+      "Far Throw",
+      "Rush Out"
+    ],
+    "positions": [
+      "GK"
+    ]
+  },
+  {
+    "id": 239231,
+    "player name": "Marc Cucurella",
+    "country": "Spain",
+    "rating": 84,
+    "traits": [
+      "Jockey",
+      "Block",
+      "Press Proven",
+      "Relentless"
+    ],
+    "positions": [
+      "LB"
+    ]
+  },
+  {
+    "id": 240130,
+    "player name": "Éder Militão",
+    "country": "Brazil",
+    "rating": 84,
+    "traits": [
+      "Precision Header",
+      "Block",
+      "Intercept",
+      "Aerial Fortress"
+    ],
+    "positions": [
+      "CB"
+    ]
+  },
+  {
+    "id": 241637,
+    "player name": "Aurélien Tchouaméni",
+    "country": "France",
+    "rating": 84,
+    "traits": [
+      "Precision Header",
+      "Jockey",
+      "Intercept",
+      "Anticipate",
+      "Aerial Fortress",
+      "Relentless",
+      "Bruiser"
+    ],
+    "positions": [
+      "CDM",
+      "CM",
+      "CB"
+    ]
+  },
+  {
+    "id": 241721,
+    "player name": "Rafael Leão",
+    "country": "Portugal",
+    "rating": 84,
+    "traits": [
+      "Gamechanger",
+      "Incisive Pass",
+      "Rapid",
+      "Trickster",
+      "Quick Step"
+    ],
+    "positions": [
+      "LW",
+      "LM"
+    ]
+  },
+  {
+    "id": 241852,
+    "player name": "Moussa Diaby",
+    "country": "France",
+    "rating": 84,
+    "traits": [
+      "Inventive",
+      "Rapid",
+      "First Touch"
+    ],
+    "positions": [
+      "RM",
+      "RW"
+    ]
+  },
+  {
+    "id": 242516,
+    "player name": "Cody Gakpo",
+    "country": "Holland",
+    "rating": 84,
+    "traits": [
+      "Finesse Shot",
+      "Precision Header",
+      "Whipped Pass",
+      "First Touch",
+      "Press Proven"
+    ],
+    "positions": [
+      "LM",
+      "LW"
+    ]
+  },
+  {
+    "id": 244675,
+    "player name": "Sancet",
+    "country": "Spain",
+    "rating": 84,
+    "traits": [
+      "Finesse Shot",
+      "Precision Header",
+      "Technical",
+      "First Touch"
+    ],
+    "positions": [
+      "CAM",
+      "CM",
+      "ST"
+    ]
+  },
+  {
+    "id": 245367,
+    "player name": "Xavi Simons",
+    "country": "Holland",
+    "rating": 84,
+    "traits": [
+      "Finesse Shot",
+      "Incisive Pass",
+      "Tiki Taka",
+      "Inventive",
+      "Technical",
+      "First Touch"
+    ],
+    "positions": [
+      "CAM",
+      "LM",
+      "ST"
+    ]
+  },
+  {
+    "id": 247090,
+    "player name": "Enzo Fernández",
+    "country": "Argentina",
+    "rating": 84,
+    "traits": [
+      "First Touch",
+      "Press Proven",
+      "Relentless"
+    ],
+    "positions": [
+      "CM",
+      "CDM",
+      "CAM"
+    ]
+  },
+  {
+    "id": 248550,
+    "player name": "Vivian",
+    "country": "Spain",
+    "rating": 84,
+    "traits": [
+      "Long Ball Pass",
+      "Intercept"
+    ],
+    "positions": [
+      "CB"
+    ]
+  },
+  {
+    "id": 251517,
+    "player name": "Joško Gvardiol",
+    "country": "Croatia",
+    "rating": 84,
+    "traits": [
+      "Low Driven Shot",
+      "Pinged Pass",
+      "Jockey"
+    ],
+    "positions": [
+      "LB",
+      "CB",
+      "LM"
+    ]
+  },
+  {
+    "id": 252154,
+    "player name": "Marco Carnesecchi",
+    "country": "Italy",
+    "rating": 84,
+    "traits": [
+      "Rush Out"
+    ],
+    "positions": [
+      "GK"
+    ]
+  },
+  {
+    "id": 256675,
+    "player name": "Omar Marmoush",
+    "country": "Egypt",
+    "rating": 84,
+    "traits": [
+      "Finesse Shot",
+      "Dead Ball",
+      "Technical"
+    ],
+    "positions": [
+      "ST",
+      "CAM",
+      "LW"
+    ]
+  },
+  {
+    "id": 257279,
+    "player name": "Álex Baena",
+    "country": "Spain",
+    "rating": 84,
+    "traits": [
+      "Dead Ball",
+      "Incisive Pass",
+      "Long Ball Pass",
+      "Tiki Taka",
+      "Inventive",
+      "Technical",
+      "First Touch"
+    ],
+    "positions": [
+      "LM",
+      "ST",
+      "LW"
+    ]
+  },
+  {
+    "id": 262621,
+    "player name": "Giorgi Mamardashvili",
+    "country": "Georgia",
+    "rating": 84,
+    "traits": [
+      "Far Throw",
+      "Footwork",
+      "Cross Claimer"
+    ],
+    "positions": [
+      "GK"
+    ]
+  },
+  {
+    "id": 264652,
+    "player name": "Bradley Barcola",
+    "country": "France",
+    "rating": 84,
+    "traits": [
+      "Finesse Shot",
+      "Gamechanger",
+      "Rapid"
+    ],
+    "positions": [
+      "LW",
+      "RW",
+      "LM"
+    ]
+  },
+  {
+    "id": 177003,
+    "player name": "Luka Modrić",
+    "country": "Croatia",
+    "rating": 83,
+    "traits": [
+      "Incisive Pass",
+      "Long Ball Pass",
+      "Whipped Pass",
+      "Technical"
+    ],
+    "positions": [
+      "CM",
+      "CAM",
+      "CDM"
+    ]
+  },
+  {
+    "id": 186942,
+    "player name": "İlkay Gündoğan",
+    "country": "Germany",
+    "rating": 83,
+    "traits": [
+      "Tiki Taka",
+      "First Touch",
+      "Press Proven"
+    ],
+    "positions": [
+      "CM",
+      "CDM",
+      "CAM"
+    ]
+  },
+  {
+    "id": 192629,
+    "player name": "Iago Aspas",
+    "country": "Spain",
+    "rating": 83,
+    "traits": [
+      "Finesse Shot",
+      "Chip Shot",
+      "Dead Ball",
+      "Low Driven Shot",
+      "Incisive Pass"
+    ],
+    "positions": [
+      "RW",
+      "ST",
+      "RM"
+    ]
+  },
+  {
+    "id": 192883,
+    "player name": "Henrikh Mkhitaryan",
+    "country": "Armenia",
+    "rating": 83,
+    "traits": [
+      "Incisive Pass",
+      "Inventive",
+      "Jockey",
+      "Anticipate",
+      "Technical",
+      "Relentless"
+    ],
+    "positions": [
+      "CM"
+    ]
+  },
+  {
+    "id": 193698,
+    "player name": "Oliver Baumann",
+    "country": "Germany",
+    "rating": 83,
+    "traits": [
+      "Footwork",
+      "Deflector"
+    ],
+    "positions": [
+      "GK"
+    ]
+  },
+  {
+    "id": 199641,
+    "player name": "Matz Sels",
+    "country": "Belgium",
+    "rating": 83,
+    "traits": [
+      "Far Reach"
+    ],
+    "positions": [
+      "GK"
+    ]
+  },
+  {
+    "id": 207410,
+    "player name": "Mateo Kovačić",
+    "country": "Croatia",
+    "rating": 83,
+    "traits": [
+      "Incisive Pass",
+      "Press Proven"
+    ],
+    "positions": [
+      "CM",
+      "CDM",
+      "CAM"
+    ]
+  },
+  {
+    "id": 207421,
+    "player name": "Leandro Trossard",
+    "country": "Belgium",
+    "rating": 83,
+    "traits": [
+      "Whipped Pass"
+    ],
+    "positions": [
+      "LW",
+      "ST",
+      "LM"
+    ]
+  },
+  {
+    "id": 208722,
+    "player name": "Sadio Mané",
+    "country": "Senegal",
+    "rating": 83,
+    "traits": [
+      "Low Driven Shot",
+      "Gamechanger",
+      "Aerial Fortress",
+      "Rapid"
+    ],
+    "positions": [
+      "LM",
+      "RM",
+      "ST",
+      "LW"
+    ]
+  },
+  {
+    "id": 208920,
+    "player name": "Nathan Aké",
+    "country": "Holland",
+    "rating": 83,
+    "traits": [],
+    "positions": [
+      "CB",
+      "LB",
+      "LM"
+    ]
+  },
+  {
+    "id": 209989,
+    "player name": "Thomas Partey",
+    "country": "Ghana",
+    "rating": 83,
+    "traits": [
+      "Pinged Pass",
+      "Press Proven",
+      "Long Throw"
+    ],
+    "positions": [
+      "CDM",
+      "CM",
+      "RB"
+    ]
+  },
+  {
+    "id": 210008,
+    "player name": "Adrien Rabiot",
+    "country": "France",
+    "rating": 83,
+    "traits": [
+      "Precision Header",
+      "First Touch",
+      "Press Proven"
+    ],
+    "positions": [
+      "CAM",
+      "CM"
+    ]
+  },
+  {
+    "id": 212194,
+    "player name": "Julian Brandt",
+    "country": "Germany",
+    "rating": 83,
+    "traits": [
+      "Dead Ball",
+      "Incisive Pass",
+      "Tiki Taka",
+      "Inventive",
+      "Technical",
+      "First Touch"
+    ],
+    "positions": [
+      "CAM",
+      "CM"
+    ]
+  },
+  {
+    "id": 213345,
+    "player name": "Kingsley Coman",
+    "country": "France",
+    "rating": 83,
+    "traits": [
+      "First Touch",
+      "Quick Step"
+    ],
+    "positions": [
+      "LM",
+      "RM",
+      "LW"
+    ]
+  },
+  {
+    "id": 215590,
+    "player name": "Ayoze",
+    "country": "Spain",
+    "rating": 83,
+    "traits": [
+      "Acrobatic",
+      "Low Driven Shot",
+      "Gamechanger",
+      "Incisive Pass",
+      "Technical"
+    ],
+    "positions": [
+      "ST",
+      "CAM"
+    ]
+  },
+  {
+    "id": 216201,
+    "player name": "Iñaki Williams",
+    "country": "Ghana",
+    "rating": 83,
+    "traits": [
+      "Finesse Shot",
+      "Power Shot",
+      "Low Driven Shot",
+      "Rapid",
+      "Quick Step"
+    ],
+    "positions": [
+      "RM",
+      "ST",
+      "RW"
+    ]
+  },
+  {
+    "id": 216435,
+    "player name": "Stanislav Lobotka",
+    "country": "Slovakia",
+    "rating": 83,
+    "traits": [
+      "Long Ball Pass",
+      "Inventive",
+      "Anticipate",
+      "Technical",
+      "First Touch",
+      "Relentless"
+    ],
+    "positions": [
+      "CM",
+      "CDM"
+    ]
+  },
+  {
+    "id": 216460,
+    "player name": "José María Giménez",
+    "country": "Uruguay",
+    "rating": 83,
+    "traits": [
+      "Precision Header",
+      "Long Ball Pass",
+      "Slide Tackle"
+    ],
+    "positions": [
+      "CB"
+    ]
+  },
+  {
+    "id": 217870,
+    "player name": "Giovanni Di Lorenzo",
+    "country": "Italy",
+    "rating": 83,
+    "traits": [
+      "Long Ball Pass",
+      "First Touch",
+      "Relentless"
+    ],
+    "positions": [
+      "RB",
+      "CB",
+      "RM"
+    ]
+  },
+  {
+    "id": 223959,
+    "player name": "Lucas Torreira",
+    "country": "Uruguay",
+    "rating": 83,
+    "traits": [
+      "Long Ball Pass",
+      "Tiki Taka",
+      "Jockey",
+      "Intercept",
+      "Anticipate",
+      "Slide Tackle",
+      "Relentless"
+    ],
+    "positions": [
+      "CDM",
+      "CM"
+    ]
+  },
+  {
+    "id": 224371,
+    "player name": "Jarrod Bowen",
+    "country": "England",
+    "rating": 83,
+    "traits": [
+      "Precision Header",
+      "Low Driven Shot",
+      "Gamechanger",
+      "Technical"
+    ],
+    "positions": [
+      "RM",
+      "ST",
+      "RW"
+    ]
+  },
+  {
+    "id": 225193,
+    "player name": "Mikel Merino",
+    "country": "Spain",
+    "rating": 83,
+    "traits": [
+      "Power Shot",
+      "Precision Header",
+      "Aerial Fortress",
+      "Relentless"
+    ],
+    "positions": [
+      "CM",
+      "ST"
+    ]
+  },
+  {
+    "id": 227127,
+    "player name": "Álex Remiro",
+    "country": "Spain",
+    "rating": 83,
+    "traits": [
+      "Long Ball Pass",
+      "Far Throw",
+      "Footwork"
+    ],
+    "positions": [
+      "GK"
+    ]
+  },
+  {
+    "id": 228813,
+    "player name": "Aleix García",
+    "country": "Spain",
+    "rating": 83,
+    "traits": [
+      "Dead Ball",
+      "Long Ball Pass",
+      "Tiki Taka",
+      "Inventive"
+    ],
+    "positions": [
+      "CM",
+      "CDM"
+    ]
+  },
+  {
+    "id": 229391,
+    "player name": "Palhinha",
+    "country": "Portugal",
+    "rating": 83,
+    "traits": [
+      "Slide Tackle"
+    ],
+    "positions": [
+      "CDM",
+      "CM"
+    ]
+  },
+  {
+    "id": 229582,
+    "player name": "Gianluca Mancini",
+    "country": "Italy",
+    "rating": 83,
+    "traits": [
+      "Precision Header",
+      "Intercept",
+      "Anticipate",
+      "Bruiser"
+    ],
+    "positions": [
+      "CB"
+    ]
+  },
+  {
+    "id": 231936,
+    "player name": "Benjamin White",
+    "country": "England",
+    "rating": 83,
+    "traits": [
+      "Block"
+    ],
+    "positions": [
+      "RB"
+    ]
+  },
+  {
+    "id": 233486,
+    "player name": "Robin Le Normand",
+    "country": "Spain",
+    "rating": 83,
+    "traits": [
+      "Slide Tackle",
+      "Aerial Fortress"
+    ],
+    "positions": [
+      "CB"
+    ]
+  },
+  {
+    "id": 235794,
+    "player name": "Eberechi Eze",
+    "country": "England",
+    "rating": 83,
+    "traits": [
+      "Finesse Shot",
+      "Power Shot",
+      "Dead Ball",
+      "Gamechanger",
+      "Inventive",
+      "Technical",
+      "First Touch"
+    ],
+    "positions": [
+      "CAM",
+      "LW",
+      "ST"
+    ]
+  },
+  {
+    "id": 236610,
+    "player name": "Moise Kean",
+    "country": "Italy",
+    "rating": 83,
+    "traits": [
+      "Chip Shot",
+      "Gamechanger",
+      "Rapid"
+    ],
+    "positions": [
+      "ST"
+    ]
+  },
+  {
+    "id": 236772,
+    "player name": "Dominik Szoboszlai",
+    "country": "Hungary",
+    "rating": 83,
+    "traits": [
+      "Power Shot",
+      "Whipped Pass",
+      "Technical"
+    ],
+    "positions": [
+      "CAM",
+      "CM"
+    ]
+  },
+  {
+    "id": 236987,
+    "player name": "Boubacar Kamara",
+    "country": "France",
+    "rating": 83,
+    "traits": [
+      "Block"
+    ],
+    "positions": [
+      "CDM",
+      "CM"
+    ]
+  },
+  {
+    "id": 238095,
+    "player name": "Nikola Milenković",
+    "country": "Serbia",
+    "rating": 83,
+    "traits": [
+      "Long Ball Pass",
+      "Anticipate",
+      "Aerial Fortress"
+    ],
+    "positions": [
+      "CB"
+    ]
+  },
+  {
+    "id": 240243,
+    "player name": "Matheus Cunha",
+    "country": "Brazil",
+    "rating": 83,
+    "traits": [
+      "Power Shot",
+      "Dead Ball",
+      "Inventive",
+      "First Touch",
+      "Trickster"
+    ],
+    "positions": [
+      "CAM",
+      "LW",
+      "ST"
+    ]
+  },
+  {
+    "id": 240950,
+    "player name": "Pedro Gonçalves",
+    "country": "Portugal",
+    "rating": 83,
+    "traits": [
+      "Finesse Shot",
+      "Dead Ball",
+      "Incisive Pass",
+      "Tiki Taka",
+      "Whipped Pass",
+      "Inventive",
+      "Technical"
+    ],
+    "positions": [
+      "CAM",
+      "LM",
+      "CM"
+    ]
+  },
+  {
+    "id": 241461,
+    "player name": "Ferran Torres",
+    "country": "Spain",
+    "rating": 83,
+    "traits": [
+      "Finesse Shot",
+      "Technical"
+    ],
+    "positions": [
+      "LW",
+      "RW",
+      "ST",
+      "LM"
+    ]
+  },
+  {
+    "id": 241850,
+    "player name": "Mateo Retegui",
+    "country": "Italy",
+    "rating": 83,
+    "traits": [
+      "Precision Header",
+      "Low Driven Shot",
+      "First Touch",
+      "Enforcer"
+    ],
+    "positions": [
+      "ST"
+    ]
+  },
+  {
+    "id": 242458,
+    "player name": "Artem Dovbyk",
+    "country": "Ukraine",
+    "rating": 83,
+    "traits": [],
+    "positions": [
+      "ST"
+    ]
+  },
+  {
+    "id": 242964,
+    "player name": "Anthony Gordon",
+    "country": "England",
+    "rating": 83,
+    "traits": [
+      "Finesse Shot",
+      "Whipped Pass",
+      "Rapid",
+      "Quick Step"
+    ],
+    "positions": [
+      "LW",
+      "RW",
+      "LM"
+    ]
+  },
+  {
+    "id": 243580,
+    "player name": "Loïs Openda",
+    "country": "Belgium",
+    "rating": 83,
+    "traits": [
+      "Finesse Shot",
+      "Acrobatic",
+      "Low Driven Shot",
+      "Rapid",
+      "Quick Step"
+    ],
+    "positions": [
+      "ST"
+    ]
+  },
+  {
+    "id": 244263,
+    "player name": "Amir Rrahmani",
+    "country": "Kosovo",
+    "rating": 83,
+    "traits": [
+      "Long Ball Pass",
+      "Block",
+      "Slide Tackle",
+      "Aerial Fortress"
+    ],
+    "positions": [
+      "CB"
+    ]
+  },
+  {
+    "id": 244669,
+    "player name": "Morten Hjulmand",
+    "country": "Denmark",
+    "rating": 83,
+    "traits": [
+      "Jockey",
+      "Block",
+      "Anticipate",
+      "Relentless"
+    ],
+    "positions": [
+      "CDM",
+      "CM"
+    ]
+  },
+  {
+    "id": 247103,
+    "player name": "Dávid Hancko",
+    "country": "Slovakia",
+    "rating": 83,
+    "traits": [
+      "Precision Header",
+      "Long Ball Pass",
+      "Jockey",
+      "Anticipate"
+    ],
+    "positions": [
+      "CB",
+      "LB",
+      "LM"
+    ]
+  },
+  {
+    "id": 999999,
+    "player name": "Neymar Junior",
+    "country": "Brazil",
+    "rating": 83,
+    "traits": [
+      "Finesse Shot",
+      "Dead Ball",
+      "Incisive Pass",
+      "Inventive",
+      "Technical",
+      "First Touch",
+      "Trickster"
+    ],
+    "positions": [
+      "CAM",
+      "LW",
+      "ST"
+    ]
+  },
+  {
+    "id": 247394,
+    "player name": "Dejan Kulusevski",
+    "country": "Sweden",
+    "rating": 83,
+    "traits": [
+      "Finesse Shot",
+      "Whipped Pass",
+      "Press Proven",
+      "Relentless"
+    ],
+    "positions": [
+      "CM",
+      "RW",
+      "CAM"
+    ]
+  },
+  {
+    "id": 248148,
+    "player name": "Zubimendi",
+    "country": "Spain",
+    "rating": 83,
+    "traits": [
+      "Intercept",
+      "Aerial Fortress"
+    ],
+    "positions": [
+      "CDM",
+      "CM"
+    ]
+  },
+  {
+    "id": 248243,
+    "player name": "Eduardo Camavinga",
+    "country": "France",
+    "rating": 83,
+    "traits": [
+      "Jockey",
+      "Block",
+      "Technical",
+      "Bruiser"
+    ],
+    "positions": [
+      "CM",
+      "CDM",
+      "LB"
+    ]
+  },
+  {
+    "id": 250959,
+    "player name": "Angelo Stiller",
+    "country": "Germany",
+    "rating": 83,
+    "traits": [
+      "Incisive Pass",
+      "Long Ball Pass",
+      "Press Proven"
+    ],
+    "positions": [
+      "CDM",
+      "CM"
+    ]
+  },
+  {
+    "id": 251752,
+    "player name": "Lucas Chevalier",
+    "country": "France",
+    "rating": 83,
+    "traits": [
+      "Footwork",
+      "Rush Out"
+    ],
+    "positions": [
+      "GK"
+    ]
+  },
+  {
+    "id": 253149,
+    "player name": "Jeremie Frimpong",
+    "country": "Holland",
+    "rating": 83,
+    "traits": [
+      "Slide Tackle",
+      "Rapid",
+      "Quick Step"
+    ],
+    "positions": [
+      "RB",
+      "RM",
+      "RW"
+    ]
+  },
+  {
+    "id": 253163,
+    "player name": "Ronald Araujo",
+    "country": "Uruguay",
+    "rating": 83,
+    "traits": [
+      "Precision Header",
+      "Jockey",
+      "Block",
+      "Anticipate",
+      "Slide Tackle",
+      "Aerial Fortress"
+    ],
+    "positions": [
+      "CB",
+      "RB"
+    ]
+  },
+  {
+    "id": 256197,
+    "player name": "Piero Hincapié",
+    "country": "Ecuador",
+    "rating": 83,
+    "traits": [
+      "Jockey",
+      "Block"
+    ],
+    "positions": [
+      "CB",
+      "LB",
+      "LM"
+    ]
+  },
+  {
+    "id": 257289,
+    "player name": "Hugo Ekitiké",
+    "country": "France",
+    "rating": 83,
+    "traits": [
+      "Finesse Shot",
+      "Chip Shot",
+      "Technical"
+    ],
+    "positions": [
+      "ST",
+      "CAM"
+    ]
+  },
+  {
+    "id": 259532,
+    "player name": "Joan García",
+    "country": "Spain",
+    "rating": 83,
+    "traits": [
+      "Cross Claimer"
+    ],
+    "positions": [
+      "GK"
+    ]
+  },
+  {
+    "id": 263578,
+    "player name": "Balde",
+    "country": "Spain",
+    "rating": 83,
+    "traits": [
+      "Jockey",
+      "Anticipate",
+      "Quick Step"
+    ],
+    "positions": [
+      "LB",
+      "LM"
+    ]
+  },
+  {
+    "id": 264240,
+    "player name": "Gavi",
+    "country": "Spain",
+    "rating": 83,
+    "traits": [
+      "Tiki Taka",
+      "Slide Tackle",
+      "Press Proven",
+      "Relentless"
+    ],
+    "positions": [
+      "CM",
+      "CAM"
+    ]
+  },
+  {
+    "id": 278016,
+    "player name": "Murillo",
+    "country": "Brazil",
+    "rating": 83,
+    "traits": [
+      "Long Ball Pass",
+      "Block",
+      "Intercept",
+      "Bruiser"
+    ],
+    "positions": [
+      "CB"
+    ]
+  },
+  {
+    "id": 183898,
+    "player name": "Ángel Di María",
+    "country": "Argentina",
+    "rating": 82,
+    "traits": [
+      "Finesse Shot",
+      "Chip Shot",
+      "Incisive Pass",
+      "Long Ball Pass",
+      "Inventive",
+      "Technical",
+      "Trickster"
+    ],
+    "positions": [
+      "RW",
+      "RM"
+    ]
+  },
+  {
+    "id": 188335,
+    "player name": "Ante Budimir",
+    "country": "Croatia",
+    "rating": 82,
+    "traits": [
+      "Precision Header",
+      "Enforcer"
+    ],
+    "positions": [
+      "ST"
+    ]
+  },
+  {
+    "id": 189513,
+    "player name": "Parejo",
+    "country": "Spain",
+    "rating": 82,
+    "traits": [
+      "Pinged Pass",
+      "Long Ball Pass",
+      "Aerial Fortress",
+      "Press Proven"
+    ],
+    "positions": [
+      "CM",
+      "CDM"
+    ]
+  },
+  {
+    "id": 192123,
+    "player name": "Chris Wood",
+    "country": "New Zealand",
+    "rating": 82,
+    "traits": [
+      "Precision Header",
+      "Aerial Fortress",
+      "Enforcer"
+    ],
+    "positions": [
+      "ST"
+    ]
+  },
+  {
+    "id": 192318,
+    "player name": "Mario Götze",
+    "country": "Germany",
+    "rating": 82,
+    "traits": [
+      "Incisive Pass",
+      "Tiki Taka",
+      "First Touch"
+    ],
+    "positions": [
+      "CM",
+      "CAM",
+      "RM",
+      "CDM"
+    ]
+  },
+  {
+    "id": 192366,
+    "player name": "Nicolás Otamendi",
+    "country": "Argentina",
+    "rating": 82,
+    "traits": [
+      "Precision Header",
+      "Jockey",
+      "Intercept",
+      "Anticipate",
+      "Slide Tackle",
+      "Aerial Fortress",
+      "Bruiser"
+    ],
+    "positions": [
+      "CB"
+    ]
+  },
+  {
+    "id": 192984,
+    "player name": "Koen Casteels",
+    "country": "Belgium",
+    "rating": 82,
+    "traits": [
+      "Long Ball Pass",
+      "Footwork",
+      "Rush Out"
+    ],
+    "positions": [
+      "GK"
+    ]
+  },
+  {
+    "id": 197445,
+    "player name": "David Alaba",
+    "country": "Austria",
+    "rating": 82,
+    "traits": [
+      "Dead Ball",
+      "Anticipate"
+    ],
+    "positions": [
+      "CB",
+      "LB",
+      "LM"
+    ]
+  },
+  {
+    "id": 200724,
+    "player name": "Nacho Fernández",
+    "country": "Spain",
+    "rating": 82,
+    "traits": [
+      "Long Ball Pass",
+      "Block"
+    ],
+    "positions": [
+      "CB",
+      "LB",
+      "RB",
+      "LM"
+    ]
+  },
+  {
+    "id": 201024,
+    "player name": "Kalidou Koulibaly",
+    "country": "Senegal",
+    "rating": 82,
+    "traits": [
+      "Long Ball Pass",
+      "Block",
+      "Anticipate",
+      "Aerial Fortress",
+      "Bruiser"
+    ],
+    "positions": [
+      "CB"
+    ]
+  },
+  {
+    "id": 203574,
+    "player name": "John Stones",
+    "country": "England",
+    "rating": 82,
+    "traits": [
+      "Long Throw"
+    ],
+    "positions": [
+      "CB",
+      "RB"
+    ]
+  },
+  {
+    "id": 206113,
+    "player name": "Serge Gnabry",
+    "country": "Germany",
+    "rating": 82,
+    "traits": [
+      "Gamechanger",
+      "Technical"
+    ],
+    "positions": [
+      "LM",
+      "RM",
+      "ST",
+      "LW"
+    ]
+  },
+  {
+    "id": 207862,
+    "player name": "Matthias Ginter",
+    "country": "Germany",
+    "rating": 82,
+    "traits": [
+      "Pinged Pass",
+      "Aerial Fortress"
+    ],
+    "positions": [
+      "CB"
+    ]
+  },
+  {
+    "id": 208333,
+    "player name": "Emre Can",
+    "country": "Germany",
+    "rating": 82,
+    "traits": [
+      "Pinged Pass",
+      "Long Ball Pass",
+      "Slide Tackle",
+      "Press Proven"
+    ],
+    "positions": [
+      "CB",
+      "CDM",
+      "CM"
+    ]
+  },
+  {
+    "id": 209499,
+    "player name": "Fabinho",
+    "country": "Brazil",
+    "rating": 82,
+    "traits": [
+      "Power Shot",
+      "Block",
+      "Slide Tackle",
+      "Aerial Fortress",
+      "Press Proven",
+      "Bruiser"
+    ],
+    "positions": [
+      "CDM",
+      "CM"
+    ]
+  },
+  {
+    "id": 209658,
+    "player name": "Leon Goretzka",
+    "country": "Germany",
+    "rating": 82,
+    "traits": [
+      "Power Shot",
+      "Precision Header",
+      "Incisive Pass",
+      "Aerial Fortress",
+      "Bruiser"
+    ],
+    "positions": [
+      "CM",
+      "CDM",
+      "CAM"
+    ]
+  },
+  {
+    "id": 209981,
+    "player name": "Yassine Bounou",
+    "country": "Morocco",
+    "rating": 82,
+    "traits": [
+      "Far Throw",
+      "Footwork",
+      "Cross Claimer"
+    ],
+    "positions": [
+      "GK"
+    ]
+  },
+  {
+    "id": 210047,
+    "player name": "Fabian Schär",
+    "country": "Switzerland",
+    "rating": 82,
+    "traits": [
+      "Power Shot",
+      "Precision Header",
+      "Long Ball Pass",
+      "Intercept"
+    ],
+    "positions": [
+      "CB"
+    ]
+  },
+  {
+    "id": 210411,
+    "player name": "Otávio",
+    "country": "Portugal",
+    "rating": 82,
+    "traits": [
+      "Incisive Pass",
+      "Pinged Pass",
+      "Tiki Taka",
+      "Technical",
+      "First Touch",
+      "Relentless"
+    ],
+    "positions": [
+      "CAM",
+      "CM",
+      "RM"
+    ]
+  },
+  {
+    "id": 210413,
+    "player name": "Alessio Romagnoli",
+    "country": "Italy",
+    "rating": 82,
+    "traits": [
+      "Anticipate",
+      "Aerial Fortress",
+      "Bruiser"
+    ],
+    "positions": [
+      "CB"
+    ]
+  },
+  {
+    "id": 210602,
+    "player name": "Salem Al Dawsari",
+    "country": "Saudi Arabia",
+    "rating": 82,
+    "traits": [
+      "Finesse Shot",
+      "Acrobatic",
+      "Whipped Pass",
+      "Inventive",
+      "Technical",
+      "First Touch",
+      "Relentless"
+    ],
+    "positions": [
+      "LM",
+      "LW"
+    ]
+  },
+  {
+    "id": 210935,
+    "player name": "Domenico Berardi",
+    "country": "Italy",
+    "rating": 82,
+    "traits": [
+      "Finesse Shot",
+      "Dead Ball",
+      "Gamechanger",
+      "Incisive Pass",
+      "Long Ball Pass",
+      "Inventive",
+      "Technical"
+    ],
+    "positions": [
+      "RW",
+      "RM"
+    ]
+  },
+  {
+    "id": 212218,
+    "player name": "Aymeric Laporte",
+    "country": "Spain",
+    "rating": 82,
+    "traits": [
+      "Precision Header",
+      "Pinged Pass",
+      "Long Ball Pass",
+      "Jockey",
+      "Aerial Fortress"
+    ],
+    "positions": [
+      "CB"
+    ]
+  },
+  {
+    "id": 213648,
+    "player name": "Pierre-Emile Højbjerg",
+    "country": "Denmark",
+    "rating": 82,
+    "traits": [
+      "Intercept",
+      "Relentless"
+    ],
+    "positions": [
+      "CDM",
+      "CM"
+    ]
+  },
+  {
+    "id": 215316,
+    "player name": "Gerónimo Rulli",
+    "country": "Argentina",
+    "rating": 82,
+    "traits": [
+      "Footwork"
+    ],
+    "positions": [
+      "GK"
+    ]
+  },
+  {
+    "id": 215333,
+    "player name": "Duván Zapata",
+    "country": "Colombia",
+    "rating": 82,
+    "traits": [
+      "Power Shot",
+      "Precision Header",
+      "Aerial Fortress",
+      "Press Proven",
+      "Enforcer"
+    ],
+    "positions": [
+      "ST"
+    ]
+  },
+  {
+    "id": 216267,
+    "player name": "Andrew Robertson",
+    "country": "Scotland",
+    "rating": 82,
+    "traits": [
+      "Whipped Pass"
+    ],
+    "positions": [
+      "LB",
+      "LM"
+    ]
+  },
+  {
+    "id": 216547,
+    "player name": "Rafa",
+    "country": "Portugal",
+    "rating": 82,
+    "traits": [
+      "Acrobatic",
+      "Inventive",
+      "Rapid",
+      "First Touch",
+      "Quick Step"
+    ],
+    "positions": [
+      "CAM",
+      "ST",
+      "LM"
+    ]
+  },
+  {
+    "id": 220793,
+    "player name": "Davinson Sánchez",
+    "country": "Colombia",
+    "rating": 82,
+    "traits": [
+      "Precision Header",
+      "Slide Tackle",
+      "Aerial Fortress",
+      "Bruiser"
+    ],
+    "positions": [
+      "CB"
+    ]
+  },
+  {
+    "id": 222492,
+    "player name": "Leroy Sané",
+    "country": "Germany",
+    "rating": 82,
+    "traits": [
+      "Power Shot",
+      "Gamechanger",
+      "Rapid",
+      "Quick Step"
+    ],
+    "positions": [
+      "RM",
+      "LM",
+      "RW"
+    ]
+  },
+  {
+    "id": 222737,
+    "player name": "Malcom",
+    "country": "Brazil",
+    "rating": 82,
+    "traits": [
+      "Dead Ball",
+      "Low Driven Shot",
+      "Incisive Pass",
+      "Whipped Pass",
+      "Inventive",
+      "Rapid",
+      "Relentless"
+    ],
+    "positions": [
+      "CAM",
+      "RM",
+      "LM",
+      "CM"
+    ]
+  },
+  {
+    "id": 223334,
+    "player name": "Joelinton",
+    "country": "Brazil",
+    "rating": 82,
+    "traits": [
+      "Aerial Fortress",
+      "Press Proven",
+      "Relentless",
+      "Bruiser",
+      "Enforcer"
+    ],
+    "positions": [
+      "CM",
+      "LW",
+      "LM"
+    ]
+  },
+  {
+    "id": 224987,
+    "player name": "Ivan Provedel",
+    "country": "Italy",
+    "rating": 82,
+    "traits": [
+      "Long Ball Pass",
+      "Footwork",
+      "Deflector"
+    ],
+    "positions": [
+      "GK"
+    ]
+  },
+  {
+    "id": 225116,
+    "player name": "Alex Meret",
+    "country": "Italy",
+    "rating": 82,
+    "traits": [],
+    "positions": [
+      "GK"
+    ]
+  },
+  {
+    "id": 225201,
+    "player name": "Álex Berenguer",
+    "country": "Spain",
+    "rating": 82,
+    "traits": [
+      "Finesse Shot",
+      "Rapid"
+    ],
+    "positions": [
+      "LM",
+      "RM",
+      "CAM",
+      "LW"
+    ]
+  },
+  {
+    "id": 225375,
+    "player name": "Konrad Laimer",
+    "country": "Austria",
+    "rating": 82,
+    "traits": [
+      "Block",
+      "Relentless",
+      "Bruiser"
+    ],
+    "positions": [
+      "RB",
+      "CDM",
+      "CM",
+      "RM"
+    ]
+  },
+  {
+    "id": 226226,
+    "player name": "Giovani Lo Celso",
+    "country": "Argentina",
+    "rating": 82,
+    "traits": [
+      "Finesse Shot",
+      "Dead Ball",
+      "Incisive Pass",
+      "Technical"
+    ],
+    "positions": [
+      "CAM",
+      "CM",
+      "CDM"
+    ]
+  },
+  {
+    "id": 227236,
+    "player name": "André-Franck Zambo Anguissa",
+    "country": "Cameroon",
+    "rating": 82,
+    "traits": [
+      "Precision Header",
+      "Aerial Fortress",
+      "Press Proven",
+      "Relentless"
+    ],
+    "positions": [
+      "CM",
+      "CAM"
+    ]
+  },
+  {
+    "id": 227647,
+    "player name": "Maximilian Mittelstädt",
+    "country": "Germany",
+    "rating": 82,
+    "traits": [
+      "Whipped Pass",
+      "Intercept",
+      "Slide Tackle"
+    ],
+    "positions": [
+      "LB",
+      "LM"
+    ]
+  },
+  {
+    "id": 227678,
+    "player name": "Ezri Konsa",
+    "country": "England",
+    "rating": 82,
+    "traits": [
+      "Jockey",
+      "Anticipate",
+      "Slide Tackle"
+    ],
+    "positions": [
+      "CB",
+      "RB",
+      "RM"
+    ]
+  },
+  {
+    "id": 229188,
+    "player name": "Vangelis Pavlidis",
+    "country": "Greece",
+    "rating": 82,
+    "traits": [
+      "Chip Shot",
+      "Acrobatic",
+      "Gamechanger",
+      "Technical",
+      "Relentless"
+    ],
+    "positions": [
+      "ST",
+      "CAM"
+    ]
+  },
+  {
+    "id": 229237,
+    "player name": "Manuel Akanji",
+    "country": "Switzerland",
+    "rating": 82,
+    "traits": [
+      "Long Ball Pass"
+    ],
+    "positions": [
+      "CB"
+    ]
+  },
+  {
+    "id": 229261,
+    "player name": "Denis Zakaria",
+    "country": "Switzerland",
+    "rating": 82,
+    "traits": [
+      "Precision Header",
+      "Intercept",
+      "Anticipate"
+    ],
+    "positions": [
+      "CDM",
+      "CM"
+    ]
+  },
+  {
+    "id": 229348,
+    "player name": "Antonee Robinson",
+    "country": "United States",
+    "rating": 82,
+    "traits": [
+      "Long Ball Pass",
+      "Whipped Pass",
+      "Jockey",
+      "Intercept",
+      "Rapid",
+      "Relentless"
+    ],
+    "positions": [
+      "LB",
+      "LM"
+    ]
+  },
+  {
+    "id": 229476,
+    "player name": "Waldemar Anton",
+    "country": "Germany",
+    "rating": 82,
+    "traits": [
+      "Pinged Pass",
+      "Slide Tackle",
+      "Aerial Fortress"
+    ],
+    "positions": [
+      "CB"
+    ]
+  },
+  {
+    "id": 230142,
+    "player name": "Oyarzabal",
+    "country": "Spain",
+    "rating": 82,
+    "traits": [
+      "Technical"
+    ],
+    "positions": [
+      "ST",
+      "LM",
+      "LW"
+    ]
+  },
+  {
+    "id": 230872,
+    "player name": "Mile Svilar",
+    "country": "Serbia",
+    "rating": 82,
+    "traits": [
+      "Cross Claimer",
+      "Rush Out"
+    ],
+    "positions": [
+      "GK"
+    ]
+  },
+  {
+    "id": 231410,
+    "player name": "Brahim",
+    "country": "Morocco",
+    "rating": 82,
+    "traits": [
+      "Incisive Pass",
+      "Tiki Taka",
+      "Technical",
+      "First Touch"
+    ],
+    "positions": [
+      "RM",
+      "LM",
+      "CAM",
+      "RW"
+    ]
+  },
+  {
+    "id": 231416,
+    "player name": "Dodi Lukébakio",
+    "country": "Belgium",
+    "rating": 82,
+    "traits": [
+      "Gamechanger",
+      "Technical"
+    ],
+    "positions": [
+      "RM",
+      "RW",
+      "ST"
+    ]
+  },
+  {
+    "id": 232488,
+    "player name": "Cristian Romero",
+    "country": "Argentina",
+    "rating": 82,
+    "traits": [
+      "Precision Header",
+      "Slide Tackle",
+      "Aerial Fortress",
+      "Bruiser"
+    ],
+    "positions": [
+      "CB"
+    ]
+  },
+  {
+    "id": 232639,
+    "player name": "Ritsu Doan",
+    "country": "Japan",
+    "rating": 82,
+    "traits": [
+      "Precision Header",
+      "Inventive",
+      "Technical",
+      "First Touch"
+    ],
+    "positions": [
+      "RM",
+      "RB"
+    ]
+  },
+  {
+    "id": 233556,
+    "player name": "Riccardo Orsolini",
+    "country": "Italy",
+    "rating": 82,
+    "traits": [
+      "Finesse Shot",
+      "Low Driven Shot",
+      "Gamechanger",
+      "Technical"
+    ],
+    "positions": [
+      "RM",
+      "RW"
+    ]
+  },
+  {
+    "id": 234824,
+    "player name": "Yoane Wissa",
+    "country": "Congo DR",
+    "rating": 82,
+    "traits": [
+      "Acrobatic",
+      "Low Driven Shot",
+      "Gamechanger",
+      "Rapid"
+    ],
+    "positions": [
+      "ST"
+    ]
+  },
+  {
+    "id": 235243,
+    "player name": "Matthijs de Ligt",
+    "country": "Holland",
+    "rating": 82,
+    "traits": [
+      "Power Shot",
+      "Block",
+      "Bruiser"
+    ],
+    "positions": [
+      "CB"
+    ]
+  },
+  {
+    "id": 235410,
+    "player name": "Youssef En-Nesyri",
+    "country": "Morocco",
+    "rating": 82,
+    "traits": [
+      "Precision Header",
+      "Aerial Fortress",
+      "Rapid",
+      "Quick Step",
+      "Relentless"
+    ],
+    "positions": [
+      "ST"
+    ]
+  },
+  {
+    "id": 235790,
+    "player name": "Kai Havertz",
+    "country": "Germany",
+    "rating": 82,
+    "traits": [
+      "Chip Shot",
+      "Precision Header",
+      "Gamechanger",
+      "Technical",
+      "First Touch",
+      "Enforcer"
+    ],
+    "positions": [
+      "ST",
+      "CM",
+      "CAM"
+    ]
+  },
+  {
+    "id": 236015,
+    "player name": "Morgan Gibbs-White",
+    "country": "England",
+    "rating": 82,
+    "traits": [
+      "Incisive Pass",
+      "Inventive",
+      "Aerial Fortress",
+      "Technical",
+      "Relentless"
+    ],
+    "positions": [
+      "CAM",
+      "ST"
+    ]
+  },
+  {
+    "id": 236461,
+    "player name": "Jean-Philippe Mateta",
+    "country": "France",
+    "rating": 82,
+    "traits": [
+      "Low Driven Shot",
+      "Gamechanger",
+      "Enforcer"
+    ],
+    "positions": [
+      "ST"
+    ]
+  },
+  {
+    "id": 236496,
+    "player name": "Mattéo Guendouzi",
+    "country": "France",
+    "rating": 82,
+    "traits": [
+      "Incisive Pass",
+      "Tiki Taka",
+      "Jockey",
+      "Block",
+      "Anticipate",
+      "First Touch",
+      "Relentless"
+    ],
+    "positions": [
+      "CDM",
+      "CM"
+    ]
+  },
+  {
+    "id": 236532,
+    "player name": "Robin Koch",
+    "country": "Germany",
+    "rating": 82,
+    "traits": [
+      "Precision Header",
+      "Aerial Fortress"
+    ],
+    "positions": [
+      "CB"
+    ]
+  },
+  {
+    "id": 236703,
+    "player name": "David Raum",
+    "country": "Germany",
+    "rating": 82,
+    "traits": [
+      "Dead Ball",
+      "Whipped Pass",
+      "Rapid"
+    ],
+    "positions": [
+      "LB",
+      "LM"
+    ]
+  },
+  {
+    "id": 237086,
+    "player name": "Kim Min Jae",
+    "country": "Korea Republic",
+    "rating": 82,
+    "traits": [
+      "Long Ball Pass",
+      "Block",
+      "Intercept",
+      "Slide Tackle",
+      "Aerial Fortress"
+    ],
+    "positions": [
+      "CB"
+    ]
+  },
+  {
+    "id": 237681,
+    "player name": "Takefusa Kubo",
+    "country": "Japan",
+    "rating": 82,
+    "traits": [
+      "Finesse Shot",
+      "Low Driven Shot",
+      "Gamechanger",
+      "Inventive",
+      "Technical",
+      "First Touch"
+    ],
+    "positions": [
+      "RM",
+      "RW"
+    ]
+  },
+  {
+    "id": 240091,
+    "player name": "Guglielmo Vicario",
+    "country": "Italy",
+    "rating": 82,
+    "traits": [
+      "Footwork"
+    ],
+    "positions": [
+      "GK"
+    ]
+  },
+  {
+    "id": 241159,
+    "player name": "Marc Guéhi",
+    "country": "England",
+    "rating": 82,
+    "traits": [
+      "Long Ball Pass",
+      "Jockey",
+      "Block",
+      "Anticipate"
+    ],
+    "positions": [
+      "CB"
+    ]
+  },
+  {
+    "id": 243241,
+    "player name": "Alessandro Buongiorno",
+    "country": "Italy",
+    "rating": 82,
+    "traits": [
+      "Block",
+      "Intercept"
+    ],
+    "positions": [
+      "CB"
+    ]
+  },
+  {
+    "id": 243245,
+    "player name": "Orkun Kökçü",
+    "country": "Turkey",
+    "rating": 82,
+    "traits": [
+      "Finesse Shot",
+      "Power Shot",
+      "Dead Ball",
+      "Incisive Pass"
+    ],
+    "positions": [
+      "CM",
+      "CAM",
+      "CDM"
+    ]
+  },
+  {
+    "id": 243576,
+    "player name": "Pedro Porro",
+    "country": "Spain",
+    "rating": 82,
+    "traits": [
+      "Power Shot",
+      "Long Ball Pass",
+      "Tiki Taka",
+      "Whipped Pass",
+      "Block",
+      "Relentless"
+    ],
+    "positions": [
+      "RB",
+      "RM"
+    ]
+  },
+  {
+    "id": 243630,
+    "player name": "Jonathan David",
+    "country": "Canada",
+    "rating": 82,
+    "traits": [
+      "Low Driven Shot",
+      "Press Proven",
+      "Quick Step",
+      "Relentless"
+    ],
+    "positions": [
+      "ST"
+    ]
+  },
+  {
+    "id": 244257,
+    "player name": "Jonathan Burkardt",
+    "country": "Germany",
+    "rating": 82,
+    "traits": [
+      "Finesse Shot"
+    ],
+    "positions": [
+      "ST"
+    ]
+  },
+  {
+    "id": 244778,
+    "player name": "Trincão",
+    "country": "Portugal",
+    "rating": 82,
+    "traits": [
+      "Finesse Shot",
+      "Low Driven Shot",
+      "Incisive Pass",
+      "Inventive",
+      "Technical",
+      "First Touch",
+      "Trickster"
+    ],
+    "positions": [
+      "CAM",
+      "RM",
+      "RW",
+      "ST"
+    ]
+  },
+  {
+    "id": 246147,
+    "player name": "Mason Greenwood",
+    "country": "England",
+    "rating": 82,
+    "traits": [
+      "Finesse Shot",
+      "Power Shot",
+      "Low Driven Shot",
+      "Gamechanger",
+      "Technical"
+    ],
+    "positions": [
+      "RM",
+      "CAM",
+      "RW"
+    ]
+  },
+  {
+    "id": 246430,
+    "player name": "Dušan Vlahović",
+    "country": "Serbia",
+    "rating": 82,
+    "traits": [
+      "Finesse Shot",
+      "Chip Shot",
+      "Dead Ball",
+      "Low Driven Shot",
+      "Gamechanger",
+      "Press Proven",
+      "Enforcer"
+    ],
+    "positions": [
+      "ST"
+    ]
+  },
+  {
+    "id": 246863,
+    "player name": "Felix Nmecha",
+    "country": "Germany",
+    "rating": 82,
+    "traits": [
+      "Block",
+      "Aerial Fortress",
+      "Press Proven",
+      "Bruiser"
+    ],
+    "positions": [
+      "CDM",
+      "CM"
+    ]
+  },
+  {
+    "id": 247257,
+    "player name": "Ibañez",
+    "country": "Brazil",
+    "rating": 82,
+    "traits": [
+      "Precision Header",
+      "Long Ball Pass",
+      "Jockey",
+      "Block",
+      "Intercept",
+      "Slide Tackle",
+      "Aerial Fortress"
+    ],
+    "positions": [
+      "CB"
+    ]
+  },
+  {
+    "id": 251470,
+    "player name": "Charles De Ketelaere",
+    "country": "Belgium",
+    "rating": 82,
+    "traits": [
+      "Precision Header",
+      "Low Driven Shot",
+      "Incisive Pass",
+      "Inventive",
+      "Aerial Fortress",
+      "Technical"
+    ],
+    "positions": [
+      "CAM",
+      "ST",
+      "CM"
+    ]
+  },
+  {
+    "id": 251805,
+    "player name": "Jurriën Timber",
+    "country": "Holland",
+    "rating": 82,
+    "traits": [
+      "Jockey",
+      "Press Proven"
+    ],
+    "positions": [
+      "RB",
+      "LB",
+      "CB",
+      "RM"
+    ]
+  },
+  {
+    "id": 251809,
+    "player name": "Sven Botman",
+    "country": "Holland",
+    "rating": 82,
+    "traits": [
+      "Long Ball Pass",
+      "Jockey",
+      "Bruiser"
+    ],
+    "positions": [
+      "CB"
+    ]
+  },
+  {
+    "id": 255565,
+    "player name": "Kaoru Mitoma",
+    "country": "Japan",
+    "rating": 82,
+    "traits": [
+      "Finesse Shot",
+      "Technical",
+      "First Touch",
+      "Quick Step"
+    ],
+    "positions": [
+      "LM",
+      "LW"
+    ]
+  },
+  {
+    "id": 256853,
+    "player name": "Malik Tillman",
+    "country": "United States",
+    "rating": 82,
+    "traits": [
+      "Power Shot",
+      "Incisive Pass",
+      "Inventive",
+      "Technical",
+      "First Touch"
+    ],
+    "positions": [
+      "CAM",
+      "LW",
+      "CM"
+    ]
+  },
+  {
+    "id": 260247,
+    "player name": "Morgan Rogers",
+    "country": "England",
+    "rating": 82,
+    "traits": [
+      "Incisive Pass",
+      "Technical",
+      "Enforcer"
+    ],
+    "positions": [
+      "CAM",
+      "RM",
+      "LM",
+      "CM"
+    ]
+  },
+  {
+    "id": 260908,
+    "player name": "Milos Kerkez",
+    "country": "Hungary",
+    "rating": 82,
+    "traits": [
+      "Whipped Pass",
+      "Slide Tackle",
+      "Rapid"
+    ],
+    "positions": [
+      "LB",
+      "LM"
+    ]
+  },
+  {
+    "id": 264453,
+    "player name": "Micky van de Ven",
+    "country": "Holland",
+    "rating": 82,
+    "traits": [
+      "Block",
+      "Slide Tackle"
+    ],
+    "positions": [
+      "CB"
+    ]
+  },
+  {
+    "id": 266866,
+    "player name": "Éderson",
+    "country": "Brazil",
+    "rating": 82,
+    "traits": [
+      "Precision Header",
+      "Incisive Pass",
+      "Long Ball Pass",
+      "Intercept",
+      "Anticipate",
+      "Aerial Fortress",
+      "Relentless"
+    ],
+    "positions": [
+      "CM"
+    ]
+  },
+  {
+    "id": 270409,
+    "player name": "Savinho",
+    "country": "Brazil",
+    "rating": 82,
+    "traits": [
+      "Whipped Pass",
+      "Inventive",
+      "Technical",
+      "First Touch"
+    ],
+    "positions": [
+      "RW",
+      "LW",
+      "RM"
+    ]
+  },
+  {
+  "id": 216267,
+  "player name": "Andrew Robertson",
+  "country": "Scotland",
+  "rating": 82,
+  "traits": [
+    "Relentless+",
+    "Whipped Pass"
+  ],
+  "positions": [
+    "LB",
+    "LWB"
+  ]
+},
+  {
+    "id": 272449,
+    "player name": "Pablo Barrios",
+    "country": "Spain",
+    "rating": 82,
+    "traits": [
+      "Aerial Fortress",
+      "Relentless"
+    ],
+    "positions": [
+      "CM",
+      "CDM"
+    ]
+  },
+  {
+    "id": 278046,
+    "player name": "Pau Cubarsí",
+    "country": "Spain",
+    "rating": 82,
+    "traits": [
+      "Long Ball Pass"
+    ],
+    "positions": [
+      "CB"
+    ]
+  },
+  {
+    "id": 278349,
+    "player name": "Dean Huijsen",
+    "country": "Spain",
+    "rating": 82,
+    "traits": [
+      "Long Ball Pass",
+      "Block",
+      "Slide Tackle",
+      "Aerial Fortress"
+    ],
+    "positions": [
+      "CB"
+    ]
+  },
+  {
+    "id": 180930,
+    "player name": "Edin Džeko",
+    "country": "Bosnia and Herzegovina",
+    "rating": 81,
+    "traits": [
+      "Finesse Shot",
+      "Low Driven Shot",
+      "Incisive Pass",
+      "Technical"
+    ],
+    "positions": [
+      "ST"
+    ]
+  },
+  {
+    "id": 181458,
+    "player name": "Ivan Perišić",
+    "country": "Croatia",
+    "rating": 81,
+    "traits": [
+      "Dead Ball",
+      "Gamechanger",
+      "Whipped Pass",
+      "Inventive"
+    ],
+    "positions": [
+      "RW",
+      "LW",
+      "RM"
+    ]
+  },
+  {
+    "id": 184392,
+    "player name": "Matteo Darmian",
+    "country": "Italy",
+    "rating": 81,
+    "traits": [],
+    "positions": [
+      "RB",
+      "CB",
+      "RM"
+    ]
+  },
+  {
+    "id": 188567,
+    "player name": "Pierre-Emerick Aubameyang",
+    "country": "Gabon",
+    "rating": 81,
+    "traits": [
+      "Finesse Shot",
+      "Chip Shot",
+      "Precision Header",
+      "Rapid"
+    ],
+    "positions": [
+      "ST"
+    ]
+  },
+  {
+    "id": 188943,
+    "player name": "Kevin Trapp",
+    "country": "Germany",
+    "rating": 81,
+    "traits": [
+      "Far Throw",
+      "Footwork"
+    ],
+    "positions": [
+      "GK"
+    ]
+  },
+  {
+    "id": 190941,
+    "player name": "Lukáš Hrádecký",
+    "country": "Finland",
+    "rating": 81,
+    "traits": [
+      "Footwork"
+    ],
+    "positions": [
+      "GK"
+    ]
+  },
+  {
+    "id": 193747,
+    "player name": "Koke",
+    "country": "Spain",
+    "rating": 81,
+    "traits": [
+      "Long Ball Pass",
+      "Relentless"
+    ],
+    "positions": [
+      "CM",
+      "CDM"
+    ]
+  },
+  {
+    "id": 200888,
+    "player name": "Danilo Pereira",
+    "country": "Portugal",
+    "rating": 81,
+    "traits": [
+      "Precision Header",
+      "Pinged Pass",
+      "Long Ball Pass",
+      "Intercept",
+      "Bruiser"
+    ],
+    "positions": [
+      "CB"
+    ]
+  },
+  {
+    "id": 201153,
+    "player name": "Morata",
+    "country": "Spain",
+    "rating": 81,
+    "traits": [
+      "Finesse Shot",
+      "Rapid",
+      "Relentless",
+      "Enforcer"
+    ],
+    "positions": [
+      "ST",
+      "CAM"
+    ]
+  },
+  {
+    "id": 201399,
+    "player name": "Mauro Icardi",
+    "country": "Argentina",
+    "rating": 81,
+    "traits": [
+      "Low Driven Shot",
+      "Gamechanger",
+      "Incisive Pass",
+      "Aerial Fortress"
+    ],
+    "positions": [
+      "ST"
+    ]
+  },
+  {
+    "id": 202024,
+    "player name": "Remo Freuler",
+    "country": "Switzerland",
+    "rating": 81,
+    "traits": [
+      "Block",
+      "Intercept",
+      "Anticipate",
+      "Relentless"
+    ],
+    "positions": [
+      "CDM",
+      "CM"
+    ]
+  },
+  {
+    "id": 202648,
+    "player name": "Sergi Darder",
+    "country": "Spain",
+    "rating": 81,
+    "traits": [
+      "Power Shot",
+      "Dead Ball",
+      "Incisive Pass",
+      "Pinged Pass",
+      "Long Ball Pass",
+      "Inventive",
+      "Press Proven"
+    ],
+    "positions": [
+      "LM",
+      "CM",
+      "CDM",
+      "LW"
+    ]
+  },
+  {
+    "id": 203841,
+    "player name": "Nick Pope",
+    "country": "England",
+    "rating": 81,
+    "traits": [
+      "Footwork"
+    ],
+    "positions": [
+      "GK"
+    ]
+  },
+  {
+    "id": 206085,
+    "player name": "Jacob Murphy",
+    "country": "England",
+    "rating": 81,
+    "traits": [
+      "Whipped Pass"
+    ],
+    "positions": [
+      "RW",
+      "RM"
+    ]
+  },
+  {
+    "id": 208093,
+    "player name": "Gerard Moreno",
+    "country": "Spain",
+    "rating": 81,
+    "traits": [
+      "Finesse Shot",
+      "Power Shot"
+    ],
+    "positions": [
+      "ST",
+      "RW",
+      "CAM"
+    ]
+  },
+  {
+    "id": 208418,
+    "player name": "Yannick Carrasco",
+    "country": "Belgium",
+    "rating": 81,
+    "traits": [
+      "Gamechanger",
+      "Whipped Pass",
+      "Technical"
+    ],
+    "positions": [
+      "LW",
+      "LM"
+    ]
+  },
+  {
+    "id": 208461,
+    "player name": "Marten de Roon",
+    "country": "Holland",
+    "rating": 81,
+    "traits": [
+      "Long Ball Pass",
+      "Intercept",
+      "Aerial Fortress",
+      "Relentless"
+    ],
+    "positions": [
+      "CM",
+      "CDM"
+    ]
+  },
+  {
+    "id": 208574,
+    "player name": "Filip Kostić",
+    "country": "Serbia",
+    "rating": 81,
+    "traits": [
+      "Whipped Pass",
+      "Rapid"
+    ],
+    "positions": [
+      "LM",
+      "LB",
+      "LW"
+    ]
+  },
+  {
+    "id": 210385,
+    "player name": "Rui Silva",
+    "country": "Portugal",
+    "rating": 81,
+    "traits": [
+      "Footwork",
+      "Deflector"
+    ],
+    "positions": [
+      "GK"
+    ]
+  },
+  {
+    "id": 210676,
+    "player name": "Wladimiro Falcone",
+    "country": "Italy",
+    "rating": 81,
+    "traits": [
+      "Footwork",
+      "Rush Out"
+    ],
+    "positions": [
+      "GK"
+    ]
+  },
+  {
+    "id": 210881,
+    "player name": "John McGinn",
+    "country": "Scotland",
+    "rating": 81,
+    "traits": [
+      "Press Proven",
+      "Relentless",
+      "Enforcer"
+    ],
+    "positions": [
+      "LM",
+      "RM",
+      "CAM",
+      "LB"
+    ]
+  },
+  {
+    "id": 211688,
+    "player name": "Gayà",
+    "country": "Spain",
+    "rating": 81,
+    "traits": [
+      "Anticipate",
+      "Technical"
+    ],
+    "positions": [
+      "LB",
+      "LM"
+    ]
+  },
+  {
+    "id": 212190,
+    "player name": "Niklas Süle",
+    "country": "Germany",
+    "rating": 81,
+    "traits": [
+      "Pinged Pass",
+      "Long Ball Pass",
+      "Intercept",
+      "Anticipate",
+      "Slide Tackle",
+      "Bruiser"
+    ],
+    "positions": [
+      "CB",
+      "RB",
+      "RM"
+    ]
+  },
+  {
+    "id": 212228,
+    "player name": "Ivan Toney",
+    "country": "England",
+    "rating": 81,
+    "traits": [
+      "Bruiser"
+    ],
+    "positions": [
+      "ST"
+    ]
+  },
+  {
+    "id": 212242,
+    "player name": "Robert Andrich",
+    "country": "Germany",
+    "rating": 81,
+    "traits": [
+      "Power Shot",
+      "Relentless",
+      "Bruiser"
+    ],
+    "positions": [
+      "CDM",
+      "CM",
+      "CB"
+    ]
+  },
+  {
+    "id": 212523,
+    "player name": "Anderson Talisca",
+    "country": "Brazil",
+    "rating": 81,
+    "traits": [
+      "Finesse Shot",
+      "Precision Header",
+      "Acrobatic"
+    ],
+    "positions": [
+      "CAM",
+      "ST",
+      "RW",
+      "CM"
+    ]
+  },
+  {
+    "id": 213516,
+    "player name": "Ricardo Horta",
+    "country": "Portugal",
+    "rating": 81,
+    "traits": [
+      "Finesse Shot",
+      "Power Shot",
+      "Pinged Pass",
+      "Tiki Taka",
+      "First Touch"
+    ],
+    "positions": [
+      "CAM",
+      "LM",
+      "RM",
+      "CM"
+    ]
+  },
+  {
+    "id": 214096,
+    "player name": "Tim Kleindienst",
+    "country": "Germany",
+    "rating": 81,
+    "traits": [
+      "Precision Header",
+      "Aerial Fortress",
+      "Relentless"
+    ],
+    "positions": [
+      "ST"
+    ]
+  },
+  {
+    "id": 216352,
+    "player name": "Marcelo Brozović",
+    "country": "Croatia",
+    "rating": 81,
+    "traits": [
+      "Long Ball Pass",
+      "Press Proven",
+      "Relentless"
+    ],
+    "positions": [
+      "CDM",
+      "CM"
+    ]
+  },
+  {
+    "id": 216354,
+    "player name": "Andrej Kramarić",
+    "country": "Croatia",
+    "rating": 81,
+    "traits": [
+      "Finesse Shot",
+      "Chip Shot",
+      "Gamechanger",
+      "Incisive Pass",
+      "Technical",
+      "First Touch"
+    ],
+    "positions": [
+      "CAM",
+      "CM"
+    ]
+  },
+  {
+    "id": 216409,
+    "player name": "Matteo Politano",
+    "country": "Italy",
+    "rating": 81,
+    "traits": [
+      "Dead Ball",
+      "Gamechanger",
+      "Long Ball Pass",
+      "Whipped Pass",
+      "Inventive",
+      "Technical"
+    ],
+    "positions": [
+      "RW",
+      "RM"
+    ]
+  },
+  {
+    "id": 219683,
+    "player name": "Corentin Tolisso",
+    "country": "France",
+    "rating": 81,
+    "traits": [
+      "Precision Header",
+      "Aerial Fortress",
+      "First Touch",
+      "Relentless"
+    ],
+    "positions": [
+      "CM",
+      "CDM",
+      "CAM"
+    ]
+  },
+  {
+    "id": 220814,
+    "player name": "Lucas Hernández",
+    "country": "France",
+    "rating": 81,
+    "traits": [
+      "Slide Tackle",
+      "Bruiser"
+    ],
+    "positions": [
+      "CB",
+      "LB",
+      "LM"
+    ]
+  },
+  {
+    "id": 222509,
+    "player name": "Dani Ceballos",
+    "country": "Spain",
+    "rating": 81,
+    "traits": [
+      "Whipped Pass",
+      "Jockey",
+      "Intercept",
+      "Technical"
+    ],
+    "positions": [
+      "CM",
+      "CDM"
+    ]
+  },
+  {
+    "id": 223885,
+    "player name": "Alexander Nübel",
+    "country": "Germany",
+    "rating": 81,
+    "traits": [
+      "Footwork",
+      "Deflector"
+    ],
+    "positions": [
+      "GK"
+    ]
+  },
+  {
+  "id": 202556,
+  "player name": "Memphis Depay",
+  "country": "Netherlands",
+  "rating": 81,
+  "traits": [
+    "Flair",
+    "Trickster",
+    "Power Header",
+    "Technical"
+  ],
+  "positions": [
+    "ST",
+    "LW",
+    "CAM"
+  ]
+}
+,
+  {
+    "id": 223952,
+    "player name": "David Soria",
+    "country": "Spain",
+    "rating": 81,
+    "traits": [
+      "Long Ball Pass",
+      "Footwork"
+    ],
+    "positions": [
+      "GK"
+    ]
+  },
+  {
+    "id": 225309,
+    "player name": "Nadiem Amiri",
+    "country": "Germany",
+    "rating": 81,
+    "traits": [
+      "Finesse Shot",
+      "Dead Ball",
+      "Gamechanger",
+      "Pinged Pass",
+      "Technical"
+    ],
+    "positions": [
+      "CM",
+      "CAM"
+    ]
+  },
+  {
+    "id": 228618,
+    "player name": "Ferland Mendy",
+    "country": "France",
+    "rating": 81,
+    "traits": [
+      "Block",
+      "Rapid"
+    ],
+    "positions": [
+      "LB",
+      "LM"
+    ]
+  },
+  {
+    "id": 228805,
+    "player name": "Raíllo",
+    "country": "Spain",
+    "rating": 81,
+    "traits": [
+      "Precision Header",
+      "Intercept",
+      "Aerial Fortress"
+    ],
+    "positions": [
+      "CB"
+    ]
+  },
+  {
+    "id": 230670,
+    "player name": "Lucas Perri",
+    "country": "Brazil",
+    "rating": 81,
+    "traits": [
+      "Far Throw"
+    ],
+    "positions": [
+      "GK"
+    ]
+  },
+  {
+    "id": 231652,
+    "player name": "Simon Banza",
+    "country": "Congo DR",
+    "rating": 81,
+    "traits": [
+      "Acrobatic",
+      "Aerial Fortress",
+      "First Touch",
+      "Press Proven"
+    ],
+    "positions": [
+      "ST"
+    ]
+  },
+  {
+    "id": 232363,
+    "player name": "Milan Škriniar",
+    "country": "Slovakia",
+    "rating": 81,
+    "traits": [
+      "Jockey",
+      "Bruiser"
+    ],
+    "positions": [
+      "CB"
+    ]
+  },
+  {
+    "id": 232411,
+    "player name": "Christopher Nkunku",
+    "country": "France",
+    "rating": 81,
+    "traits": [
+      "Finesse Shot",
+      "Technical",
+      "First Touch"
+    ],
+    "positions": [
+      "CAM",
+      "LM",
+      "ST",
+      "CM"
+    ]
+  },
+  {
+    "id": 232498,
+    "player name": "Isi",
+    "country": "Spain",
+    "rating": 81,
+    "traits": [
+      "Rapid",
+      "First Touch"
+    ],
+    "positions": [
+      "CAM",
+      "RM",
+      "ST",
+      "CM"
+    ]
+  },
+  {
+    "id": 232756,
+    "player name": "Fikayo Tomori",
+    "country": "England",
+    "rating": 81,
+    "traits": [
+      "Bruiser"
+    ],
+    "positions": [
+      "CB"
+    ]
+  },
+  {
+    "id": 233306,
+    "player name": "Dean Henderson",
+    "country": "England",
+    "rating": 81,
+    "traits": [
+      "Footwork"
+    ],
+    "positions": [
+      "GK"
+    ]
+  },
+  {
+    "id": 234060,
+    "player name": "Yangel Herrera",
+    "country": "Venezuela",
+    "rating": 81,
+    "traits": [
+      "Precision Header",
+      "Incisive Pass",
+      "Aerial Fortress"
+    ],
+    "positions": [
+      "CM",
+      "CDM",
+      "CAM"
+    ]
+  },
+  {
+    "id": 235805,
+    "player name": "Federico Chiesa",
+    "country": "Italy",
+    "rating": 81,
+    "traits": [
+      "Finesse Shot",
+      "Rapid",
+      "Quick Step"
+    ],
+    "positions": [
+      "RM",
+      "LM",
+      "ST",
+      "RW"
+    ]
+  },
+  {
+    "id": 235840,
+    "player name": "Michele Di Gregorio",
+    "country": "Italy",
+    "rating": 81,
+    "traits": [
+      "Footwork"
+    ],
+    "positions": [
+      "GK"
+    ]
+  },
+  {
+    "id": 235944,
+    "player name": "Brais Méndez",
+    "country": "Spain",
+    "rating": 81,
+    "traits": [
+      "Finesse Shot",
+      "Dead Ball",
+      "Tiki Taka",
+      "Technical"
+    ],
+    "positions": [
+      "CM",
+      "RM",
+      "CAM"
+    ]
+  },
+  {
+    "id": 236403,
+    "player name": "Evan Ndicka",
+    "country": "Côte d'Ivoire",
+    "rating": 81,
+    "traits": [
+      "Block",
+      "Slide Tackle",
+      "Bruiser"
+    ],
+    "positions": [
+      "CB"
+    ]
+  },
+  {
+    "id": 236632,
+    "player name": "David Neres",
+    "country": "Brazil",
+    "rating": 81,
+    "traits": [
+      "Power Shot",
+      "Gamechanger",
+      "Whipped Pass",
+      "Inventive",
+      "Technical",
+      "Trickster",
+      "Quick Step"
+    ],
+    "positions": [
+      "LW",
+      "LM"
+    ]
+  },
+  {
+    "id": 237646,
+    "player name": "Daniel Muñoz",
+    "country": "Colombia",
+    "rating": 81,
+    "traits": [
+      "Jockey",
+      "Anticipate",
+      "Rapid",
+      "Relentless"
+    ],
+    "positions": [
+      "RB",
+      "RM"
+    ]
+  },
+  {
+    "id": 237679,
+    "player name": "Randal Kolo Muani",
+    "country": "France",
+    "rating": 81,
+    "traits": [
+      "Finesse Shot",
+      "Technical",
+      "Rapid",
+      "Quick Step"
+    ],
+    "positions": [
+      "ST"
+    ]
+  },
+  {
+    "id": 238074,
+    "player name": "Reece James",
+    "country": "England",
+    "rating": 81,
+    "traits": [
+      "Whipped Pass",
+      "Jockey",
+      "Bruiser"
+    ],
+    "positions": [
+      "RB"
+    ]
+  },
+  {
+    "id": 238216,
+    "player name": "Conor Gallagher",
+    "country": "England",
+    "rating": 81,
+    "traits": [
+      "Block",
+      "Intercept",
+      "Relentless"
+    ],
+    "positions": [
+      "CM",
+      "CAM",
+      "LM"
+    ]
+  },
+  {
+    "id": 239301,
+    "player name": "Lisandro Martínez",
+    "country": "Argentina",
+    "rating": 81,
+    "traits": [
+      "Intercept",
+      "Slide Tackle",
+      "Bruiser"
+    ],
+    "positions": [
+      "CB"
+    ]
+  },
+  {
+    "id": 239482,
+    "player name": "Galeno",
+    "country": "Brazil",
+    "rating": 81,
+    "traits": [
+      "Rapid",
+      "First Touch",
+      "Quick Step",
+      "Relentless"
+    ],
+    "positions": [
+      "LM",
+      "LW"
+    ]
+  },
+  {
+    "id": 239807,
+    "player name": "Davide Frattesi",
+    "country": "Italy",
+    "rating": 81,
+    "traits": [
+      "Technical"
+    ],
+    "positions": [
+      "CM"
+    ]
+  },
+  {
+    "id": 240679,
+    "player name": "Teun Koopmeiners",
+    "country": "Holland",
+    "rating": 81,
+    "traits": [
+      "Dead Ball"
+    ],
+    "positions": [
+      "CAM",
+      "CM"
+    ]
+  },
+  {
+    "id": 242641,
+    "player name": "Rayan Aït-Nouri",
+    "country": "Algeria",
+    "rating": 81,
+    "traits": [
+      "Jockey",
+      "First Touch",
+      "Trickster"
+    ],
+    "positions": [
+      "LB",
+      "LM"
+    ]
+  },
+  {
+    "id": 242835,
+    "player name": "Leonardo Balerdi",
+    "country": "Argentina",
+    "rating": 81,
+    "traits": [
+      "Jockey",
+      "Intercept",
+      "Anticipate",
+      "Aerial Fortress"
+    ],
+    "positions": [
+      "CB"
+    ]
+  },
+  {
+    "id": 243854,
+    "player name": "Mohamed Simakan",
+    "country": "France",
+    "rating": 81,
+    "traits": [
+      "Jockey",
+      "Bruiser"
+    ],
+    "positions": [
+      "CB",
+      "RB"
+    ]
+  },
+  {
+    "id": 243952,
+    "player name": "Andriy Lunin",
+    "country": "Ukraine",
+    "rating": 81,
+    "traits": [
+      "Footwork"
+    ],
+    "positions": [
+      "GK"
+    ]
+  },
+  {
+    "id": 244749,
+    "player name": "Nayef Aguerd",
+    "country": "Morocco",
+    "rating": 81,
+    "traits": [
+      "Precision Header",
+      "Long Ball Pass",
+      "Anticipate"
+    ],
+    "positions": [
+      "CB"
+    ]
+  },
+  {
+    "id": 245630,
+    "player name": "Youssouf Fofana",
+    "country": "France",
+    "rating": 81,
+    "traits": [
+      "Incisive Pass",
+      "Jockey",
+      "Anticipate",
+      "Relentless"
+    ],
+    "positions": [
+      "CDM",
+      "CM"
+    ]
+  },
+  {
+    "id": 247246,
+    "player name": "Khéphren Thuram",
+    "country": "France",
+    "rating": 81,
+    "traits": [
+      "Pinged Pass",
+      "Press Proven",
+      "Relentless"
+    ],
+    "positions": [
+      "CM",
+      "CDM"
+    ]
+  },
+  {
+    "id": 247263,
+    "player name": "Edmond Tapsoba",
+    "country": "Burkina Faso",
+    "rating": 81,
+    "traits": [
+      "Precision Header",
+      "Pinged Pass",
+      "Long Ball Pass"
+    ],
+    "positions": [
+      "CB"
+    ]
+  },
+  {
+    "id": 247679,
+    "player name": "Victor Boniface",
+    "country": "Nigeria",
+    "rating": 81,
+    "traits": [
+      "Power Shot",
+      "Aerial Fortress",
+      "Enforcer"
+    ],
+    "positions": [
+      "ST"
+    ]
+  },
+  {
+    "id": 251566,
+    "player name": "Gabriel Martinelli",
+    "country": "Brazil",
+    "rating": 81,
+    "traits": [
+      "Finesse Shot",
+      "Inventive",
+      "Quick Step"
+    ],
+    "positions": [
+      "LW",
+      "LM"
+    ]
+  },
+  {
+    "id": 251570,
+    "player name": "Rayan Cherki",
+    "country": "France",
+    "rating": 81,
+    "traits": [
+      "Chip Shot",
+      "Low Driven Shot",
+      "Incisive Pass",
+      "Inventive",
+      "Technical",
+      "First Touch"
+    ],
+    "positions": [
+      "RW",
+      "RM",
+      "CAM"
+    ]
+  },
+  {
+    "id": 251852,
+    "player name": "Karim Adeyemi",
+    "country": "Germany",
+    "rating": 81,
+    "traits": [
+      "Rapid"
+    ],
+    "positions": [
+      "RM",
+      "LW",
+      "CAM",
+      "RW"
+    ]
+  },
+  {
+    "id": 253396,
+    "player name": "Giuliano Simeone",
+    "country": "Argentina",
+    "rating": 81,
+    "traits": [
+      "Rapid"
+    ],
+    "positions": [
+      "RM",
+      "ST",
+      "LM",
+      "RW"
+    ]
+  },
+  {
+    "id": 255475,
+    "player name": "Antony",
+    "country": "Brazil",
+    "rating": 81,
+    "traits": [
+      "Finesse Shot",
+      "Technical",
+      "Trickster"
+    ],
+    "positions": [
+      "RW",
+      "RM"
+    ]
+  },
+  {
+    "id": 257179,
+    "player name": "Gonçalo Inácio",
+    "country": "Portugal",
+    "rating": 81,
+    "traits": [
+      "Pinged Pass",
+      "Long Ball Pass",
+      "Jockey"
+    ],
+    "positions": [
+      "CB"
+    ]
+  },
+  {
+    "id": 257470,
+    "player name": "Anthony Elanga",
+    "country": "Sweden",
+    "rating": 81,
+    "traits": [
+      "Low Driven Shot",
+      "Rapid",
+      "Quick Step",
+      "Enforcer"
+    ],
+    "positions": [
+      "RW",
+      "RM"
+    ]
+  },
+  {
+    "id": 258648,
+    "player name": "Carlos Augusto",
+    "country": "Brazil",
+    "rating": 81,
+    "traits": [
+      "Aerial Fortress",
+      "Relentless"
+    ],
+    "positions": [
+      "LB",
+      "CB",
+      "LM"
+    ]
+  },
+  {
+    "id": 259516,
+    "player name": "Johnny Cardoso",
+    "country": "United States",
+    "rating": 81,
+    "traits": [
+      "Precision Header",
+      "Intercept",
+      "Aerial Fortress"
+    ],
+    "positions": [
+      "CDM",
+      "CM"
+    ]
+  },
+  {
+    "id": 261865,
+    "player name": "Miguel Gutiérrez",
+    "country": "Spain",
+    "rating": 81,
+    "traits": [
+      "Low Driven Shot"
+    ],
+    "positions": [
+      "LB",
+      "LM"
+    ]
+  },
+  {
+    "id": 264309,
+    "player name": "Arda Güler",
+    "country": "Turkey",
+    "rating": 81,
+    "traits": [
+      "Finesse Shot",
+      "Incisive Pass",
+      "Whipped Pass",
+      "Inventive",
+      "Technical"
+    ],
+    "positions": [
+      "RM",
+      "CAM",
+      "RW"
+    ]
+  },
+  {
+    "id": 272500,
+    "player name": "Carlos Baleba",
+    "country": "Cameroon",
+    "rating": 81,
+    "traits": [
+      "Power Shot",
+      "Aerial Fortress",
+      "Technical"
+    ],
+    "positions": [
+      "CDM",
+      "CM"
+    ]
+  },
+  {
+    "id": 73562,
+    "player name": "Bento",
+    "country": "Brazil",
+    "rating": 80,
+    "traits": [
+      "Deflector"
+    ],
+    "positions": [
+      "GK"
+    ]
+  },
+  {
+    "id": 186345,
+    "player name": "Kieran Trippier",
+    "country": "England",
+    "rating": 80,
+    "traits": [
+      "Dead Ball",
+      "Long Ball Pass",
+      "Whipped Pass",
+      "Long Throw"
+    ],
+    "positions": [
+      "RB",
+      "RM"
+    ]
+  },
+  {
+    "id": 189511,
+    "player name": "Sergio Busquets",
+    "country": "Spain",
+    "rating": 80,
+    "traits": [
+      "Incisive Pass",
+      "Long Ball Pass",
+      "Anticipate",
+      "Press Proven"
+    ],
+    "positions": [
+      "CDM",
+      "CM",
+      "CB"
+    ]
+  },
+  {
+    "id": 189596,
+    "player name": "Thomas Müller",
+    "country": "Germany",
+    "rating": 80,
+    "traits": [
+      "Precision Header"
+    ],
+    "positions": [
+      "CAM",
+      "ST",
+      "RM"
+    ]
+  },
+  {
+    "id": 189881,
+    "player name": "Chris Smalling",
+    "country": "England",
+    "rating": 80,
+    "traits": [
+      "Jockey"
+    ],
+    "positions": [
+      "CB"
+    ]
+  },
+  {
+    "id": 190674,
+    "player name": "Benjamin André",
+    "country": "France",
+    "rating": 80,
+    "traits": [
+      "Precision Header",
+      "Long Ball Pass",
+      "Intercept",
+      "Aerial Fortress"
+    ],
+    "positions": [
+      "CDM",
+      "CM"
+    ]
+  },
+  {
+    "id": 190765,
+    "player name": "Pascal Groß",
+    "country": "Germany",
+    "rating": 80,
+    "traits": [
+      "Dead Ball",
+      "Incisive Pass",
+      "Long Ball Pass",
+      "Whipped Pass"
+    ],
+    "positions": [
+      "CDM",
+      "CM"
+    ]
+  },
+  {
+    "id": 192563,
+    "player name": "Bernd Leno",
+    "country": "Germany",
+    "rating": 80,
+    "traits": [
+      "Footwork",
+      "Rush Out"
+    ],
+    "positions": [
+      "GK"
+    ]
+  },
+  {
+    "id": 200145,
+    "player name": "Casemiro",
+    "country": "Brazil",
+    "rating": 80,
+    "traits": [
+      "Long Ball Pass",
+      "Block",
+      "Slide Tackle",
+      "Aerial Fortress",
+      "Bruiser"
+    ],
+    "positions": [
+      "CDM",
+      "CM"
+    ]
+  },
+  {
+    "id": 200155,
+    "player name": "Hans Vanaken",
+    "country": "Belgium",
+    "rating": 80,
+    "traits": [
+      "Precision Header",
+      "Incisive Pass",
+      "Long Ball Pass",
+      "Inventive",
+      "Aerial Fortress",
+      "Press Proven"
+    ],
+    "positions": [
+      "CAM",
+      "CM"
+    ]
+  },
+  {
+    "id": 200458,
+    "player name": "Lucas Digne",
+    "country": "France",
+    "rating": 80,
+    "traits": [
+      "Whipped Pass",
+      "Long Throw"
+    ],
+    "positions": [
+      "LB",
+      "LM"
+    ]
+  },
+  {
+    "id": 201269,
+    "player name": "Frederik Rønnow",
+    "country": "Denmark",
+    "rating": 80,
+    "traits": [
+      "Cross Claimer"
+    ],
+    "positions": [
+      "GK"
+    ]
+  },
+  {
+    "id": 202695,
+    "player name": "James Tarkowski",
+    "country": "England",
+    "rating": 80,
+    "traits": [
+      "Long Ball Pass",
+      "Block",
+      "Intercept",
+      "Aerial Fortress"
+    ],
+    "positions": [
+      "CB"
+    ]
+  },
+  {
+    "id": 203263,
+    "player name": "Harry Maguire",
+    "country": "England",
+    "rating": 80,
+    "traits": [
+      "Aerial Fortress"
+    ],
+    "positions": [
+      "CB"
+    ]
+  },
+  {
+    "id": 203980,
+    "player name": "Konstantinos Fortounis",
+    "country": "Greece",
+    "rating": 80,
+    "traits": [
+      "Incisive Pass",
+      "Inventive",
+      "Technical",
+      "First Touch"
+    ],
+    "positions": [
+      "CAM",
+      "LW",
+      "RW",
+      "CM"
+    ]
+  },
+  {
+    "id": 204883,
+    "player name": "Brice Samba",
+    "country": "France",
+    "rating": 80,
+    "traits": [
+      "Long Ball Pass",
+      "Footwork"
+    ],
+    "positions": [
+      "GK"
+    ]
+  },
+  {
+    "id": 204923,
+    "player name": "Marcel Sabitzer",
+    "country": "Austria",
+    "rating": 80,
+    "traits": [
+      "Power Shot",
+      "Pinged Pass"
+    ],
+    "positions": [
+      "CDM",
+      "CM"
+    ]
+  },
+  {
+    "id": 205157,
+    "player name": "Ruiz de Galarreta",
+    "country": "Spain",
+    "rating": 80,
+    "traits": [
+      "Press Proven"
+    ],
+    "positions": [
+      "CDM",
+      "CM"
+    ]
+  },
+  {
+    "id": 206517,
+    "player name": "Jack Grealish",
+    "country": "England",
+    "rating": 80,
+    "traits": [
+      "Finesse Shot",
+      "Inventive",
+      "First Touch"
+    ],
+    "positions": [
+      "LW",
+      "LM"
+    ]
+  },
+  {
+    "id": 208268,
+    "player name": "Bryan Cristante",
+    "country": "Italy",
+    "rating": 80,
+    "traits": [
+      "Precision Header",
+      "Aerial Fortress"
+    ],
+    "positions": [
+      "CM",
+      "CDM"
+    ]
+  },
+  {
+    "id": 209297,
+    "player name": "Fred",
+    "country": "Brazil",
+    "rating": 80,
+    "traits": [
+      "Inventive"
+    ],
+    "positions": [
+      "CM",
+      "CDM",
+      "CAM"
+    ]
+  },
+  {
+    "id": 209889,
+    "player name": "Raphaël Guerreiro",
+    "country": "Portugal",
+    "rating": 80,
+    "traits": [
+      "Tiki Taka",
+      "Intercept",
+      "Technical",
+      "First Touch"
+    ],
+    "positions": [
+      "LB",
+      "CM",
+      "RB",
+      "LM"
+    ]
+  },
+  {
+    "id": 210406,
+    "player name": "Piotr Zieliński",
+    "country": "Poland",
+    "rating": 80,
+    "traits": [
+      "Technical"
+    ],
+    "positions": [
+      "CM"
+    ]
+  },
+  {
+    "id": 210697,
+    "player name": "Christian Nørgaard",
+    "country": "Denmark",
+    "rating": 80,
+    "traits": [
+      "Precision Header",
+      "Intercept",
+      "Aerial Fortress"
+    ],
+    "positions": [
+      "CDM",
+      "CM"
+    ]
+  },
+  {
+    "id": 212096,
+    "player name": "Vincenzo Grifo",
+    "country": "Italy",
+    "rating": 80,
+    "traits": [
+      "Finesse Shot",
+      "Gamechanger",
+      "Incisive Pass",
+      "Whipped Pass"
+    ],
+    "positions": [
+      "LM",
+      "CAM",
+      "LW"
+    ]
+  },
+  {
+    "id": 212602,
+    "player name": "Diego Llorente",
+    "country": "Spain",
+    "rating": 80,
+    "traits": [],
+    "positions": [
+      "CB"
+    ]
+  },
+  {
+    "id": 213655,
+    "player name": "Alex Iwobi",
+    "country": "Nigeria",
+    "rating": 80,
+    "traits": [
+      "Gamechanger",
+      "Incisive Pass",
+      "Inventive",
+      "Technical",
+      "Relentless"
+    ],
+    "positions": [
+      "LM",
+      "RM",
+      "LW"
+    ]
+  },
+  {
+    "id": 213661,
+    "player name": "Andreas Christensen",
+    "country": "Denmark",
+    "rating": 80,
+    "traits": [],
+    "positions": [
+      "CB",
+      "CM"
+    ]
+  },
+  {
+    "id": 213666,
+    "player name": "Ruben Loftus-Cheek",
+    "country": "England",
+    "rating": 80,
+    "traits": [
+      "Aerial Fortress",
+      "Press Proven",
+      "Enforcer"
+    ],
+    "positions": [
+      "CM",
+      "CAM",
+      "CDM"
+    ]
+  },
+  {
+    "id": 216447,
+    "player name": "Álvaro García",
+    "country": "Spain",
+    "rating": 80,
+    "traits": [
+      "Low Driven Shot",
+      "Intercept",
+      "Quick Step"
+    ],
+    "positions": [
+      "LM",
+      "LW"
+    ]
+  },
+  {
+    "id": 220440,
+    "player name": "Clément Lenglet",
+    "country": "France",
+    "rating": 80,
+    "traits": [],
+    "positions": [
+      "CB"
+    ]
+  },
+  {
+    "id": 220834,
+    "player name": "Marco Asensio",
+    "country": "Spain",
+    "rating": 80,
+    "traits": [
+      "Finesse Shot",
+      "Incisive Pass",
+      "Whipped Pass"
+    ],
+    "positions": [
+      "RW",
+      "CAM",
+      "ST",
+      "RM"
+    ]
+  },
+  {
+    "id": 220876,
+    "player name": "Franck Honorat",
+    "country": "France",
+    "rating": 80,
+    "traits": [
+      "Power Shot",
+      "Whipped Pass",
+      "Technical"
+    ],
+    "positions": [
+      "RM",
+      "RW",
+      "RB"
+    ]
+  },
+  {
+    "id": 223273,
+    "player name": "Mario Pašalić",
+    "country": "Croatia",
+    "rating": 80,
+    "traits": [
+      "Aerial Fortress"
+    ],
+    "positions": [
+      "CM",
+      "CAM"
+    ]
+  },
+  {
+    "id": 223697,
+    "player name": "Robin Gosens",
+    "country": "Germany",
+    "rating": 80,
+    "traits": [],
+    "positions": [
+      "LB",
+      "LM"
+    ]
+  },
+  {
+    "id": 224179,
+    "player name": "Borja Iglesias",
+    "country": "Spain",
+    "rating": 80,
+    "traits": [
+      "Enforcer"
+    ],
+    "positions": [
+      "ST"
+    ]
+  },
+  {
+    "id": 224656,
+    "player name": "Ola Aina",
+    "country": "Nigeria",
+    "rating": 80,
+    "traits": [
+      "Quick Step",
+      "Long Throw"
+    ],
+    "positions": [
+      "RB",
+      "LB",
+      "RM"
+    ]
+  },
+  {
+    "id": 225126,
+    "player name": "Ellyes Skhiri",
+    "country": "Tunisia",
+    "rating": 80,
+    "traits": [
+      "Intercept",
+      "Press Proven",
+      "Relentless"
+    ],
+    "positions": [
+      "CDM",
+      "CM"
+    ]
+  },
+  {
+    "id": 225539,
+    "player name": "Dominic Solanke",
+    "country": "England",
+    "rating": 80,
+    "traits": [
+      "Precision Header",
+      "Acrobatic"
+    ],
+    "positions": [
+      "ST"
+    ]
+  },
+  {
+    "id": 225953,
+    "player name": "Steven Bergwijn",
+    "country": "Holland",
+    "rating": 80,
+    "traits": [
+      "Power Shot",
+      "Gamechanger",
+      "Technical"
+    ],
+    "positions": [
+      "LM",
+      "LW"
+    ]
+  },
+  {
+    "id": 226110,
+    "player name": "Nicolas Pépé",
+    "country": "Côte d'Ivoire",
+    "rating": 80,
+    "traits": [
+      "Finesse Shot",
+      "Inventive",
+      "Technical"
+    ],
+    "positions": [
+      "RM",
+      "ST",
+      "RW"
+    ]
+  },
+  {
+    "id": 226300,
+    "player name": "Uğurcan Çakır",
+    "country": "Turkey",
+    "rating": 80,
+    "traits": [
+      "Long Ball Pass",
+      "Far Throw",
+      "Footwork"
+    ],
+    "positions": [
+      "GK"
+    ]
+  },
+  {
+    "id": 226753,
+    "player name": "André Onana",
+    "country": "Cameroon",
+    "rating": 80,
+    "traits": [
+      "Rush Out"
+    ],
+    "positions": [
+      "GK"
+    ]
+  },
+  {
+    "id": 226754,
+    "player name": "Ismaël Bennacer",
+    "country": "Algeria",
+    "rating": 80,
+    "traits": [
+      "Incisive Pass",
+      "Tiki Taka",
+      "Technical"
+    ],
+    "positions": [
+      "CDM",
+      "CM"
+    ]
+  },
+  {
+    "id": 227535,
+    "player name": "Rodrigo Bentancur",
+    "country": "Uruguay",
+    "rating": 80,
+    "traits": [
+      "First Touch"
+    ],
+    "positions": [
+      "CDM",
+      "CM"
+    ]
+  },
+  {
+    "id": 228251,
+    "player name": "Lorenzo Pellegrini",
+    "country": "Italy",
+    "rating": 80,
+    "traits": [
+      "Finesse Shot",
+      "Press Proven"
+    ],
+    "positions": [
+      "CAM",
+      "CM"
+    ]
+  },
+  {
+    "id": 228579,
+    "player name": "Benjamin Henrichs",
+    "country": "Germany",
+    "rating": 80,
+    "traits": [
+      "Incisive Pass",
+      "Jockey",
+      "Block",
+      "Slide Tackle",
+      "Bruiser"
+    ],
+    "positions": [
+      "RB",
+      "RM",
+      "LB"
+    ]
+  },
+  {
+    "id": 229668,
+    "player name": "Mario Hermoso",
+    "country": "Spain",
+    "rating": 80,
+    "traits": [
+      "Long Ball Pass",
+      "Block",
+      "Slide Tackle",
+      "Aerial Fortress"
+    ],
+    "positions": [
+      "CB"
+    ]
+  },
+  {
+    "id": 229880,
+    "player name": "Aaron Wan-Bissaka",
+    "country": "Congo DR",
+    "rating": 80,
+    "traits": [
+      "Block",
+      "Intercept",
+      "Anticipate",
+      "Rapid"
+    ],
+    "positions": [
+      "RB",
+      "RM"
+    ]
+  },
+  {
+    "id": 229905,
+    "player name": "Abdülkerim Bardakcı",
+    "country": "Turkey",
+    "rating": 80,
+    "traits": [
+      "Precision Header",
+      "Long Ball Pass",
+      "Intercept",
+      "Anticipate",
+      "Slide Tackle",
+      "Aerial Fortress",
+      "Bruiser"
+    ],
+    "positions": [
+      "CB",
+      "LB",
+      "LM"
+    ]
+  },
+  {
+    "id": 230666,
+    "player name": "Gabriel Jesus",
+    "country": "Brazil",
+    "rating": 80,
+    "traits": [
+      "Technical",
+      "First Touch",
+      "Relentless"
+    ],
+    "positions": [
+      "ST",
+      "CAM"
+    ]
+  },
+  {
+    "id": 230938,
+    "player name": "Franck Yannick Kessié",
+    "country": "Côte d'Ivoire",
+    "rating": 80,
+    "traits": [
+      "Power Shot",
+      "Press Proven",
+      "Relentless"
+    ],
+    "positions": [
+      "CDM",
+      "CM",
+      "CB"
+    ]
+  },
+  {
+    "id": 231591,
+    "player name": "Javi Galán",
+    "country": "Spain",
+    "rating": 80,
+    "traits": [
+      "Anticipate"
+    ],
+    "positions": [
+      "LB",
+      "LM"
+    ]
+  },
+  {
+    "id": 231677,
+    "player name": "Marcus Rashford",
+    "country": "England",
+    "rating": 80,
+    "traits": [
+      "Power Shot",
+      "Rapid",
+      "Quick Step"
+    ],
+    "positions": [
+      "LM",
+      "LW",
+      "ST"
+    ]
+  },
+  {
+    "id": 231913,
+    "player name": "Fredrik Aursnes",
+    "country": "Norway",
+    "rating": 80,
+    "traits": [
+      "Low Driven Shot",
+      "Anticipate",
+      "First Touch",
+      "Press Proven",
+      "Relentless"
+    ],
+    "positions": [
+      "CM",
+      "RB",
+      "RM",
+      "CAM"
+    ]
+  },
+  {
+    "id": 232665,
+    "player name": "Mauro Arambarri",
+    "country": "Uruguay",
+    "rating": 80,
+    "traits": [
+      "Precision Header",
+      "Aerial Fortress"
+    ],
+    "positions": [
+      "CM",
+      "CDM"
+    ]
+  },
+  {
+    "id": 233049,
+    "player name": "Jadon Sancho",
+    "country": "England",
+    "rating": 80,
+    "traits": [
+      "Finesse Shot",
+      "Trickster"
+    ],
+    "positions": [
+      "LW",
+      "RW",
+      "LM"
+    ]
+  },
+  {
+    "id": 233195,
+    "player name": "Xaver Schlager",
+    "country": "Austria",
+    "rating": 80,
+    "traits": [
+      "Incisive Pass",
+      "Jockey",
+      "Relentless",
+      "Bruiser"
+    ],
+    "positions": [
+      "CDM",
+      "CM"
+    ]
+  },
+  {
+    "id": 233927,
+    "player name": "Lucas Paquetá",
+    "country": "Brazil",
+    "rating": 80,
+    "traits": [
+      "Long Ball Pass",
+      "Aerial Fortress",
+      "Technical",
+      "First Touch"
+    ],
+    "positions": [
+      "CM",
+      "LM",
+      "CAM"
+    ]
+  },
+  {
+    "id": 234569,
+    "player name": "Florentino",
+    "country": "Portugal",
+    "rating": 80,
+    "traits": [
+      "Precision Header",
+      "Pinged Pass",
+      "Intercept",
+      "Anticipate",
+      "Slide Tackle",
+      "Press Proven",
+      "Bruiser"
+    ],
+    "positions": [
+      "CDM",
+      "CM",
+      "CB"
+    ]
+  },
+  {
+    "id": 234579,
+    "player name": "Julian Quiñones",
+    "country": "Mexico",
+    "rating": 80,
+    "traits": [
+      "Chip Shot",
+      "Precision Header",
+      "Rapid"
+    ],
+    "positions": [
+      "ST",
+      "LW",
+      "LM"
+    ]
+  },
+  {
+    "id": 234642,
+    "player name": "Édouard Mendy",
+    "country": "Senegal",
+    "rating": 80,
+    "traits": [
+      "Footwork",
+      "Cross Claimer"
+    ],
+    "positions": [
+      "GK"
+    ]
+  },
+  {
+    "id": 234742,
+    "player name": "Harvey Barnes",
+    "country": "England",
+    "rating": 80,
+    "traits": [
+      "Finesse Shot"
+    ],
+    "positions": [
+      "LW",
+      "LM"
+    ]
+  },
+  {
+    "id": 235149,
+    "player name": "Jerdy Schouten",
+    "country": "Holland",
+    "rating": 80,
+    "traits": [
+      "Pinged Pass",
+      "Inventive",
+      "Intercept",
+      "Anticipate",
+      "Press Proven"
+    ],
+    "positions": [
+      "CDM",
+      "CM",
+      "CB"
+    ]
+  },
+  {
+    "id": 236401,
+    "player name": "Noussair Mazraoui",
+    "country": "Morocco",
+    "rating": 80,
+    "traits": [
+      "Jockey",
+      "Block",
+      "Anticipate",
+      "Technical"
+    ],
+    "positions": [
+      "RB",
+      "CB",
+      "RM"
+    ]
+  },
+  {
+    "id": 236499,
+    "player name": "Douglas Luiz",
+    "country": "Brazil",
+    "rating": 80,
+    "traits": [
+      "Press Proven"
+    ],
+    "positions": [
+      "CM",
+      "CDM"
+    ]
+  },
+  {
+    "id": 237712,
+    "player name": "Valentin Castellanos",
+    "country": "Argentina",
+    "rating": 80,
+    "traits": [
+      "Finesse Shot",
+      "Incisive Pass",
+      "Technical"
+    ],
+    "positions": [
+      "ST"
+    ]
+  },
+  {
+    "id": 238616,
+    "player name": "Pedro Neto",
+    "country": "Portugal",
+    "rating": 80,
+    "traits": [
+      "Rapid",
+      "Quick Step"
+    ],
+    "positions": [
+      "RM",
+      "LM",
+      "ST",
+      "RW"
+    ]
+  },
+  {
+    "id": 238900,
+    "player name": "Ermedin Demirović",
+    "country": "Bosnia and Herzegovina",
+    "rating": 80,
+    "traits": [
+      "Finesse Shot",
+      "Relentless"
+    ],
+    "positions": [
+      "ST"
+    ]
+  },
+  {
+    "id": 239093,
+    "player name": "Jonathan Clauss",
+    "country": "France",
+    "rating": 80,
+    "traits": [
+      "Dead Ball",
+      "Whipped Pass",
+      "Intercept",
+      "Anticipate",
+      "Relentless",
+      "Long Throw"
+    ],
+    "positions": [
+      "RB",
+      "RM"
+    ]
+  },
+  {
+    "id": 239380,
+    "player name": "Noa Lang",
+    "country": "Holland",
+    "rating": 80,
+    "traits": [
+      "Gamechanger",
+      "Incisive Pass",
+      "Technical",
+      "First Touch",
+      "Quick Step"
+    ],
+    "positions": [
+      "LW",
+      "LM"
+    ]
+  },
+  {
+    "id": 241236,
+    "player name": "Antoine Semenyo",
+    "country": "Ghana",
+    "rating": 80,
+    "traits": [
+      "Low Driven Shot",
+      "Aerial Fortress",
+      "Long Throw",
+      "Enforcer"
+    ],
+    "positions": [
+      "RM",
+      "LM",
+      "RW"
+    ]
+  },
+  {
+    "id": 241464,
+    "player name": "Pau Torres",
+    "country": "Spain",
+    "rating": 80,
+    "traits": [
+      "Pinged Pass"
+    ],
+    "positions": [
+      "CB"
+    ]
+  },
+  {
+    "id": 241508,
+    "player name": "Mikkel Damsgaard",
+    "country": "Denmark",
+    "rating": 80,
+    "traits": [
+      "Incisive Pass",
+      "Pinged Pass",
+      "Whipped Pass",
+      "Inventive",
+      "Technical"
+    ],
+    "positions": [
+      "CAM",
+      "CM"
+    ]
+  },
+  {
+    "id": 241671,
+    "player name": "Dominik Livaković",
+    "country": "Croatia",
+    "rating": 80,
+    "traits": [
+      "Far Throw",
+      "Footwork"
+    ],
+    "positions": [
+      "GK"
+    ]
+  },
+  {
+    "id": 241727,
+    "player name": "Predrag Rajković",
+    "country": "Serbia",
+    "rating": 80,
+    "traits": [
+      "Far Throw",
+      "Footwork"
+    ],
+    "positions": [
+      "GK"
+    ]
+  },
+  {
+    "id": 242434,
+    "player name": "Curtis Jones",
+    "country": "England",
+    "rating": 80,
+    "traits": [
+      "Finesse Shot",
+      "Press Proven"
+    ],
+    "positions": [
+      "CAM",
+      "CM",
+      "CDM"
+    ]
+  },
+  {
+    "id": 242816,
+    "player name": "Riqui Puig",
+    "country": "Spain",
+    "rating": 80,
+    "traits": [
+      "Finesse Shot",
+      "Incisive Pass",
+      "Long Ball Pass",
+      "Inventive",
+      "First Touch"
+    ],
+    "positions": [
+      "CM",
+      "CAM",
+      "CDM"
+    ]
+  },
+  {
+    "id": 243586,
+    "player name": "Ayoub El Kaabi",
+    "country": "Morocco",
+    "rating": 80,
+    "traits": [
+      "Finesse Shot",
+      "Chip Shot"
+    ],
+    "positions": [
+      "ST"
+    ]
+  },
+  {
+    "id": 243593,
+    "player name": "Armand Laurienté",
+    "country": "France",
+    "rating": 80,
+    "traits": [
+      "Finesse Shot",
+      "Gamechanger",
+      "Incisive Pass",
+      "Rapid",
+      "Trickster",
+      "Quick Step"
+    ],
+    "positions": [
+      "LW",
+      "LM"
+    ]
+  },
+  {
+    "id": 244176,
+    "player name": "Deniz Undav",
+    "country": "Germany",
+    "rating": 80,
+    "traits": [
+      "Finesse Shot",
+      "Chip Shot",
+      "Acrobatic",
+      "Low Driven Shot",
+      "Gamechanger",
+      "Incisive Pass"
+    ],
+    "positions": [
+      "ST",
+      "CAM"
+    ]
+  },
+  {
+    "id": 245155,
+    "player name": "Mohammed Kudus",
+    "country": "Ghana",
+    "rating": 80,
+    "traits": [
+      "First Touch"
+    ],
+    "positions": [
+      "RW",
+      "LW",
+      "ST",
+      "RM"
+    ]
+  },
+  {
+    "id": 246172,
+    "player name": "Samuel Chukwueze",
+    "country": "Nigeria",
+    "rating": 80,
+    "traits": [
+      "Finesse Shot",
+      "Rapid",
+      "Quick Step"
+    ],
+    "positions": [
+      "RW",
+      "RM"
+    ]
+  },
+  {
+    "id": 246242,
+    "player name": "Boulaye Dia",
+    "country": "Senegal",
+    "rating": 80,
+    "traits": [
+      "Low Driven Shot"
+    ],
+    "positions": [
+      "ST",
+      "CAM"
+    ]
+  },
+  {
+    "id": 246420,
+    "player name": "Jérémy Doku",
+    "country": "Belgium",
+    "rating": 80,
+    "traits": [
+      "Inventive",
+      "Trickster",
+      "Quick Step",
+      "Enforcer"
+    ],
+    "positions": [
+      "LW",
+      "RW",
+      "LM"
+    ]
+  },
+  {
+    "id": 246875,
+    "player name": "Odilon Kossounou",
+    "country": "Côte d'Ivoire",
+    "rating": 80,
+    "traits": [],
+    "positions": [
+      "CB"
+    ]
+  },
+  {
+    "id": 250753,
+    "player name": "Anatoliy Trubin",
+    "country": "Ukraine",
+    "rating": 80,
+    "traits": [
+      "Footwork"
+    ],
+    "positions": [
+      "GK"
+    ]
+  },
+  {
+    "id": 251479,
+    "player name": "Maxim De Cuyper",
+    "country": "Belgium",
+    "rating": 80,
+    "traits": [
+      "Long Ball Pass",
+      "Whipped Pass",
+      "Jockey",
+      "Press Proven"
+    ],
+    "positions": [
+      "LB",
+      "RB",
+      "LM"
+    ]
+  },
+  {
+    "id": 251806,
+    "player name": "Quinten Timber",
+    "country": "Holland",
+    "rating": 80,
+    "traits": [
+      "Power Shot",
+      "Incisive Pass",
+      "Technical",
+      "Bruiser"
+    ],
+    "positions": [
+      "CM",
+      "CDM",
+      "CAM"
+    ]
+  },
+  {
+    "id": 252802,
+    "player name": "Wilfried Singo",
+    "country": "Côte d'Ivoire",
+    "rating": 80,
+    "traits": [
+      "Precision Header",
+      "Intercept",
+      "Aerial Fortress",
+      "Rapid"
+    ],
+    "positions": [
+      "CB",
+      "RB"
+    ]
+  },
+  {
+    "id": 254243,
+    "player name": "Elliot Anderson",
+    "country": "England",
+    "rating": 80,
+    "traits": [
+      "Block",
+      "Aerial Fortress",
+      "Technical"
+    ],
+    "positions": [
+      "CDM",
+      "CM"
+    ]
+  },
+  {
+    "id": 254796,
+    "player name": "Noni Madueke",
+    "country": "England",
+    "rating": 80,
+    "traits": [
+      "Low Driven Shot",
+      "Technical",
+      "Quick Step"
+    ],
+    "positions": [
+      "RW",
+      "RM"
+    ]
+  },
+  {
+    "id": 255654,
+    "player name": "Pierre Kalulu",
+    "country": "France",
+    "rating": 80,
+    "traits": [
+      "Block"
+    ],
+    "positions": [
+      "CB"
+    ]
+  },
+  {
+    "id": 256612,
+    "player name": "Evanilson",
+    "country": "Brazil",
+    "rating": 80,
+    "traits": [],
+    "positions": [
+      "ST"
+    ]
+  },
+  {
+    "id": 256903,
+    "player name": "Gonçalo Ramos",
+    "country": "Portugal",
+    "rating": 80,
+    "traits": [
+      "Finesse Shot",
+      "Precision Header",
+      "Low Driven Shot",
+      "Aerial Fortress",
+      "Press Proven"
+    ],
+    "positions": [
+      "ST"
+    ]
+  },
+  {
+    "id": 256948,
+    "player name": "Christos Tzolis",
+    "country": "Greece",
+    "rating": 80,
+    "traits": [
+      "Finesse Shot",
+      "Low Driven Shot",
+      "Incisive Pass",
+      "Rapid",
+      "Quick Step"
+    ],
+    "positions": [
+      "LM",
+      "LW"
+    ]
+  },
+  {
+    "id": 257278,
+    "player name": "Arthur Theate",
+    "country": "Belgium",
+    "rating": 80,
+    "traits": [
+      "Precision Header",
+      "Aerial Fortress"
+    ],
+    "positions": [
+      "CB",
+      "LB",
+      "LM"
+    ]
+  },
+  {
+    "id": 258580,
+    "player name": "Kerem Aktürkoğlu",
+    "country": "Turkey",
+    "rating": 80,
+    "traits": [
+      "Finesse Shot",
+      "Gamechanger",
+      "Incisive Pass",
+      "Rapid",
+      "Quick Step",
+      "Relentless"
+    ],
+    "positions": [
+      "LW",
+      "LM"
+    ]
+  },
+  {
+    "id": 258908,
+    "player name": "Jan Paul van Hecke",
+    "country": "Holland",
+    "rating": 80,
+    "traits": [
+      "Long Ball Pass",
+      "Aerial Fortress"
+    ],
+    "positions": [
+      "CB"
+    ]
+  },
+  {
+    "id": 259197,
+    "player name": "Nicolas Jackson",
+    "country": "Senegal",
+    "rating": 80,
+    "traits": [
+      "Low Driven Shot",
+      "Gamechanger",
+      "Technical"
+    ],
+    "positions": [
+      "ST"
+    ]
+  },
+  {
+    "id": 259377,
+    "player name": "Yeremy Pino",
+    "country": "Spain",
+    "rating": 80,
+    "traits": [
+      "Rapid"
+    ],
+    "positions": [
+      "RM",
+      "LM",
+      "LW",
+      "RW"
+    ]
+  },
+  {
+    "id": 259583,
+    "player name": "Destiny Udogie",
+    "country": "Italy",
+    "rating": 80,
+    "traits": [
+      "Whipped Pass",
+      "Block",
+      "Quick Step"
+    ],
+    "positions": [
+      "LB"
+    ]
+  },
+  {
+    "id": 259694,
+    "player name": "Mingueza",
+    "country": "Spain",
+    "rating": 80,
+    "traits": [
+      "Long Ball Pass",
+      "Long Throw",
+      "Bruiser"
+    ],
+    "positions": [
+      "RB",
+      "RM",
+      "LM"
+    ]
+  },
+  {
+    "id": 259913,
+    "player name": "Georgiy Sudakov",
+    "country": "Ukraine",
+    "rating": 80,
+    "traits": [
+      "Incisive Pass",
+      "First Touch",
+      "Quick Step"
+    ],
+    "positions": [
+      "CAM",
+      "CM",
+      "CDM"
+    ]
+  },
+  {
+    "id": 260592,
+    "player name": "Benjamin Šeško",
+    "country": "Slovenia",
+    "rating": 80,
+    "traits": [
+      "Power Shot",
+      "Precision Header",
+      "Acrobatic",
+      "Gamechanger",
+      "Aerial Fortress",
+      "Technical"
+    ],
+    "positions": [
+      "ST"
+    ]
+  },
+  {
+    "id": 262118,
+    "player name": "Tino Livramento",
+    "country": "England",
+    "rating": 80,
+    "traits": [
+      "Jockey"
+    ],
+    "positions": [
+      "RB",
+      "LB",
+      "RM"
+    ]
+  },
+  {
+    "id": 262138,
+    "player name": "Castello Lukeba",
+    "country": "France",
+    "rating": 80,
+    "traits": [],
+    "positions": [
+      "CB",
+      "LB"
+    ]
+  },
+  {
+    "id": 262859,
+    "player name": "Levi Colwill",
+    "country": "England",
+    "rating": 80,
+    "traits": [
+      "Block"
+    ],
+    "positions": [
+      "CB"
+    ]
+  },
+  {
+    "id": 263205,
+    "player name": "Barış Alper Yılmaz",
+    "country": "Turkey",
+    "rating": 80,
+    "traits": [
+      "Low Driven Shot",
+      "Aerial Fortress",
+      "Rapid",
+      "Quick Step",
+      "Relentless",
+      "Bruiser",
+      "Enforcer"
+    ],
+    "positions": [
+      "LM",
+      "RM",
+      "LW"
+    ]
+  },
+  {
+    "id": 264697,
+    "player name": "Mohamed Amoura",
+    "country": "Algeria",
+    "rating": 80,
+    "traits": [
+      "Chip Shot",
+      "Acrobatic",
+      "Gamechanger",
+      "Rapid",
+      "Quick Step"
+    ],
+    "positions": [
+      "ST",
+      "LW",
+      "LM",
+      "CAM"
+    ]
+  },
+  {
+    "id": 264862,
+    "player name": "Maghnes Akliouche",
+    "country": "France",
+    "rating": 80,
+    "traits": [
+      "Low Driven Shot",
+      "Inventive"
+    ],
+    "positions": [
+      "RM",
+      "CAM",
+      "RW"
+    ]
+  },
+  {
+    "id": 266127,
+    "player name": "Lewis Hall",
+    "country": "England",
+    "rating": 80,
+    "traits": [
+      "Whipped Pass",
+      "Block",
+      "Press Proven"
+    ],
+    "positions": [
+      "LB"
+    ]
+  },
+  {
+    "id": 266872,
+    "player name": "Federico Gatti",
+    "country": "Italy",
+    "rating": 80,
+    "traits": [
+      "Slide Tackle",
+      "Bruiser"
+    ],
+    "positions": [
+      "CB"
+    ]
+  },
+  {
+    "id": 268889,
+    "player name": "Álvaro Carreras",
+    "country": "Spain",
+    "rating": 80,
+    "traits": [
+      "Long Ball Pass",
+      "Relentless"
+    ],
+    "positions": [
+      "LB",
+      "LM"
+    ]
+  },
+  {
+    "id": 269493,
+    "player name": "Alexsandro",
+    "country": "Brazil",
+    "rating": 80,
+    "traits": [
+      "Block",
+      "Intercept",
+      "Anticipate",
+      "Aerial Fortress"
+    ],
+    "positions": [
+      "CB"
+    ]
+  },
+  {
+    "id": 269626,
+    "player name": "Đorđe Petrović",
+    "country": "Serbia",
+    "rating": 80,
+    "traits": [
+      "Footwork"
+    ],
+    "positions": [
+      "GK"
+    ]
+  },
+  {
+    "id": 270531,
+    "player name": "Ousmane Diomande",
+    "country": "Côte d'Ivoire",
+    "rating": 80,
+    "traits": [
+      "Precision Header",
+      "Long Ball Pass",
+      "Jockey",
+      "Block",
+      "Aerial Fortress",
+      "Bruiser"
+    ],
+    "positions": [
+      "CB"
+    ]
+  },
+  {
+  "id": 198710,
+  "player name": "James Rodríguez",
+  "country": "Colombia",
+  "rating": 80,
+  "traits": [
+    "Finesse Shot",
+    "Long Shot Taker",
+    "Playmaker",
+    "Flair"
+  ],
+  "positions": [
+    "CAM",
+    "RM",
+    "CM"
+  ]
+},
+  {
+    "id": 270571,
+    "player name": "Gabriel Sara",
+    "country": "Brazil",
+    "rating": 80,
+    "traits": [
+      "Power Shot",
+      "Dead Ball",
+      "Incisive Pass",
+      "Long Ball Pass",
+      "Inventive"
+    ],
+    "positions": [
+      "CM",
+      "CAM",
+      "RM"
+    ]
+  },
+  {
+    "id": 270673,
+    "player name": "Warren Zaïre-Emery",
+    "country": "France",
+    "rating": 80,
+    "traits": [
+      "Tiki Taka",
+      "First Touch",
+      "Press Proven",
+      "Quick Step",
+      "Relentless"
+    ],
+    "positions": [
+      "CM",
+      "CDM",
+      "CAM"
+    ]
+  },
+  {
+    "id": 271400,
+    "player name": "Igor Paixão",
+    "country": "Brazil",
+    "rating": 80,
+    "traits": [
+      "Gamechanger",
+      "Whipped Pass",
+      "Technical"
+    ],
+    "positions": [
+      "LM",
+      "LW"
+    ]
+  },
+  {
+    "id": 273018,
+    "player name": "Andrey Santos",
+    "country": "Brazil",
+    "rating": 80,
+    "traits": [
+      "Precision Header",
+      "Tiki Taka",
+      "Slide Tackle",
+      "Aerial Fortress"
+    ],
+    "positions": [
+      "CM",
+      "CDM"
+    ]
+  },
+  {
+    "id": 277179,
+    "player name": "Fermín",
+    "country": "Spain",
+    "rating": 80,
+    "traits": [
+      "Precision Header"
+    ],
+    "positions": [
+      "CAM",
+      "CM",
+      "LW",
+      "ST"
+    ]
+  },
+  {
+    "id": 73078,
+    "player name": "Kaishū Sano",
+    "country": "Japan",
+    "rating": 79,
+    "traits": [
+      "Aerial Fortress"
+    ],
+    "positions": [
+      "CDM",
+      "CM"
+    ]
+  },
+  {
+    "id": 163587,
+    "player name": "Kasper Schmeichel",
+    "country": "Denmark",
+    "rating": 79,
+    "traits": [
+      "Long Ball Pass",
+      "Footwork",
+      "Deflector"
+    ],
+    "positions": [
+      "GK"
+    ]
+  },
+  {
+    "id": 176580,
+    "player name": "Luis Suárez",
+    "country": "Uruguay",
+    "rating": 79,
+    "traits": [
+      "Gamechanger",
+      "Enforcer"
+    ],
+    "positions": [
+      "ST",
+      "CAM"
+    ]
+  },
+  {
+    "id": 178509,
+    "player name": "Olivier Giroud",
+    "country": "France",
+    "rating": 79,
+    "traits": [
+      "Precision Header",
+      "Gamechanger",
+      "Aerial Fortress",
+      "Enforcer"
+    ],
+    "positions": [
+      "ST"
+    ]
+  },
+  {
+    "id": 182494,
+    "player name": "Fernando Muslera",
+    "country": "Uruguay",
+    "rating": 79,
+    "traits": [
+      "Long Ball Pass",
+      "Far Throw",
+      "Cross Claimer",
+      "Rush Out"
+    ],
+    "positions": [
+      "GK"
+    ]
+  },
+  {
+    "id": 183512,
+    "player name": "Yuri Berchiche",
+    "country": "Spain",
+    "rating": 79,
+    "traits": [
+      "Slide Tackle"
+    ],
+    "positions": [
+      "LB",
+      "LM"
+    ]
+  },
+  {
+    "id": 183711,
+    "player name": "Jordan Henderson",
+    "country": "England",
+    "rating": 79,
+    "traits": [
+      "Incisive Pass",
+      "Long Ball Pass",
+      "Anticipate"
+    ],
+    "positions": [
+      "CDM",
+      "CM"
+    ]
+  },
+  {
+    "id": 188350,
+    "player name": "Marco Reus",
+    "country": "Germany",
+    "rating": 79,
+    "traits": [
+      "Finesse Shot",
+      "Chip Shot",
+      "Gamechanger",
+      "First Touch"
+    ],
+    "positions": [
+      "CAM",
+      "ST",
+      "CM"
+    ]
+  },
+  {
+    "id": 188377,
+    "player name": "Kyle Walker",
+    "country": "England",
+    "rating": 79,
+    "traits": [
+      "Power Shot",
+      "Jockey",
+      "Rapid",
+      "Long Throw"
+    ],
+    "positions": [
+      "RB",
+      "RM"
+    ]
+  },
+  {
+    "id": 189908,
+    "player name": "Łukasz Skorupski",
+    "country": "Poland",
+    "rating": 79,
+    "traits": [
+      "Far Throw"
+    ],
+    "positions": [
+      "GK"
+    ]
+  },
+  {
+    "id": 190813,
+    "player name": "Stephan El Shaarawy",
+    "country": "Italy",
+    "rating": 79,
+    "traits": [],
+    "positions": [
+      "LM",
+      "LW"
+    ]
+  },
+  {
+    "id": 192638,
+    "player name": "Marcos Alonso",
+    "country": "Spain",
+    "rating": 79,
+    "traits": [],
+    "positions": [
+      "CB",
+      "LB"
+    ]
+  },
+  {
+    "id": 193301,
+    "player name": "Alexandre Lacazette",
+    "country": "France",
+    "rating": 79,
+    "traits": [
+      "Finesse Shot",
+      "Gamechanger",
+      "Technical"
+    ],
+    "positions": [
+      "ST"
+    ]
+  }
+]
