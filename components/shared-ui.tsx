@@ -162,12 +162,12 @@ export function TeamLineupModal({ team, onClose }: { team: LeagueTeam; onClose: 
 
   const teamRatings = starters.length >= 11 ? getTeamStrengthRatings({
     id: team.id as number,
-    roster: starters.map(r => ({ player: r.player, slotId: r.slotId })),
+    roster: starters.map(r => ({ player: r.player, slotId: r.slotId as string })),
     formationId: team.formationId,
   }) : null;
   const v3Ratings = SHOW_V3_TEAM_RATING_PREVIEW && starters.length >= 11 ? getTeamV3PreviewRatings({
     id: team.id as number,
-    roster: starters.map(r => ({ player: r.player, slotId: r.slotId })),
+    roster: starters.map(r => ({ player: r.player, slotId: r.slotId as string })),
     formationId: team.formationId,
   }) : null;
 

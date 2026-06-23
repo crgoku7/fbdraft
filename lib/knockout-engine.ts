@@ -43,7 +43,7 @@ export function createKnockoutSession(teams: LeagueTeam[]): KnockoutState {
   const n = teamIds.length;
   const p2 = getNextPowerOf2(n);
   const byes = p2 - n;
-  
+
   const firstRoundMatches = p2 / 2;
   const rounds: KnockoutRound[] = [];
 
@@ -85,7 +85,7 @@ export function createKnockoutSession(teams: LeagueTeam[]): KnockoutState {
       const match1 = prevRoundMatches[i];
       const match2 = prevRoundMatches[i + 1];
       const newMatchId = `m${matchCounter++}`;
-      
+
       match1.nextMatchId = newMatchId;
       match2.nextMatchId = newMatchId;
 

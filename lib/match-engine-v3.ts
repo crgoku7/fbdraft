@@ -1,6 +1,6 @@
 import type { Player } from "./player-data";
 import { getPositionModifier, FORMATIONS } from "./formation-utils";
-
+import type { AssignedRoster } from "./league-engine";
 // ── Types ─────────────────────────────────────────────────────────────
 
 export type MatchEvent = {
@@ -78,7 +78,7 @@ export type TeamV3PreviewRatings = {
 
 export type TeamInput = {
   id: number;
-  roster: { player: Player; slotId?: string }[];
+  roster: AssignedRoster[];
   formationId: string;
 };
 
@@ -433,7 +433,7 @@ export function simulateMatchV3(homeTeam: TeamInput, awayTeam: TeamInput, requir
   let homeSOT = 0, awaySOT = 0;
   let homeBC = 0, awayBC = 0;
   let homePossTicks = 0;
-  
+
   const events: MatchEvent[] = [];
   const TOTAL_TICKS = 100;
 
@@ -470,7 +470,7 @@ export function simulateMatchV3(homeTeam: TeamInput, awayTeam: TeamInput, requir
     // Phase 1: Who gets the ball this tick?
     const homeBallChance = hRetain / (hRetain + aRetain);
     const isHomePos = Math.random() < homeBallChance;
-    
+
     if (isHomePos) homePossTicks++;
 
     const atkFin = isHomePos ? hFin : aFin;
@@ -514,7 +514,7 @@ export function simulateMatchV3(homeTeam: TeamInput, awayTeam: TeamInput, requir
     const r = Math.random();
     // Big Chance (10% base, scales with CC/DefRes ratio)
     const bcThreshold = Math.min(0.25, 0.10 * (atkCC / defensiveResistance));
-    
+
     if (r < bcThreshold) {
       shotXg = 0.35 + (Math.random() * 0.2); // Big Chance (0.35 - 0.55)
       if (isHomePos) homeBC++; else awayBC++;
@@ -538,7 +538,7 @@ export function simulateMatchV3(homeTeam: TeamInput, awayTeam: TeamInput, requir
     // Base conversion rate is literally just xG. We modify it by finisher vs GK gap.
     const finMult = (scorer.effectiveRating / 80) * (atkFin / 80); // individual + team finishing quality
     const gkMult = def.gkQuality / 80;
-    
+
     const goalProb = Math.min(0.95, shotXg * (finMult / gkMult));
 
     if (Math.random() < goalProb) {
@@ -560,7 +560,7 @@ export function simulateMatchV3(homeTeam: TeamInput, awayTeam: TeamInput, requir
         const gk = defRoster.find(p => p.role === "GK");
         if (gk) {
           events.push({
-            minute, type: "SAVE", teamId: isHomePos ? awayTeam.id : homeTeam.id, 
+            minute, type: "SAVE", teamId: isHomePos ? awayTeam.id : homeTeam.id,
             playerId: gk.id, playerName: gk.name, xg: shotXg
           });
         }
@@ -590,22 +590,22 @@ export function simulateMatchV3(homeTeam: TeamInput, awayTeam: TeamInput, requir
       r += events.filter(e => e.type === "GOAL" && e.teamId === tId && e.playerId === p.id).length * 1.2;
       r += events.filter(e => e.type === "GOAL" && e.teamId === tId && e.assistPlayerId === p.id).length * 0.7;
       r += events.filter(e => e.type === "SAVE" && e.teamId === tId && e.playerId === p.id).length * 0.2; // new!
-      
+
       // Misses are a tiny penalty
       r -= events.filter(e => e.type === "MISS" && e.teamId === tId && e.playerId === p.id).length * 0.1;
 
       if (oppGoals === 0 && (p.role === "GK" || isDefender(p.role))) r += 1.0;
-      if (p.role === "GK" && oppGoals === 1 && homeWin ) r += 0.4;
-      if (p.role === "GK") {r -= oppGoals * 0.5; }
-      
+      if (p.role === "GK" && oppGoals === 1 && homeWin) r += 0.4;
+      if (p.role === "GK") { r -= oppGoals * 0.5; }
+
       r -= events.filter(e => e.type === "YELLOW_CARD" && e.teamId === tId && e.playerId === p.id).length * 0.5;
       r -= events.filter(e => e.type === "RED_CARD" && e.teamId === tId && e.playerId === p.id).length * 1.5;
-      
+
       if (isWin) r += 0.3;
       if (!isWin && !isDraw) r -= 0.2;
       r += (p.effectiveRating - 75) / 100;
       r += (Math.random() - 0.5) * 0.4;
-      
+
       return { playerId: p.id, playerName: p.name, teamId: tId, rating: Math.min(10.0, Math.max(4.0, Number(r.toFixed(1)))), isMotm: false };
     });
   }
@@ -622,7 +622,7 @@ export function simulateMatchV3(homeTeam: TeamInput, awayTeam: TeamInput, requir
   if (requiresWinner && homeGoals === awayGoals) {
     const sd = () => {
       let hScore = 0, aScore = 0;
-      for (let i=0; i<5; i++) {
+      for (let i = 0; i < 5; i++) {
         if (Math.random() < 0.75) hScore++;
         if (Math.random() < 0.75) aScore++;
         const left = 4 - i;

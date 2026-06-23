@@ -221,7 +221,7 @@ export default function PackDraftPage() {
                       key={r.player.id}
                       id={r.player.id.toString()} 
                       player={r.player} 
-                      modifier={{ modifier: 1, colorClass: "bg-slate-700" }} 
+                      modifier={{ modifier: 1, colorClass: "bg-slate-700", label: "Favourable" as const }} 
                     />
                   ))}
                   {draftState.roster.filter(r => r.slotId === null).length === 0 && (
