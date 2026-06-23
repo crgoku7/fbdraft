@@ -5,13 +5,13 @@ import { useRouter } from "next/navigation";
 import { loadPlayers, type Player } from "../../lib/player-data";
 import { FORMATIONS, getPositionModifier } from "../../lib/formation-utils";
 import { generatePack, generateAITeams } from "../../lib/pack-engine";
-import { AuctionCard, PitchSlot, DraggablePlayer } from "../../components/draft-ui";
+import { AuctionCard, PitchSlot, DraggablePlayer, BenchArea } from "../../components/draft-ui";
 import { GameSettingsForm, type GameSettings, DEFAULT_SETTINGS } from "../../components/shared-ui";
 import { DndContext, DragEndEvent } from "@dnd-kit/core";
 
 type PackDraftState = {
   formationId: string;
-  roster: { player: Player; slotId: string }[];
+  roster: { player: Player; slotId: string | null }[];
 };
 
 export default function PackDraftPage() {
@@ -36,7 +36,7 @@ export default function PackDraftPage() {
   useEffect(() => {
     if (!draftState || isPostDraft || players.length === 0) return;
     const formation = FORMATIONS.find(f => f.id === draftState.formationId)!;
-    const currentSlot = formation.slots[currentSlotIndex];
+    const currentSlot = formation.slots[currentSlotIndex] || { role: "BENCH" };
     if (currentSlot) {
       const excludedIds = new Set(draftState.roster.map(r => r.player.id));
       const pack = generatePack(currentSlot.role, players, excludedIds);
@@ -72,7 +72,12 @@ export default function PackDraftPage() {
           {FORMATIONS.map(f => (
             <button
               key={f.id}
-              onClick={() => setDraftState({ formationId: f.id, roster: [] })}
+              onClick={() => {
+                if (typeof Audio !== "undefined") {
+                  new Audio('/audio/click.wav').play().catch(() => {});
+                }
+                setDraftState({ formationId: f.id, roster: [] });
+              }}
               className="p-6 rounded-2xl bg-slate-900 border-2 border-white/10 hover:border-emerald-500/50 hover:bg-slate-800 transition-all font-black text-2xl tracking-widest text-slate-300 hover:text-white"
             >
               {f.id}
@@ -84,7 +89,7 @@ export default function PackDraftPage() {
   }
 
   const formation = FORMATIONS.find(f => f.id === draftState.formationId)!;
-  const currentSlotToDraft = isPostDraft ? null : formation.slots[currentSlotIndex];
+  const currentSlotToDraft = isPostDraft ? null : (formation.slots[currentSlotIndex] || { id: `bench_${currentSlotIndex}`, role: "BENCH", x: 0, y: 0 });
 
   const handlePickPlayer = (player: Player) => {
     if (!currentSlotToDraft) return;
@@ -92,7 +97,7 @@ export default function PackDraftPage() {
       if (!prev) return prev;
       return {
         ...prev,
-        roster: [...prev.roster, { player, slotId: currentSlotToDraft.id }]
+        roster: [...prev.roster, { player, slotId: currentSlotToDraft.id.startsWith("bench_") ? null : currentSlotToDraft.id }]
       };
     });
     setCurrentSlotIndex(prev => prev + 1);
@@ -136,14 +141,19 @@ export default function PackDraftPage() {
       const targetIdx = newRoster.findIndex(r => r.slotId === over.id);
 
       if (sourceIdx !== -1) {
-        if (targetIdx !== -1) {
-          // Swap
-          const tempSlot = newRoster[sourceIdx].slotId;
-          newRoster[sourceIdx].slotId = newRoster[targetIdx].slotId;
-          newRoster[targetIdx].slotId = tempSlot;
+        if (over.id === "bench") {
+          newRoster[sourceIdx].slotId = null;
         } else {
-          // Move
-          newRoster[sourceIdx].slotId = over.id as string;
+          const targetIdx = newRoster.findIndex(r => r.slotId === over.id);
+          if (targetIdx !== -1) {
+            // Swap
+            const tempSlot = newRoster[sourceIdx].slotId;
+            newRoster[sourceIdx].slotId = newRoster[targetIdx].slotId;
+            newRoster[targetIdx].slotId = tempSlot;
+          } else {
+            // Move
+            newRoster[sourceIdx].slotId = over.id as string;
+          }
         }
       }
       return { ...prev, roster: newRoster };
@@ -157,26 +167,26 @@ export default function PackDraftPage() {
           <span className="text-emerald-500">PACK</span> DRAFT
         </div>
         <div className="text-sm font-bold text-slate-400 bg-slate-800 px-4 py-1.5 rounded-full border border-white/10">
-          {draftState.roster.length} / 11 Players
+          {draftState.roster.length} / {settings.teamSize} Players
         </div>
       </header>
 
       <main className="flex-1 flex overflow-hidden">
         {/* Left: Pitch */}
-        <div className="w-1/3 min-w-[400px] border-r border-white/5 bg-slate-900/20 p-6 flex flex-col items-center relative overflow-y-auto">
-          <div 
-            className="relative w-full max-w-[400px] rounded-2xl overflow-hidden shadow-2xl border-[3px] border-white/10 shrink-0" 
-            style={{ 
-              paddingTop: "135%", 
-              background: "linear-gradient(180deg, #1a4a1a 0%, #163f16 50%, #1a4a1a 100%)" 
-            }}
-          >
-            {/* Pitch graphics */}
-            <div className="absolute inset-2 border-2 border-white/15 rounded-lg pointer-events-none" />
-            <div className="absolute top-1/2 left-0 right-0 h-[2px] bg-white/15 pointer-events-none" />
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 rounded-full border-2 border-white/15 pointer-events-none" />
+        <div className="w-1/3 min-w-[400px] border-r border-white/5 bg-slate-900/20 p-6 flex flex-col items-center relative overflow-y-auto gap-6">
+          <DndContext onDragEnd={handleDragEnd}>
+            <div 
+              className="relative w-full max-w-[400px] rounded-2xl overflow-hidden shadow-2xl border-[3px] border-white/10 shrink-0" 
+              style={{ 
+                paddingTop: "135%", 
+                background: "linear-gradient(180deg, #1a4a1a 0%, #163f16 50%, #1a4a1a 100%)" 
+              }}
+            >
+              {/* Pitch graphics */}
+              <div className="absolute inset-2 border-2 border-white/15 rounded-lg pointer-events-none" />
+              <div className="absolute top-1/2 left-0 right-0 h-[2px] bg-white/15 pointer-events-none" />
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 rounded-full border-2 border-white/15 pointer-events-none" />
 
-            <DndContext onDragEnd={handleDragEnd}>
               {formation.slots.map(slot => {
                 const rosterItem = draftState.roster.find(r => r.slotId === slot.id);
                 const isCurrentlyDrafting = !isPostDraft && currentSlotToDraft?.id === slot.id;
@@ -200,8 +210,29 @@ export default function PackDraftPage() {
                   </PitchSlot>
                 );
               })}
-            </DndContext>
-          </div>
+            </div>
+
+            {settings.teamSize > 11 && (
+              <div className="w-full max-w-[400px]">
+                <h3 className="text-slate-400 font-black tracking-widest uppercase text-sm mb-2">Bench</h3>
+                <BenchArea>
+                  {draftState.roster.filter(r => r.slotId === null).map(r => (
+                    <DraggablePlayer 
+                      key={r.player.id}
+                      id={r.player.id.toString()} 
+                      player={r.player} 
+                      modifier={{ modifier: 1, colorClass: "bg-slate-700" }} 
+                    />
+                  ))}
+                  {draftState.roster.filter(r => r.slotId === null).length === 0 && (
+                    <div className="text-slate-500 text-xs font-bold w-full text-center">
+                      {isPostDraft ? "Drop players here" : "Bench players will appear here"}
+                    </div>
+                  )}
+                </BenchArea>
+              </div>
+            )}
+          </DndContext>
         </div>
 
         {/* Right: Pack / Post-Draft Action */}

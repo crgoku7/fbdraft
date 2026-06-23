@@ -11,6 +11,12 @@ import { getTeamV3PreviewRatings } from "../lib/match-engine-v3";
 // Temporary comparison aid while the legacy display model is evaluated against V3.
 export const SHOW_V3_TEAM_RATING_PREVIEW = true;
 
+const playClick = () => {
+  if (typeof Audio !== "undefined") {
+    new Audio('/audio/click.wav').play().catch(() => {});
+  }
+};
+
 // ── Shared Game Settings Form ───────────────────────────────────────
 export type GameSettings = {
   aiCount: number;
@@ -70,7 +76,7 @@ export function GameSettingsForm({
                 {[11, 13, 15].map(n => (
                   <button
                     key={n}
-                    onClick={() => onChange({ ...settings, teamSize: n })}
+                    onClick={() => { playClick(); onChange({ ...settings, teamSize: n }); }}
                     className={`px-3 py-1.5 rounded-lg font-bold text-sm transition-all ${settings.teamSize === n ? "bg-white/10 text-white border border-white/20" : "text-slate-500 hover:text-white"}`}
                   >
                     {n}
@@ -85,7 +91,7 @@ export function GameSettingsForm({
                   {[500, 1000, 2000].map(b => (
                     <button
                       key={b}
-                      onClick={() => onChange({ ...settings, budget: b })}
+                      onClick={() => { playClick(); onChange({ ...settings, budget: b }); }}
                       className={`px-3 py-1.5 rounded-lg font-bold text-sm transition-all ${settings.budget === b ? "bg-white/10 text-white border border-white/20" : "text-slate-500 hover:text-white"}`}
                     >
                       ${b}
@@ -100,7 +106,7 @@ export function GameSettingsForm({
                 {(["LEAGUE", "KNOCKOUT"] as const).map(t => (
                   <button
                     key={t}
-                    onClick={() => onChange({ ...settings, tournamentType: t })}
+                    onClick={() => { playClick(); onChange({ ...settings, tournamentType: t }); }}
                     className={`px-4 py-1.5 rounded-lg font-bold text-sm transition-all ${settings.tournamentType === t
                       ? t === "LEAGUE" ? "bg-indigo-600 text-white" : "bg-amber-600 text-white"
                       : "text-slate-500 hover:text-white"
@@ -114,7 +120,7 @@ export function GameSettingsForm({
           </div>
 
           <button
-            onClick={onStart}
+            onClick={() => { playClick(); onStart(); }}
             disabled={disabled}
             className={`w-full mt-4 py-4 bg-gradient-to-r ${accentColors.btn} text-white font-black rounded-2xl shadow-xl transition-all hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed text-lg tracking-wide`}
           >

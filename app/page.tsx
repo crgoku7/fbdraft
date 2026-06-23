@@ -1,4 +1,10 @@
+"use client";
+
 import Link from "next/link";
+
+const playClick = () => {
+  new Audio('/audio/click.wav').play().catch(() => {});
+};
 
 export default function Home() {
   return (
@@ -18,7 +24,7 @@ export default function Home() {
         </div>
 
         <div className="grid md:grid-cols-3 gap-6 w-full max-w-5xl">
-          <Link href="/database" className="group">
+          <Link href="/database" className="group" onClick={playClick}>
             <div className="glass-panel p-8 rounded-3xl h-full flex flex-col items-center text-center space-y-4 hover-lift border-2 border-transparent hover:border-blue-500/30 transition-all">
               <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900/30 rounded-2xl flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
                 <svg className="w-8 h-8 text-blue-600 dark:text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -32,7 +38,7 @@ export default function Home() {
             </div>
           </Link>
 
-          <Link href="/draft" className="group">
+          <Link href="/draft" className="group" onClick={playClick}>
             <div className="glass-panel p-8 rounded-3xl h-full flex flex-col items-center text-center space-y-4 hover-lift border-2 border-transparent hover:border-indigo-500/30 transition-all">
               <div className="w-16 h-16 bg-indigo-100 dark:bg-indigo-900/30 rounded-2xl flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
                 <svg className="w-8 h-8 text-indigo-600 dark:text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -46,7 +52,7 @@ export default function Home() {
             </div>
           </Link>
 
-          <Link href="/pack-draft" className="group">
+          <Link href="/pack-draft" className="group" onClick={playClick}>
             <div className="glass-panel p-8 rounded-3xl h-full flex flex-col items-center text-center space-y-4 hover-lift border-2 border-transparent hover:border-emerald-500/30 transition-all">
               <div className="w-16 h-16 bg-emerald-100 dark:bg-emerald-900/30 rounded-2xl flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
                 <svg className="w-8 h-8 text-emerald-600 dark:text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">

@@ -24,6 +24,12 @@ import { getTeamStrengthRatings } from "../../lib/match-engine";
 // ── Draft history item ──────────────────────────────────────────────
 type HistoryEntry = { player: Player; teamName: string; price: number };
 
+const playSound = (src: string) => {
+  if (typeof Audio !== "undefined") {
+    new Audio(src).play().catch(() => {});
+  }
+};
+
 // ── Main Page ──────────────────────────────────────────────────────
 export default function DraftPage() {
   const router = useRouter();
@@ -36,6 +42,19 @@ export default function DraftPage() {
   const [draftHistory, setDraftHistory] = useState<HistoryEntry[]>([]);
   const [settings, setSettings] = useState<GameSettings>(DEFAULT_SETTINGS);
   const previousRosterLength = useRef(0);
+  const countdownAudioRef = useRef<HTMLAudioElement | null>(null);
+
+  const stopCountdown = () => {
+    if (countdownAudioRef.current) {
+      countdownAudioRef.current.pause();
+      countdownAudioRef.current.currentTime = 0;
+      countdownAudioRef.current = null;
+    }
+  };
+
+  useEffect(() => {
+    return () => stopCountdown();
+  }, []);
 
   // Smart auto-assign: preferred pos → any empty slot
   useEffect(() => {
@@ -159,8 +178,18 @@ export default function DraftPage() {
   // Bidding timer
   useEffect(() => {
     if (!draftState || draftState.completed || phase !== 'bidding') return;
+
+    if (timer === 3) {
+      stopCountdown();
+      countdownAudioRef.current = new Audio('/audio/countdown.wav');
+      countdownAudioRef.current.play().catch(() => {});
+    } else if (timer > 3 || timer <= 0) {
+      stopCountdown();
+    }
+
     if (timer <= 0) {
       setPhase('sold');
+      playSound('/audio/sold.wav');
       setTimeout(() => {
         const current = draftState;
         if (current.currentPlayerOnAuction) {
@@ -257,10 +286,10 @@ export default function DraftPage() {
   }) : null;
 
   return (
-    <div className="min-h-screen bg-[#0a0e1a] text-white flex flex-col xl:flex-row gap-0">
+    <div className="h-screen bg-[#0a0e1a] text-white flex flex-col xl:flex-row gap-0 overflow-hidden">
 
       {/* ── LEFT: Pitch ─────────────────────────────────────── */}
-      <div className="xl:w-[400px] flex-shrink-0 bg-slate-900/60 border-r border-white/5 flex flex-col p-4 gap-3">
+      <div className="xl:w-[400px] flex-shrink-0 bg-slate-900/60 border-r border-white/5 flex flex-col p-4 gap-3 overflow-y-auto">
         {/* Formation selector */}
         <div className="flex justify-between items-center">
           <h2 className="text-sm font-black uppercase tracking-widest text-slate-400">My Formation</h2>
@@ -352,7 +381,7 @@ export default function DraftPage() {
       </div>
 
       {/* ── CENTER: Auction ───────────────────────────────── */}
-      <div className="flex-1 flex flex-col items-center justify-center p-6 md:p-10 relative">
+      <div className="flex-1 flex flex-col items-center justify-center p-6 md:p-10 relative overflow-y-auto">
 
         {draftState.completed ? (
           /* ── Post-draft: lineup confirmation ── */
@@ -454,7 +483,10 @@ export default function DraftPage() {
                   {[1, 5, 10].map(amt => (
                     <button
                       key={amt}
-                      onClick={() => handleBid(amt)}
+                      onClick={() => {
+                        playSound(`/audio/price${amt}.wav`);
+                        handleBid(amt);
+                      }}
                       disabled={myRosterFull || isHighestBidder || myTeam!.budget < (draftState.highestBidderId === null ? draftState.basePrice : draftState.currentBid + amt)}
                       className="py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-black rounded-xl transition-all hover:-translate-y-0.5 disabled:opacity-40 disabled:cursor-not-allowed text-sm"
                     >
@@ -480,7 +512,7 @@ export default function DraftPage() {
       </div>
 
       {/* ── RIGHT: Sidebar (budgets + draft history) ──── */}
-      <div className="xl:w-[320px] flex-shrink-0 bg-slate-900/60 border-l border-white/5 flex flex-col p-4 gap-4">
+      <div className="xl:w-[320px] flex-shrink-0 bg-slate-900/60 border-l border-white/5 flex flex-col p-4 gap-4 overflow-y-auto">
 
         {/* Team budgets */}
         <div>

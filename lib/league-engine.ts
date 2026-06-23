@@ -3,7 +3,7 @@ import type { Player } from "./player-data";
 
 export type AssignedRoster = {
   player: Player;
-  slotId: string;
+  slotId: string | null;
 };
 
 export type LeagueTeam = {

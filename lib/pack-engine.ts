@@ -20,6 +20,20 @@ function shuffle<T>(array: T[]): T[] {
 export function generatePack(targetRole: string, allPlayers: Player[], excludePlayerIds: Set<number>): Player[] {
   const available = allPlayers.filter(p => !excludePlayerIds.has(p.id));
   
+  if (targetRole === "BENCH" || targetRole === "ANY") {
+    const pack: Player[] = [];
+    const pool = shuffle(available);
+    const highTierPool = pool.filter(p => p.rating >= 84);
+    if (highTierPool.length > 0) {
+      pack.push(highTierPool[0]);
+    }
+    const remainingPool = pool.filter(p => !pack.includes(p));
+    while (pack.length < 5 && remainingPool.length > 0) {
+      pack.push(remainingPool.pop()!);
+    }
+    return shuffle(pack);
+  }
+
   const exactMatches = available.filter(p => p.positions.includes(targetRole));
   let relatedMatches: Player[] = [];
   
@@ -85,7 +99,7 @@ const AI_NAMES = [
 type AITier = "ELITE" | "GOOD" | "AVERAGE";
 
 export function generateAITeams(allPlayers: Player[], count: number, excludePlayerIds: Set<number>, teamSize:number = 11) {
-  const teams: { id: string; name: string; isUser: boolean; roster: { player: Player; slotId: string }[]; formationId: string; budget: number }[] = [];
+  const teams: { id: string; name: string; isUser: boolean; roster: { player: Player; slotId: string | null }[]; formationId: string; budget: number }[] = [];
   const usedIds = new Set(excludePlayerIds);
   const shuffledNames = shuffle(AI_NAMES);
 
@@ -95,7 +109,7 @@ export function generateAITeams(allPlayers: Player[], count: number, excludePlay
     const tier: AITier = isElite ? "ELITE" : isGood ? "GOOD" : "AVERAGE";
     
     const formation = FORMATIONS[Math.floor(Math.random() * FORMATIONS.length)];
-    const roster: { player: Player; slotId: string }[] = [];
+    const roster: { player: Player; slotId: string | null }[] = [];
 
     for (const slot of formation.slots) {
       // Find a player for this slot based on tier

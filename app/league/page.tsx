@@ -23,110 +23,9 @@ import {
 import { getCountryFlag } from "../../lib/country-flags";
 import { FORMATIONS, getPositionModifier } from "../../lib/formation-utils";
 import { TeamLineupModal } from "../../components/shared-ui";
+import { EventIcon, EventList, MiniPitch, StatRow } from "../../components/match-ui";
 
-// ── Helpers ────────────────────────────────────────────────────────
-function EventIcon({ type }: { type: MatchEvent["type"] }) {
-  if (type === "GOAL") return <span>⚽</span>;
-  if (type === "YELLOW_CARD") return <span>🟨</span>;
-  if (type === "RED_CARD") return <span>🟥</span>;
-  if (type === "SAVE") return <span title="Save">🧤</span>;
-  return <span title="Miss">↗️</span>;
-}
 
-function EventList({ events, homeTeamId }: { events: MatchEvent[]; homeTeamId: number }) {
-  if (events.length === 0) return <div className="text-slate-600 text-xs text-center py-2 italic">No events</div>;
-  return (
-    <div className="space-y-1 mt-2">
-      {events.map((ev, i) => (
-        <div key={i} className={`flex items-start text-xs ${ev.teamId === homeTeamId ? 'justify-start' : 'justify-end'}`}>
-          <div className={`flex gap-2 items-start max-w-[80%] ${ev.teamId === homeTeamId ? '' : 'flex-row-reverse text-right'}`}>
-            <span className="text-slate-500 font-bold w-6 tabular-nums shrink-0">{ev.minute}'</span>
-            <EventIcon type={ev.type} />
-            <span className="text-slate-300">
-              <span className="font-bold text-white">{ev.playerName}</span>
-              {ev.assistPlayerName && <span className="text-slate-500 ml-1">(ast. {ev.assistPlayerName})</span>}
-            </span>
-          </div>
-        </div>
-      ))}
-    </div>
-  );
-}
-
-// ── Mini pitch formation view ───────────────────────────────────────
-
-const POS_COLOR: Record<string, string> = {
-  GK: "bg-amber-600", DEF: "bg-blue-600", MID: "bg-emerald-600", ATT: "bg-red-600",
-};
-function posColor(role: string) {
-  if (role === "GK") return POS_COLOR.GK;
-  if (["CB","LB","RB","LWB","RWB"].includes(role)) return POS_COLOR.DEF;
-  if (["CM","CDM","CAM","LM","RM"].includes(role)) return POS_COLOR.MID;
-  return POS_COLOR.ATT;
-}
-
-function MiniPitch({ team, ratingsByPlayer, flipped }: { team: LeagueTeam; ratingsByPlayer: Map<number, number>; flipped?: boolean }) {
-  const formation = FORMATIONS.find(f => f.id === team.formationId) || FORMATIONS[0];
-  const rosterMap = new Map(team.roster.filter(r => r.slotId).map(r => [r.slotId!, r.player]));
-  return (
-    <div
-      className="relative w-full rounded-lg overflow-hidden border border-white/5"
-      style={{
-        paddingTop: "150%",
-        background: "linear-gradient(180deg, #1a4a1a 0%, #163f16 50%, #1a4a1a 100%)",
-        transform: flipped ? "scaleY(-1)" : undefined,
-      }}
-    >
-      {/* Pitch lines */}
-      <div className="absolute inset-[4px] border border-white/10 rounded pointer-events-none" />
-      <div className="absolute top-1/2 left-0 right-0 h-px bg-white/10 pointer-events-none" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 rounded-full border border-white/10 pointer-events-none" />
-
-      {formation.slots.map(slot => {
-        const player = rosterMap.get(slot.id);
-        const performanceRating = player ? ratingsByPlayer.get(player.id) : undefined;
-        return (
-          <div
-            key={slot.id}
-            className="absolute flex flex-col items-center"
-            style={{ left: `${slot.x}%`, top: `${slot.y}%`, transform: 'translate(-50%, -50%)' }}
-          >
-            {player ? (
-              <>
-                <div
-                  className={`w-6 h-6 rounded-full ${posColor(slot.role)} flex items-center justify-center text-white font-black text-[8px] shadow-md border border-black/30`}
-                  style={{ transform: flipped ? "scaleY(-1)" : undefined }}
-                  title={player.name}
-                >
-                  {Math.floor(player.rating * getPositionModifier(player.positions, slot.role).modifier)}
-                </div>
-                {performanceRating !== undefined && (
-                  <div
-                    className="mt-px rounded bg-slate-950/80 px-1 text-[7px] font-black text-amber-300 leading-tight"
-                    style={{ transform: flipped ? "scaleY(-1)" : undefined }}
-                    title="Match rating"
-                  >
-                    {performanceRating.toFixed(1)}
-                  </div>
-                )}
-                <div
-                  className="mt-px text-[7px] font-bold text-white/80 truncate max-w-[36px] text-center leading-none"
-                  style={{ transform: flipped ? "scaleY(-1)" : undefined }}
-                >
-                  {player.name.split(" ").slice(-1)[0]}
-                </div>
-              </>
-            ) : (
-              <div className="w-6 h-6 rounded-full bg-white/10 border border-dashed border-white/20 flex items-center justify-center">
-                <span className="text-white/30 text-[7px]">{slot.role}</span>
-              </div>
-            )}
-          </div>
-        );
-      })}
-    </div>
-  );
-}
 
 function FixtureCard({ fixture, teams, isRecent }: { fixture: Fixture, teams: LeagueTeam[], isRecent?: boolean }) {
   const [expanded, setExpanded] = useState(false);
@@ -241,24 +140,7 @@ function FixtureCard({ fixture, teams, isRecent }: { fixture: Fixture, teams: Le
   );
 }
 
-// ── Player stat row ─────────────────────────────────────────────────
-function StatRow({ rank, stat, valueKey, valueLabel }: { rank: number, stat: PlayerStat, valueKey: keyof PlayerStat, valueLabel?: string }) {
-  return (
-    <div className={`flex items-center gap-3 px-4 py-2.5 rounded-xl ${rank === 1 ? 'bg-amber-900/30 border border-amber-500/30' : 'bg-slate-800/40 border border-white/5'}`}>
-      <div className={`w-6 text-center font-black text-sm ${rank === 1 ? 'text-amber-400' : 'text-slate-500'}`}>
-        {rank === 1 ? '🥇' : rank === 2 ? '🥈' : rank === 3 ? '🥉' : `${rank}.`}
-      </div>
-      <div className="flex-1 min-w-0">
-        <div className="font-bold text-sm text-white truncate">{stat.playerName}</div>
-        <div className="text-[11px] text-slate-500">{stat.teamName}</div>
-      </div>
-      <div className="text-right">
-        <div className="font-black text-xl text-white">{stat[valueKey] as number}</div>
-        {valueLabel && <div className="text-[10px] text-slate-500">{valueLabel}</div>}
-      </div>
-    </div>
-  );
-}
+
 
 // ── Main ────────────────────────────────────────────────────────────
 export default function LeaguePage() {
