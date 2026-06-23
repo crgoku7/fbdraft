@@ -129,33 +129,31 @@ export function AuctionCard({ player, onClick }: { player: Player, onClick?: () 
                 <div className={`w-1.5 h-1.5 rotate-45 ${scheme.bg} absolute`}></div>
               </div>
 
-              {/* Traits */}
-              {player.traits.length > 0 && (
-                <div className="w-full flex flex-col gap-1.5 pl-2">
-                  {player.traits.slice(0, 3).map(t => (
-                    <div key={t} className="flex items-center gap-2 text-[#eab308] text-xs font-semibold tracking-wide">
-                      <span className="text-[10px]">★</span>
-                      <span>{t}</span>
+              {/* Traits - Fixed Height Container */}
+              <div className="w-full flex flex-col gap-1.5 pl-2 h-[88px]">
+                {player.traits.slice(0, 3).map(t => (
+                  <div key={t} className="flex items-center gap-2 text-[#eab308] text-xs font-semibold tracking-wide">
+                    <span className="text-[10px]">★</span>
+                    <span>{t}</span>
+                  </div>
+                ))}
+                
+                {/* Dropdown for extra traits */}
+                {player.traits.length > 3 && (
+                  <div className="relative group/traits cursor-default mt-1">
+                    <div className="text-slate-500 text-[10px] hover:text-amber-400 transition-colors uppercase tracking-widest">
+                      +{player.traits.length - 3} more traits ▾
                     </div>
-                  ))}
-                  
-                  {/* Dropdown for extra traits */}
-                  {player.traits.length > 4 && (
-                    <div className="relative group/traits cursor-default mt-1">
-                      <div className="text-slate-500 text-[10px] hover:text-amber-400 transition-colors uppercase tracking-widest">
-                        +{player.traits.length - 4} more traits ▾
-                      </div>
-                      <div className="absolute bottom-full left-0 mb-2 bg-[#0a1118] border border-amber-500/30 rounded-lg p-3 opacity-0 group-hover/traits:opacity-100 pointer-events-none transition-opacity z-50 w-max shadow-2xl">
-                        {player.traits.slice(4).map(t => (
-                          <div key={t} className="flex items-center gap-2 text-amber-400 text-xs font-semibold py-1">
-                            <span className="text-[10px]">★</span><span>{t}</span>
-                          </div>
-                        ))}
-                      </div>
+                    <div className="absolute bottom-full left-0 mb-2 bg-[#0a1118] border border-amber-500/30 rounded-lg p-3 opacity-0 group-hover/traits:opacity-100 pointer-events-none transition-opacity z-50 w-max shadow-2xl">
+                      {player.traits.slice(3).map(t => (
+                        <div key={t} className="flex items-center gap-2 text-amber-400 text-xs font-semibold py-1">
+                          <span className="text-[10px]">★</span><span>{t}</span>
+                        </div>
+                      ))}
                     </div>
-                  )}
-                </div>
-              )}
+                  </div>
+                )}
+              </div>
               
               {/* Bottom Shield Decal */}
               <div className="absolute bottom-[-8px] left-1/2 -translate-x-1/2 flex flex-col items-center opacity-80">

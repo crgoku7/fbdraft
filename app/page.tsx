@@ -23,21 +23,7 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6 w-full max-w-5xl">
-          <Link href="/database" className="group" onClick={playClick}>
-            <div className="glass-panel p-8 rounded-3xl h-full flex flex-col items-center text-center space-y-4 hover-lift border-2 border-transparent hover:border-blue-500/30 transition-all">
-              <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900/30 rounded-2xl flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
-                <svg className="w-8 h-8 text-blue-600 dark:text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" />
-                </svg>
-              </div>
-              <h2 className="text-2xl font-bold text-slate-900 dark:text-white">Player Database</h2>
-              <p className="text-slate-500 dark:text-slate-400">
-                Browse, search, and filter through the top 500 football players. Test the Core Data Layer (Milestone 1).
-              </p>
-            </div>
-          </Link>
-
+        <div className="grid md:grid-cols-2 gap-6 w-full max-w-4xl">
           <Link href="/draft" className="group" onClick={playClick}>
             <div className="glass-panel p-8 rounded-3xl h-full flex flex-col items-center text-center space-y-4 hover-lift border-2 border-transparent hover:border-indigo-500/30 transition-all">
               <div className="w-16 h-16 bg-indigo-100 dark:bg-indigo-900/30 rounded-2xl flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
@@ -47,7 +33,7 @@ export default function Home() {
               </div>
               <h2 className="text-2xl font-bold text-slate-900 dark:text-white">Auction Draft</h2>
               <p className="text-slate-500 dark:text-slate-400">
-                Draft against 7 AI managers in a bidding war to build your 11-man dream team.
+                Draft against AI managers in a bidding war to build your dream team.
               </p>
             </div>
           </Link>
