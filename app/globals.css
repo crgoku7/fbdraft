@@ -20,8 +20,8 @@
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: #0a0e1a;
+  color: #f8fafc;
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -34,4 +34,20 @@ body {
 
 .hover-lift {
   @apply transition-transform duration-300 ease-out hover:-translate-y-1 hover:shadow-lg;
+}
+
+@keyframes swivel-in {
+  0% { opacity: 0; transform: perspective(1000px) rotateY(-30deg) scale(0.9); }
+  100% { opacity: 1; transform: perspective(1000px) rotateY(0deg) scale(1); }
+}
+
+.animate-swivel-in {
+  animation: swivel-in 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.settings-input {
+  @apply bg-slate-900 text-white font-bold text-center rounded-lg p-2 border border-white/10 outline-none;
+}
+.settings-input:focus {
+  @apply border-indigo-500;
 }

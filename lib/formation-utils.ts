@@ -101,6 +101,25 @@ const ADJACENT_POSITIONS: Record<string, string[]> = {
   GK: [],
 };
 
+// Secondary positions: very close counterparts (e.g. LW→RW, CM→CAM)
+const SECONDARY_POSITIONS: Record<string, string[]> = {
+  ST: ["CF"],
+  CF: ["ST"],
+  LW: ["RW", "LM"],
+  RW: ["LW", "RM"],
+  CAM: ["CM"],
+  CM: ["CAM", "CDM"],
+  LM: ["LW", "RM"],
+  RM: ["RW", "LM"],
+  CDM: ["CM"],
+  CB: ["LB", "RB"],
+  LB: ["LWB", "RB"],
+  RB: ["RWB", "LB"],
+  LWB: ["LB", "RWB"],
+  RWB: ["RB", "LWB"],
+  GK: [],
+};
+
 export type PositionModifierResult = {
   modifier: number;
   label: "Favourable" | "Slightly Off" | "Very Off";
@@ -111,41 +130,30 @@ export function getPositionModifier(
   playerPositions: string[],
   slotRole: string
 ): PositionModifierResult {
-  // Normalize roles just in case
   const upperRole = slotRole.toUpperCase();
   const upperPlayerPositions = playerPositions.map(p => p.toUpperCase());
 
-  // Favourable check
+  // Natural position = 100%
   if (upperPlayerPositions.includes(upperRole)) {
-    return {
-      modifier: 1.0,
-      label: "Favourable",
-      colorClass: "bg-green-500",
-    };
+    return { modifier: 1.0, label: "Favourable", colorClass: "bg-green-500" };
   }
 
-  // Slightly Off check (if the slotRole is adjacent to ANY of the player's natural positions)
-  let isSlightlyOff = false;
+  // Secondary position = 90% (very close counterpart like LW↔RW, CM↔CAM)
   for (const pos of upperPlayerPositions) {
-    const adjacent = ADJACENT_POSITIONS[pos] || [];
-    if (adjacent.includes(upperRole)) {
-      isSlightlyOff = true;
-      break;
+    const secondary = SECONDARY_POSITIONS[pos] || [];
+    if (secondary.includes(upperRole)) {
+      return { modifier: 0.90, label: "Favourable", colorClass: "bg-green-500" };
     }
   }
 
-  if (isSlightlyOff) {
-    return {
-      modifier: 0.75,
-      label: "Slightly Off",
-      colorClass: "bg-yellow-500",
-    };
+  // Related position = 75% (adjacent)
+  for (const pos of upperPlayerPositions) {
+    const adjacent = ADJACENT_POSITIONS[pos] || [];
+    if (adjacent.includes(upperRole)) {
+      return { modifier: 0.75, label: "Slightly Off", colorClass: "bg-yellow-500" };
+    }
   }
 
-  // Very Off
-  return {
-    modifier: 0.5,
-    label: "Very Off",
-    colorClass: "bg-red-500",
-  };
+  // Unnatural position = 50%
+  return { modifier: 0.50, label: "Very Off", colorClass: "bg-red-500" };
 }

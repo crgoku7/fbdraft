@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useMemo, useCallback, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { DndContext, useDraggable, useDroppable, DragEndEvent } from '@dnd-kit/core';
 import { 
   createAuctionSession, 
@@ -8,86 +8,36 @@ import {
   concludeAuctionForCurrentPlayer, 
   getAIBidDecision,
   autoCompleteAuction,
-  type AuctionState 
+  type AuctionState,
+  type AuctionTeam,
+  type AuctionConfig
 } from "../../lib/auction-engine";
 import { loadPlayers, type Player } from "../../lib/player-data";
 import { FORMATIONS, getPositionModifier, type PositionModifierResult } from "../../lib/formation-utils";
 import { useRouter } from "next/navigation";
 import { optimizeTeamFormation } from "../../lib/ai-formation";
+import { AuctionCard, DraggablePlayer, PitchSlot, BenchArea } from "../../components/draft-ui";
+import { GameSettingsForm, type GameSettings, DEFAULT_SETTINGS } from "../../components/shared-ui";
+import { getCountryFlag } from "../../lib/country-flags";
+import { getTeamStrengthRatings } from "../../lib/match-engine";
 
-function DraggablePlayer({ player, id, modifier }: { player: Player, id: string, modifier: PositionModifierResult }) {
-  const {attributes, listeners, setNodeRef, transform} = useDraggable({ id });
-  const style = transform ? { transform: `translate3d(${transform.x}px, ${transform.y}px, 0)`, zIndex: 50 } : undefined;
-  
-  const effectiveRating = Math.floor(player.rating * modifier.modifier);
+// ── Draft history item ──────────────────────────────────────────────
+type HistoryEntry = { player: Player; teamName: string; price: number };
 
-  return (
-    <div 
-      ref={setNodeRef} 
-      style={style} 
-      {...listeners} 
-      {...attributes}
-      className="relative flex flex-col items-center justify-center cursor-grab active:cursor-grabbing group"
-    >
-      <div className={`w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg border-2 border-white/20 transition-transform group-hover:scale-110 ${modifier.colorClass}`}>
-        {effectiveRating}
-      </div>
-      <div className="absolute top-12 mt-1 bg-black/80 text-white text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity z-10 flex flex-col items-center pointer-events-none w-max">
-        <span className="font-bold">{player.name}</span>
-        <span className="text-blue-300">{player.positions.join(", ")}</span>
-        {player.traits.length > 0 && <span className="text-yellow-400 mt-0.5 whitespace-nowrap">{player.traits.join(", ")}</span>}
-      </div>
-      <div className="mt-1 bg-slate-900/60 backdrop-blur-sm text-white text-[9px] px-1.5 py-0.5 rounded truncate max-w-[60px] text-center font-medium shadow-sm border border-white/10">
-        {player.name.split(' ').pop()}
-      </div>
-    </div>
-  );
-}
-
-function PitchSlot({ id, x, y, role, children }: { id: string, x: number, y: number, role: string, children: React.ReactNode }) {
-  const {isOver, setNodeRef} = useDroppable({ id });
-  
-  return (
-    <div 
-      ref={setNodeRef}
-      style={{ left: `${x}%`, top: `${y}%`, transform: 'translate(-50%, -50%)' }}
-      className={`absolute w-14 h-14 rounded-full flex items-center justify-center transition-colors ${isOver ? 'bg-white/30 border-2 border-white/50' : 'bg-transparent border border-white/20 border-dashed'}`}
-    >
-      {!children && (
-        <span className="text-white/40 text-[10px] font-bold">{role}</span>
-      )}
-      {children}
-    </div>
-  );
-}
-
-function BenchArea({ children }: { children: React.ReactNode }) {
-  const {isOver, setNodeRef} = useDroppable({ id: "bench" });
-  
-  return (
-    <div 
-      ref={setNodeRef}
-      className={`mt-4 p-4 rounded-xl min-h-[80px] flex flex-wrap gap-4 items-center transition-colors ${isOver ? 'bg-white/10 border-2 border-white/50' : 'bg-slate-800/50 border border-white/10'}`}
-    >
-      {children}
-    </div>
-  );
-}
-
+// ── Main Page ──────────────────────────────────────────────────────
 export default function DraftPage() {
   const router = useRouter();
   const [players, setPlayers] = useState<Player[]>([]);
   const [draftState, setDraftState] = useState<AuctionState | null>(null);
-  
-  // Timers and Phases
   const [phase, setPhase] = useState<'countdown' | 'bidding' | 'sold'>('countdown');
   const [countdown, setCountdown] = useState(3);
   const [timer, setTimer] = useState(7);
-  
-  // Formation and UI
   const [formationId, setFormationId] = useState(FORMATIONS[0].id);
+  const [draftHistory, setDraftHistory] = useState<HistoryEntry[]>([]);
+  const [settings, setSettings] = useState<GameSettings>(DEFAULT_SETTINGS);
   const previousRosterLength = useRef(0);
 
+  // Smart auto-assign: preferred pos → any empty slot
   useEffect(() => {
     if (!draftState) return;
     const myTeam = draftState.teams.find(t => t.id === draftState.teams[0].id);
@@ -97,25 +47,21 @@ export default function DraftPage() {
       const newlyAddedCount = myTeam.roster.length - previousRosterLength.current;
       const newlyAdded = myTeam.roster.slice(-newlyAddedCount);
       const formation = FORMATIONS.find(f => f.id === formationId) || FORMATIONS[0];
-      
+
       setDraftState(prev => {
         if (!prev) return prev;
         const nt = [...prev.teams];
         const mi = nt.findIndex(t => t.id === myTeam.id);
         if (mi === -1) return prev;
-        
         const mr = [...nt[mi].roster];
         let changed = false;
-        
         const usedSlots = new Set(mr.map(x => x.slotId).filter(Boolean));
-        
+
         newlyAdded.forEach(newEntry => {
           const rIdx = mr.findIndex(x => x.player.id === newEntry.player.id);
           if (rIdx !== -1 && !mr[rIdx].slotId) {
             let chosenSlot = formation.slots.find(s => !usedSlots.has(s.id) && newEntry.player.positions.includes(s.role));
-            if (!chosenSlot) {
-              chosenSlot = formation.slots.find(s => !usedSlots.has(s.id));
-            }
+            if (!chosenSlot) chosenSlot = formation.slots.find(s => !usedSlots.has(s.id));
             if (chosenSlot) {
               mr[rIdx].slotId = chosenSlot.id;
               usedSlots.add(chosenSlot.id);
@@ -123,7 +69,7 @@ export default function DraftPage() {
             }
           }
         });
-        
+
         if (changed) {
           nt[mi] = { ...nt[mi], roster: mr };
           return { ...prev, teams: nt };
@@ -131,234 +77,244 @@ export default function DraftPage() {
         return prev;
       });
     }
-
     previousRosterLength.current = myTeam.roster.length;
   }, [draftState?.teams, formationId]);
 
-  // Load players on mount
-  useEffect(() => {
-    setPlayers(loadPlayers());
-  }, []);
+  useEffect(() => { setPlayers(loadPlayers()); }, []);
 
   const handleStartDraft = () => {
     if (players.length === 0) return;
-    const initial = createAuctionSession(players);
-    setDraftState(initial);
+    const auctionConfig: AuctionConfig = {
+      aiCount: settings.aiCount,
+      teamSize: settings.teamSize,
+      budget: settings.budget,
+      tournamentType: settings.tournamentType,
+    };
+    setDraftState(createAuctionSession(players, auctionConfig));
+    setPhase('countdown');
+    setCountdown(3);
+    setTimer(7);
+    setDraftHistory([]);
+    previousRosterLength.current = 0;
+  };
+
+  const handleSimulateMatch = () => {
+    if (!draftState || !draftState.completed) return;
+    const leagueTeams = draftState.teams.map(team => {
+      if (team.isUser) {
+        return { id: team.id, name: team.name, isUser: team.isUser, roster: team.roster, formationId };
+      } else {
+        const optimized = optimizeTeamFormation(team.roster.map(r => r.player));
+        return { id: team.id, name: team.name, isUser: team.isUser, roster: optimized.roster, formationId: optimized.formationId };
+      }
+    });
+    localStorage.setItem("fbdraft_league_teams", JSON.stringify(leagueTeams));
+    if (settings.tournamentType === "KNOCKOUT") {
+      router.push("/knockout");
+    } else {
+      router.push("/league");
+    }
+  };
+
+  const handleBid = (amount: number) => {
+    if (!draftState) return;
+    const myTeam = draftState.teams[0];
+    setDraftState(prev => prev ? placeBid(prev, myTeam.id, amount) : prev);
+    setTimer(7);
+  };
+
+  const handleWithdraw = () => {
+    if (!draftState || !draftState.currentPlayerOnAuction) return;
+    // snapshot before simulation
+    const playerBeingAuctioned = draftState.currentPlayerOnAuction;
+    // run AI to conclusion — conclude assigns the player and advances
+    const afterAI = autoCompleteAuction(draftState);
+    // The winner of this round was the highestBidder *before* conclude advanced the state
+    // autoCompleteAuction calls concludeAuctionForCurrentPlayer internally, which deducts budget
+    // We need to find which team gained a player vs draftState
+    const previousRoster = new Map(draftState.teams.map(t => [t.id, t.roster.length]));
+    const winningTeam = afterAI.teams.find(t => (t.roster.length > (previousRoster.get(t.id) ?? 0)) && t.roster.some(r => r.player.id === playerBeingAuctioned.id));
+    const finalPrice = afterAI.teams.find(t => winningTeam && t.id === winningTeam.id)
+      ? draftState.teams.find(t => winningTeam && t.id === winningTeam.id)!.budget - afterAI.teams.find(t => winningTeam && t.id === winningTeam.id)!.budget
+      : draftState.currentBid;
+    setDraftHistory(prev => [{
+      player: playerBeingAuctioned,
+      teamName: winningTeam?.name ?? "No bid",
+      price: finalPrice,
+    }, ...prev].slice(0, 12));
+    setDraftState(afterAI);
     setPhase('countdown');
     setCountdown(3);
     setTimer(7);
   };
 
-  const handleSimulateMatch = () => {
-    if (!draftState || !draftState.completed) return;
-    
-    const leagueTeams = draftState.teams.map(team => {
-      if (team.isUser) {
-        return {
-          id: team.id,
-          name: team.name,
-          isUser: team.isUser,
-          roster: team.roster,
-          formationId: formationId
-        };
-      } else {
-        const optimized = optimizeTeamFormation(team.roster.map(r => r.player));
-        return {
-          id: team.id,
-          name: team.name,
-          isUser: team.isUser,
-          roster: optimized.roster,
-          formationId: optimized.formationId
-        };
-      }
-    });
-
-    localStorage.setItem("fbdraft_league_teams", JSON.stringify(leagueTeams));
-    router.push("/league");
-  };
-
-  const handleBid = (amount: number) => {
-    if (!draftState || phase !== 'bidding') return;
-    const nextState = placeBid(draftState, draftState.teams[0].id, amount);
-    setDraftState(nextState);
-    setTimer(7); // Reset timer on bid
-  };
-
-  const handleWithdraw = () => {
-    if (!draftState || phase !== 'bidding') return;
-    const isHighest = draftState.highestBidderId === draftState.teams[0].id;
-    if (isHighest) return;
-
-    const nextState = autoCompleteAuction(draftState);
-    setDraftState(nextState);
-    setPhase('countdown');
-    setCountdown(3);
-  };
-
-  // Timer loop
+  // Countdown → bidding
   useEffect(() => {
-    if (!draftState || draftState.completed) return;
+    if (!draftState || draftState.completed || phase !== 'countdown') return;
+    if (countdown <= 0) { setPhase('bidding'); setTimer(7); return; }
+    const t = setTimeout(() => setCountdown(c => c - 1), 1000);
+    return () => clearTimeout(t);
+  }, [phase, countdown, draftState]);
 
-    if (phase === 'countdown') {
-      if (countdown > 0) {
-        const t = setTimeout(() => setCountdown(countdown - 1), 1000);
-        return () => clearTimeout(t);
-      } else {
-        setPhase('bidding');
-        setTimer(7);
-      }
-    } else if (phase === 'bidding') {
-      if (timer > 0) {
-        const t = setTimeout(() => setTimer(timer - 1), 1000);
-        return () => clearTimeout(t);
-      } else {
-        setPhase('sold');
-        setTimeout(() => {
-          setDraftState(prev => {
-            if (!prev) return prev;
-            return concludeAuctionForCurrentPlayer(prev);
-          });
-          setPhase('countdown');
-          setCountdown(3);
-        }, 2000);
-      }
-    }
-  }, [phase, countdown, timer, draftState]);
-
-  // AI Bidding loop
+  // Bidding timer
   useEffect(() => {
     if (!draftState || draftState.completed || phase !== 'bidding') return;
-    
+    if (timer <= 0) {
+      setPhase('sold');
+      setTimeout(() => {
+        const current = draftState;
+        if (current.currentPlayerOnAuction) {
+          const winnerTeam = current.teams.find(t => t.id === current.highestBidderId);
+          setDraftHistory(prev => [{
+            player: current.currentPlayerOnAuction!,
+            teamName: winnerTeam?.name ?? "No bid",
+            price: current.currentBid,
+          }, ...prev].slice(0, 12));
+        }
+        setDraftState(prev => prev ? concludeAuctionForCurrentPlayer(prev) : prev);
+        setPhase('countdown');
+        setCountdown(3);
+      }, 2000);
+    } else {
+      const t = setTimeout(() => setTimer(s => s - 1), 1000);
+      return () => clearTimeout(t);
+    }
+  }, [phase, timer, draftState]);
+
+  // AI bidding
+  useEffect(() => {
+    if (!draftState || draftState.completed || phase !== 'bidding') return;
     const interval = setInterval(() => {
       if (timer <= 0) return;
       if (Math.random() > 0.6) {
         const decision = getAIBidDecision(draftState);
         if (decision) {
-          setDraftState(prev => {
-            if (!prev) return prev;
-            return placeBid(prev, decision.teamId, decision.bidIncrease);
-          });
+          setDraftState(prev => prev ? placeBid(prev, decision.teamId, decision.bidIncrease) : prev);
           setTimer(7);
         }
       }
     }, 1000);
-
     return () => clearInterval(interval);
   }, [draftState, timer, phase]);
 
   const handleDragEnd = (event: DragEndEvent) => {
-    const {active, over} = event;
+    const { active, over } = event;
     if (!over || !draftState) return;
-
-    const playerIdStr = String(active.id); // "player-123"
-    const playerId = parseInt(playerIdStr.split('-')[1]);
+    const playerId = parseInt(String(active.id).split('-')[1]);
     const overId = String(over.id);
     const slotId = overId === "bench" ? undefined : overId;
 
     setDraftState(prev => {
       if (!prev) return prev;
-      
-      const nextTeams = [...prev.teams];
-      const myTeamIdx = nextTeams.findIndex(t => t.id === prev.teams[0].id);
-      if (myTeamIdx === -1) return prev;
-      
-      const myRoster = [...nextTeams[myTeamIdx].roster];
-      
-      // Find player
-      const playerIdx = myRoster.findIndex(r => r.player.id === playerId);
+      const nt = [...prev.teams];
+      const mi = nt.findIndex(t => t.id === prev.teams[0].id);
+      if (mi === -1) return prev;
+      const mr = [...nt[mi].roster];
+      const playerIdx = mr.findIndex(r => r.player.id === playerId);
       if (playerIdx === -1) return prev;
-
-      // Check if slot is occupied (if moving to a valid slot)
-      const occupiedIdx = slotId ? myRoster.findIndex(r => r.slotId === slotId) : -1;
-      
+      const occupiedIdx = slotId ? mr.findIndex(r => r.slotId === slotId) : -1;
       if (occupiedIdx !== -1) {
-        // Swap slots
-        const tempSlot = myRoster[playerIdx].slotId;
-        myRoster[playerIdx].slotId = slotId;
-        myRoster[occupiedIdx].slotId = tempSlot;
+        const tempSlot = mr[playerIdx].slotId;
+        mr[playerIdx].slotId = slotId;
+        mr[occupiedIdx].slotId = tempSlot;
       } else {
-        // Move to slot or bench
-        myRoster[playerIdx].slotId = slotId;
+        mr[playerIdx].slotId = slotId;
       }
-
-      nextTeams[myTeamIdx] = { ...nextTeams[myTeamIdx], roster: myRoster };
-      return { ...prev, teams: nextTeams };
+      nt[mi] = { ...nt[mi], roster: mr };
+      return { ...prev, teams: nt };
     });
   };
 
+  // ── Start screen ──────────────────────────────────────────────────
   if (!draftState) {
     return (
-      <div className="min-h-screen bg-slate-50 dark:bg-slate-950 flex flex-col items-center justify-center p-8">
-        <div className="glass-panel p-12 rounded-3xl max-w-lg w-full text-center space-y-6">
-          <div className="w-20 h-20 bg-indigo-600 rounded-full mx-auto flex items-center justify-center shadow-lg shadow-indigo-500/30">
-            <svg className="w-10 h-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-            </svg>
-          </div>
-          <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Auction Draft Engine</h1>
-          <p className="text-slate-500 dark:text-slate-400">
-            Bid against 7 AI managers in real-time. Build your ultimate formation. (Milestone 2)
-          </p>
-          <button 
-            onClick={handleStartDraft}
-            disabled={players.length === 0}
-            className="w-full py-4 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold rounded-xl shadow-xl transition-all hover:-translate-y-1 hover:shadow-indigo-500/25 disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            {players.length === 0 ? "Loading Data..." : "Start Auction Draft"}
-          </button>
-        </div>
-      </div>
+      <GameSettingsForm
+        settings={settings}
+        onChange={setSettings}
+        onStart={handleStartDraft}
+        disabled={players.length === 0}
+        title="Auction Settings"
+        accent="indigo"
+      />
     );
   }
 
   const formation = FORMATIONS.find(f => f.id === formationId) || FORMATIONS[0];
-  const myTeam = draftState.teams.find(t => t.id === draftState.teams[0].id);
+  const myTeam = draftState.teams.find(t => t.id === draftState.teams[0].id)!;
   const myRoster = myTeam?.roster || [];
   const currentAuctionPlayer = draftState.currentPlayerOnAuction;
   const assignedCount = myRoster.filter(r => r.slotId).length;
   const canSimulate = assignedCount === 11;
-
   const isHighestBidder = draftState.highestBidderId === myTeam?.id;
-  const highestBidderName = draftState.teams.find(t => t.id === draftState.highestBidderId)?.name || "None";
+  const highestBidderName = draftState.teams.find(t => t.id === draftState.highestBidderId)?.name || "—";
   const myRosterFull = myRoster.length >= 11;
 
+  // Team strength ratings for display
+  const teamRatings = assignedCount >= 11 ? getTeamStrengthRatings({
+    id: myTeam.id,
+    roster: myRoster.filter(r => r.slotId).map(r => ({ player: r.player, slotId: r.slotId })),
+    formationId,
+  }) : null;
+
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 p-4 md:p-8 flex flex-col xl:flex-row gap-8">
-      <DndContext onDragEnd={handleDragEnd}>
-        
-        {/* Left Panel: Pitch & Formation */}
-        <div className="xl:w-[450px] flex-shrink-0 space-y-4">
-          <div className="flex justify-between items-center bg-white dark:bg-slate-900 p-4 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800">
-            <h2 className="text-xl font-bold text-slate-900 dark:text-white">My Formation</h2>
-            <select 
-              value={formationId}
-              onChange={(e) => setFormationId(e.target.value)}
-              className="bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white rounded-lg px-3 py-1.5 font-medium outline-none"
-            >
-              {FORMATIONS.map(f => (
-                <option key={f.id} value={f.id}>{f.name}</option>
-              ))}
-            </select>
+    <div className="min-h-screen bg-[#0a0e1a] text-white flex flex-col xl:flex-row gap-0">
+
+      {/* ── LEFT: Pitch ─────────────────────────────────────── */}
+      <div className="xl:w-[400px] flex-shrink-0 bg-slate-900/60 border-r border-white/5 flex flex-col p-4 gap-3">
+        {/* Formation selector */}
+        <div className="flex justify-between items-center">
+          <h2 className="text-sm font-black uppercase tracking-widest text-slate-400">My Formation</h2>
+          <select
+            value={formationId}
+            onChange={(e) => setFormationId(e.target.value)}
+            className="bg-slate-800 border border-white/10 text-white rounded-lg px-3 py-1.5 text-sm font-bold outline-none focus:border-indigo-500"
+          >
+            {FORMATIONS.map(f => <option key={f.id} value={f.id}>{f.name}</option>)}
+          </select>
+        </div>
+
+        {/* Team strength ratings */}
+        {teamRatings && (
+          <div className="flex gap-1.5 text-[10px]">
+            {[
+              { label: 'ATT', val: teamRatings.attack, color: 'text-red-400' },
+              { label: 'MID', val: teamRatings.midfield, color: 'text-emerald-400' },
+              { label: 'DEF', val: teamRatings.defense, color: 'text-blue-400' },
+              { label: 'GK', val: teamRatings.gk, color: 'text-amber-400' },
+              { label: 'OVR', val: teamRatings.overall, color: 'text-white' },
+            ].map(r => (
+              <div key={r.label} className="flex flex-col items-center bg-slate-800/60 px-2 py-1 rounded-lg border border-white/5">
+                <span className="text-slate-500 font-black leading-none">{r.label}</span>
+                <span className={`${r.color} font-black text-sm leading-none mt-0.5`}>{r.val}</span>
+              </div>
+            ))}
           </div>
+        )}
 
-          <div className="relative w-full aspect-[2/3] bg-green-600 rounded-3xl overflow-hidden shadow-2xl border-4 border-slate-800 dark:border-slate-700 pitch-bg">
-            {/* Pitch Lines (Decorative) */}
-            <div className="absolute inset-0 border-[6px] border-white/20 m-4 rounded-xl pointer-events-none" />
-            <div className="absolute top-1/2 left-0 right-0 h-0.5 bg-white/20 pointer-events-none" />
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 rounded-full border-4 border-white/20 pointer-events-none" />
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-48 h-32 border-4 border-t-0 border-white/20 pointer-events-none" />
-            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-48 h-32 border-4 border-b-0 border-white/20 pointer-events-none" />
-
-            {/* Slots and Players */}
+        {/* Pitch */}
+        <DndContext onDragEnd={handleDragEnd}>
+          <div className="relative w-full aspect-[2/3] rounded-2xl overflow-hidden shadow-2xl border border-white/5"
+            style={{ background: "linear-gradient(180deg, #2d6a2d 0%, #1e5c1e 50%, #2d6a2d 100%)" }}>
+            {/* Pitch markings */}
+            <div className="absolute inset-[6px] border border-white/20 rounded-xl pointer-events-none" />
+            <div className="absolute top-1/2 left-0 right-0 h-px bg-white/20 pointer-events-none" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 rounded-full border border-white/20 pointer-events-none" />
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-36 h-20 border border-t-0 border-white/20 pointer-events-none" />
+            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-36 h-20 border border-b-0 border-white/20 pointer-events-none" />
+            {/* Vertical pitch stripes */}
+            {[20, 40, 60, 80].map(p => (
+              <div key={p} className="absolute top-0 bottom-0 w-px bg-white/5 pointer-events-none" style={{ left: `${p}%` }} />
+            ))}
             {formation.slots.map(slot => {
               const rosterEntry = myRoster.find(r => r.slotId === slot.id);
               return (
                 <PitchSlot key={slot.id} id={slot.id} x={slot.x} y={slot.y} role={slot.role}>
                   {rosterEntry && (
-                    <DraggablePlayer 
-                      id={`player-${rosterEntry.player.id}`} 
-                      player={rosterEntry.player} 
+                    <DraggablePlayer
+                      id={`player-${rosterEntry.player.id}`}
+                      player={rosterEntry.player}
                       modifier={getPositionModifier(rosterEntry.player.positions, slot.role)}
+                      slotY={slot.y}
                     />
                   )}
                 </PitchSlot>
@@ -366,184 +322,224 @@ export default function DraftPage() {
             })}
           </div>
 
-          <div className="mt-4">
-            <h3 className="text-sm font-bold text-slate-400 mb-2 uppercase tracking-wider">Unassigned / Bench</h3>
+          {/* Bench */}
+          <div>
+            <div className="text-[10px] font-black uppercase tracking-widest text-slate-500 mb-1.5">
+              Bench / Unassigned ({myRoster.filter(r => !r.slotId).length})
+            </div>
             <BenchArea>
               {myRoster.filter(r => !r.slotId).map(rosterEntry => (
-                <DraggablePlayer 
-                  key={`bench-${rosterEntry.player.id}`}
-                  id={`player-${rosterEntry.player.id}`} 
-                  player={rosterEntry.player} 
-                  modifier={{ modifier: 1, colorClass: "bg-slate-600" }}
+                <DraggablePlayer
+                  key={rosterEntry.player.id}
+                  id={`player-${rosterEntry.player.id}`}
+                  player={rosterEntry.player}
+                  modifier={{ modifier: 1, colorClass: "bg-slate-700", label: "Favourable" as const }}
                 />
               ))}
+              {myRoster.filter(r => !r.slotId).length === 0 && (
+                <span className="text-slate-600 text-xs font-medium">Drag players here to bench them</span>
+              )}
             </BenchArea>
           </div>
+        </DndContext>
+
+        {/* Legend */}
+        <div className="flex gap-3 text-[10px] font-semibold text-slate-400">
+          <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-green-500 inline-block" />Natural</span>
+          <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-yellow-500 inline-block" />Slightly off</span>
+          <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-red-500 inline-block" />Wrong pos</span>
         </div>
+      </div>
 
-      </DndContext>
+      {/* ── CENTER: Auction ───────────────────────────────── */}
+      <div className="flex-1 flex flex-col items-center justify-center p-6 md:p-10 relative">
 
-      {/* Center Panel: Auction Board */}
-      <div className="flex-1 flex flex-col items-center justify-center space-y-6">
         {draftState.completed ? (
-          <div className="glass-panel p-12 rounded-3xl text-center space-y-6 w-full max-w-xl">
-            <h2 className="text-4xl font-bold text-slate-900 dark:text-white">Auction Complete!</h2>
+          /* ── Post-draft: lineup confirmation ── */
+          <div className="text-center space-y-6 max-w-lg w-full">
+            <div className="text-5xl">🏆</div>
+            <h2 className="text-4xl font-black text-white">Auction Complete!</h2>
             {draftState.inGracePeriod && (
-              <p className="text-yellow-600 dark:text-yellow-400 font-medium">Teams missing players have been assigned sub-81 rated players as grace.</p>
+              <p className="text-amber-400 font-semibold text-sm">
+                Some teams received sub-81 rated grace players to complete their squads.
+              </p>
             )}
-            <p className="text-xl text-slate-500 dark:text-slate-400">All teams have their 11-man roster ready.</p>
-            <div className="py-4 flex flex-col items-center">
-              <button 
+            <p className="text-slate-400 text-lg">
+              Set your formation, then start the league!
+            </p>
+            <div className="mt-2">
+              <div className="text-slate-400 text-sm mb-3 font-semibold">
+                {assignedCount}/11 players assigned to pitch
+              </div>
+              <div className="w-full bg-slate-800 rounded-full h-2 mb-4">
+                <div
+                  className="bg-gradient-to-r from-indigo-500 to-blue-400 h-2 rounded-full transition-all"
+                  style={{ width: `${(assignedCount / 11) * 100}%` }}
+                />
+              </div>
+              <button
                 onClick={handleSimulateMatch}
                 disabled={!canSimulate}
-                className="px-8 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold rounded-xl shadow-xl hover:-translate-y-1 transition-all text-xl disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0"
+                className="w-full py-4 bg-gradient-to-r from-indigo-600 to-blue-600 text-white font-black rounded-2xl shadow-xl hover:-translate-y-1 transition-all text-lg tracking-wide disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:translate-y-0"
               >
-                Go to League Dashboard
+                🏟️ Start League Season
               </button>
               {!canSimulate && (
-                <p className="text-red-500 text-sm mt-2 font-bold">You must assign all 11 players to the pitch first!</p>
+                <p className="text-red-400 text-sm mt-2 font-bold">Assign all 11 players to the pitch first!</p>
               )}
             </div>
           </div>
+
         ) : currentAuctionPlayer && (
-          <div className="glass-panel p-8 md:p-12 rounded-3xl w-full max-w-xl flex flex-col items-center relative overflow-hidden">
-            
-            {/* Status Header */}
-            <div className="w-full flex justify-between items-center mb-8">
-              <div className="flex flex-col">
-                <span className="text-slate-500 dark:text-slate-400 text-sm font-bold uppercase tracking-wider">Highest Bidder</span>
-                <span className={`text-xl font-black ${isHighestBidder ? 'text-green-600 dark:text-green-400' : 'text-slate-900 dark:text-white'}`}>
+          /* ── Live auction ── */
+          <div className="flex flex-col items-center w-full max-w-md gap-6">
+
+            {/* Header: bid & bidder */}
+            <div className="w-full flex justify-between items-center">
+              <div>
+                <div className="text-[10px] font-black uppercase tracking-widest text-slate-500">Highest Bidder</div>
+                <div className={`text-2xl font-black ${isHighestBidder ? 'text-emerald-400' : 'text-white'}`}>
                   {highestBidderName}
-                </span>
+                </div>
               </div>
-              <div className="flex flex-col items-end">
-                <span className="text-slate-500 dark:text-slate-400 text-sm font-bold uppercase tracking-wider">Current Bid</span>
-                <span className="text-3xl font-black text-blue-600 dark:text-blue-400">${draftState.currentBid}</span>
+              <div className="text-right">
+                <div className="text-[10px] font-black uppercase tracking-widest text-slate-500">Current Bid</div>
+                <div className="text-4xl font-black text-indigo-400">${draftState.currentBid}</div>
               </div>
             </div>
 
-            {/* Main Center Area: Countdown or Card */}
-            <div className="h-64 flex items-center justify-center w-full mb-8">
+            {/* Main area */}
+            <div className="flex items-center justify-center min-h-[280px] w-full">
               {phase === 'countdown' ? (
-                <div className="text-[120px] font-black text-slate-900 dark:text-white animate-pulse">
-                  {countdown === 0 ? 'GO!' : countdown}
+                <div className={`text-[140px] font-black text-white leading-none ${countdown > 0 ? 'animate-bounce' : 'text-emerald-400'}`}>
+                  {countdown === 0 ? '🔥' : countdown}
                 </div>
               ) : phase === 'sold' ? (
-                <div className="text-center space-y-4">
-                  <div className="text-6xl font-black text-red-600 dark:text-red-500 tracking-tighter transform -rotate-6">SOLD!</div>
-                  <div className="text-2xl font-bold text-slate-700 dark:text-slate-300">to {highestBidderName} for ${draftState.currentBid}</div>
+                <div className="text-center space-y-3">
+                  <div className="text-7xl font-black text-red-500 tracking-tight" style={{ transform: 'rotate(-4deg)' }}>
+                    SOLD!
+                  </div>
+                  <div className="text-2xl font-bold text-slate-300">
+                    to <span className="text-white font-black">{highestBidderName}</span> for <span className="text-indigo-400 font-black">${draftState.currentBid}</span>
+                  </div>
                 </div>
               ) : (
-                <div className="flex flex-col items-center space-y-4 animate-in fade-in zoom-in duration-300">
-                  <div className="w-24 h-24 bg-gradient-to-br from-yellow-400 to-amber-600 rounded-full flex items-center justify-center shadow-2xl border-4 border-white dark:border-slate-800">
-                    <span className="text-4xl font-black text-white">{currentAuctionPlayer.rating}</span>
-                  </div>
-                  <h2 className="text-3xl font-bold text-slate-900 dark:text-white text-center">{currentAuctionPlayer.name}</h2>
-                  <div className="flex items-center gap-2 text-slate-600 dark:text-slate-300 font-medium text-lg">
-                    <span>{currentAuctionPlayer.country}</span>
-                    <span>•</span>
-                    <div className="flex gap-1">
-                      {currentAuctionPlayer.positions.map(p => (
-                        <span key={p} className="bg-slate-200 dark:bg-slate-800 px-2 rounded">{p}</span>
-                      ))}
-                    </div>
-                  </div>
-                  {currentAuctionPlayer.traits.length > 0 && (
-                    <div className="flex items-center gap-1 text-amber-600 dark:text-amber-400 text-sm font-semibold mt-2">
-                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
-                      {currentAuctionPlayer.traits.slice(0, 2).join(", ")}{currentAuctionPlayer.traits.length > 2 && "..."}
-                    </div>
-                  )}
-                </div>
+                <AuctionCard player={currentAuctionPlayer} />
               )}
             </div>
 
-            {/* Bidding Controls */}
+            {/* Bidding controls */}
             {phase === 'bidding' && (
-              <div className="w-full flex flex-col items-center space-y-6">
-                <div className="flex items-center gap-4">
-                  <div className="text-slate-500 dark:text-slate-400 font-bold">Time remaining:</div>
-                  <div className={`text-3xl font-black tabular-nums ${timer <= 3 ? 'text-red-500 animate-pulse' : 'text-slate-900 dark:text-white'}`}>
-                    00:0{timer}
+              <div className="w-full flex flex-col items-center gap-4">
+                {/* Timer bar */}
+                <div className="w-full flex items-center gap-3">
+                  <div className="flex-1 bg-slate-800 rounded-full h-2">
+                    <div
+                      className={`h-2 rounded-full transition-all duration-1000 ${timer <= 3 ? 'bg-red-500' : 'bg-indigo-500'}`}
+                      style={{ width: `${(timer / 7) * 100}%` }}
+                    />
                   </div>
+                  <span className={`font-black text-2xl w-8 text-right tabular-nums ${timer <= 3 ? 'text-red-400 animate-pulse' : 'text-white'}`}>
+                    {timer}
+                  </span>
                 </div>
 
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-3 w-full">
-                  <button 
-                    onClick={() => handleBid(1)}
-                    disabled={myRosterFull || isHighestBidder || myTeam!.budget < (draftState.highestBidderId === null ? draftState.basePrice : draftState.currentBid + 1)}
-                    className="py-3 bg-white dark:bg-slate-800 text-slate-900 dark:text-white font-bold rounded-xl border-2 border-slate-200 dark:border-slate-700 hover:border-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/30 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-                  >
-                    Bid +$1
-                  </button>
-                  <button 
-                    onClick={() => handleBid(5)}
-                    disabled={myRosterFull || isHighestBidder || myTeam!.budget < (draftState.highestBidderId === null ? draftState.basePrice : draftState.currentBid + 5)}
-                    className="py-3 bg-white dark:bg-slate-800 text-slate-900 dark:text-white font-bold rounded-xl border-2 border-slate-200 dark:border-slate-700 hover:border-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/30 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-                  >
-                    Bid +$5
-                  </button>
-                  <button 
-                    onClick={() => handleBid(10)}
-                    disabled={myRosterFull || isHighestBidder || myTeam!.budget < (draftState.highestBidderId === null ? draftState.basePrice : draftState.currentBid + 10)}
-                    className="py-3 bg-white dark:bg-slate-800 text-slate-900 dark:text-white font-bold rounded-xl border-2 border-slate-200 dark:border-slate-700 hover:border-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/30 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-                  >
-                    Bid +$10
-                  </button>
-                  <button 
+                {/* Base price */}
+                <div className="text-slate-500 text-sm font-semibold">
+                  Base price: <span className="text-slate-300">${draftState.basePrice}</span>
+                </div>
+
+                {/* Bid buttons */}
+                <div className="grid grid-cols-4 gap-2 w-full">
+                  {[1, 5, 10].map(amt => (
+                    <button
+                      key={amt}
+                      onClick={() => handleBid(amt)}
+                      disabled={myRosterFull || isHighestBidder || myTeam!.budget < (draftState.highestBidderId === null ? draftState.basePrice : draftState.currentBid + amt)}
+                      className="py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-black rounded-xl transition-all hover:-translate-y-0.5 disabled:opacity-40 disabled:cursor-not-allowed text-sm"
+                    >
+                      +${amt}
+                    </button>
+                  ))}
+                  <button
                     onClick={handleWithdraw}
                     disabled={myRosterFull || isHighestBidder || phase !== 'bidding'}
-                    className="py-3 bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-bold rounded-xl border-2 border-transparent hover:bg-slate-300 dark:hover:bg-slate-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="py-3 bg-slate-700 hover:bg-slate-600 text-slate-300 font-bold rounded-xl transition-all disabled:opacity-40 disabled:cursor-not-allowed text-sm"
                   >
-                    Withdraw
+                    Out
                   </button>
                 </div>
-                
+
                 {myRosterFull && (
-                  <p className="text-red-500 font-bold">Your roster is full! You cannot bid anymore.</p>
+                  <p className="text-red-400 text-sm font-bold text-center">Your squad is full!</p>
                 )}
-                
-                <p className="text-slate-500 dark:text-slate-400 text-sm">Base Price: ${draftState.basePrice}</p>
               </div>
             )}
           </div>
         )}
       </div>
 
-      {/* Right Panel: Standings & Budgets */}
-      <div className="xl:w-[350px] flex-shrink-0 space-y-4">
-        <div className="glass-panel p-6 rounded-2xl space-y-4 h-full">
-          <div className="flex justify-between items-center mb-6">
-            <h2 className="text-xl font-bold text-slate-900 dark:text-white">Auction Status</h2>
-            <span className="text-sm font-medium bg-slate-100 dark:bg-slate-800 px-3 py-1 rounded-full text-slate-600 dark:text-slate-300">
-              {draftState.availablePlayers.length + draftState.sub81Players.length} Left
-            </span>
-          </div>
+      {/* ── RIGHT: Sidebar (budgets + draft history) ──── */}
+      <div className="xl:w-[320px] flex-shrink-0 bg-slate-900/60 border-l border-white/5 flex flex-col p-4 gap-4">
 
-          <div className="space-y-3">
+        {/* Team budgets */}
+        <div>
+          <h3 className="text-[10px] font-black uppercase tracking-widest text-slate-500 mb-3">
+            Teams · {(draftState.availablePlayers.length + draftState.sub81Players.length)} players left
+          </h3>
+          <div className="space-y-2">
             {draftState.teams.map(team => (
-              <div 
-                key={team.id} 
-                className={`flex justify-between items-center p-3 rounded-xl border ${team.isUser ? 'bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800' : 'bg-slate-50 dark:bg-slate-900 border-slate-100 dark:border-slate-800'}`}
+              <div
+                key={team.id}
+                className={`flex items-center justify-between px-3 py-2.5 rounded-xl border transition-all ${team.isUser
+                  ? 'bg-indigo-900/40 border-indigo-500/40'
+                  : team.id === draftState.highestBidderId
+                    ? 'bg-emerald-900/30 border-emerald-500/30'
+                    : 'bg-slate-800/50 border-white/5'}`}
               >
-                <div className="flex flex-col">
-                  <span className="font-semibold text-slate-900 dark:text-white text-sm flex items-center gap-2">
+                <div>
+                  <div className="text-sm font-bold text-white flex items-center gap-1.5">
                     {team.name}
-                    {team.id === draftState.highestBidderId && (
-                      <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                    )}
-                  </span>
-                  <span className="text-xs font-medium text-slate-500 dark:text-slate-400">{team.roster.length}/11 Players</span>
+                    {team.isUser && <span className="text-[9px] bg-indigo-500 text-white px-1.5 py-0.5 rounded-full font-black">YOU</span>}
+                    {team.id === draftState.highestBidderId && <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse inline-block" />}
+                  </div>
+                  <div className="text-[11px] text-slate-500 font-medium">{team.roster.length}/11 players</div>
                 </div>
-                <span className={`font-black ${team.budget < 100 ? 'text-red-500' : 'text-slate-900 dark:text-white'}`}>
+                <div className={`text-lg font-black tabular-nums ${team.budget < 100 ? 'text-red-400' : 'text-white'}`}>
                   ${team.budget}
-                </span>
+                </div>
               </div>
             ))}
           </div>
         </div>
+
+        {/* Draft history */}
+        <div className="flex-1 flex flex-col">
+          <h3 className="text-[10px] font-black uppercase tracking-widest text-slate-500 mb-3">Recent Picks</h3>
+          <div className="flex-1 space-y-1.5 overflow-y-auto">
+            {draftHistory.length === 0 ? (
+              <div className="text-slate-600 text-xs text-center py-4">Picks will appear here...</div>
+            ) : draftHistory.map((entry, i) => (
+              <div
+                key={i}
+                className={`flex items-center justify-between px-3 py-2 rounded-lg ${i === 0 ? 'bg-indigo-900/40 border border-indigo-500/30' : 'bg-slate-800/40'}`}
+              >
+                <div>
+                  <div className="text-xs font-bold text-white">{entry.player.name}</div>
+                  <div className="text-[10px] text-slate-500">
+                    {entry.player.positions.slice(0, 2).join(" · ")} · {getCountryFlag(entry.player.country)}
+                  </div>
+                </div>
+                <div className="text-right">
+                  <div className="text-xs font-black text-indigo-400">${entry.price}</div>
+                  <div className="text-[10px] text-slate-500 truncate max-w-[80px]">{entry.teamName}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
       </div>
-      
     </div>
   );
 }

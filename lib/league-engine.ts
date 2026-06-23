@@ -1,4 +1,4 @@
-import { simulateMatch, type MatchResult } from "./match-engine";
+import { simulateMatchV3, type MatchResult } from "./match-engine-v3";
 import type { Player } from "./player-data";
 
 export type AssignedRoster = {
@@ -167,7 +167,7 @@ export function simulateNextRound(state: LeagueState): LeagueState {
     const homeTeam = state.teams.find(t => t.id === f.homeTeamId)!;
     const awayTeam = state.teams.find(t => t.id === f.awayTeamId)!;
 
-    const result = simulateMatch(homeTeam, awayTeam);
+    const result = simulateMatchV3(homeTeam, awayTeam);
     nextStandings = updateStandings(nextStandings, result);
 
     return { ...f, result };

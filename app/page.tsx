@@ -17,7 +17,7 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 gap-6 w-full max-w-3xl">
+        <div className="grid md:grid-cols-3 gap-6 w-full max-w-5xl">
           <Link href="/database" className="group">
             <div className="glass-panel p-8 rounded-3xl h-full flex flex-col items-center text-center space-y-4 hover-lift border-2 border-transparent hover:border-blue-500/30 transition-all">
               <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900/30 rounded-2xl flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
@@ -39,9 +39,23 @@ export default function Home() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                 </svg>
               </div>
-              <h2 className="text-2xl font-bold text-slate-900 dark:text-white">Single Player Draft</h2>
+              <h2 className="text-2xl font-bold text-slate-900 dark:text-white">Auction Draft</h2>
               <p className="text-slate-500 dark:text-slate-400">
-                Draft against 7 AI managers to build your 11-man dream team. Test the Draft Engine (Milestone 2).
+                Draft against 7 AI managers in a bidding war to build your 11-man dream team.
+              </p>
+            </div>
+          </Link>
+
+          <Link href="/pack-draft" className="group">
+            <div className="glass-panel p-8 rounded-3xl h-full flex flex-col items-center text-center space-y-4 hover-lift border-2 border-transparent hover:border-emerald-500/30 transition-all">
+              <div className="w-16 h-16 bg-emerald-100 dark:bg-emerald-900/30 rounded-2xl flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
+                <svg className="w-8 h-8 text-emerald-600 dark:text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                </svg>
+              </div>
+              <h2 className="text-2xl font-bold text-slate-900 dark:text-white">Pack Draft</h2>
+              <p className="text-slate-500 dark:text-slate-400">
+                Open packs, pick 1 of 5 players per position, and assemble your ultimate squad.
               </p>
             </div>
           </Link>
