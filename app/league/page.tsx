@@ -29,21 +29,24 @@ function EventIcon({ type }: { type: MatchEvent["type"] }) {
   if (type === "GOAL") return <span>⚽</span>;
   if (type === "YELLOW_CARD") return <span>🟨</span>;
   if (type === "RED_CARD") return <span>🟥</span>;
-  return <span>🏥</span>;
+  if (type === "SAVE") return <span title="Save">🧤</span>;
+  return <span title="Miss">↗️</span>;
 }
 
-function EventList({ events }: { events: MatchEvent[] }) {
+function EventList({ events, homeTeamId }: { events: MatchEvent[]; homeTeamId: number }) {
   if (events.length === 0) return <div className="text-slate-600 text-xs text-center py-2 italic">No events</div>;
   return (
     <div className="space-y-1 mt-2">
       {events.map((ev, i) => (
-        <div key={i} className="flex gap-2 items-start text-xs">
-          <span className="text-slate-500 font-bold w-6 text-right tabular-nums shrink-0">{ev.minute}'</span>
-          <EventIcon type={ev.type} />
-          <span className="text-slate-300">
-            <span className="font-bold text-white">{ev.playerName}</span>
-            {ev.assistPlayerName && <span className="text-slate-500 ml-1">(ast. {ev.assistPlayerName})</span>}
-          </span>
+        <div key={i} className={`flex items-start text-xs ${ev.teamId === homeTeamId ? 'justify-start' : 'justify-end'}`}>
+          <div className={`flex gap-2 items-start max-w-[80%] ${ev.teamId === homeTeamId ? '' : 'flex-row-reverse text-right'}`}>
+            <span className="text-slate-500 font-bold w-6 tabular-nums shrink-0">{ev.minute}'</span>
+            <EventIcon type={ev.type} />
+            <span className="text-slate-300">
+              <span className="font-bold text-white">{ev.playerName}</span>
+              {ev.assistPlayerName && <span className="text-slate-500 ml-1">(ast. {ev.assistPlayerName})</span>}
+            </span>
+          </div>
         </div>
       ))}
     </div>
@@ -62,7 +65,7 @@ function posColor(role: string) {
   return POS_COLOR.ATT;
 }
 
-function MiniPitch({ team, flipped }: { team: LeagueTeam, flipped?: boolean }) {
+function MiniPitch({ team, ratingsByPlayer, flipped }: { team: LeagueTeam; ratingsByPlayer: Map<number, number>; flipped?: boolean }) {
   const formation = FORMATIONS.find(f => f.id === team.formationId) || FORMATIONS[0];
   const rosterMap = new Map(team.roster.filter(r => r.slotId).map(r => [r.slotId!, r.player]));
   return (
@@ -81,7 +84,7 @@ function MiniPitch({ team, flipped }: { team: LeagueTeam, flipped?: boolean }) {
 
       {formation.slots.map(slot => {
         const player = rosterMap.get(slot.id);
-        const yPos = flipped ? 100 - slot.y : slot.y;
+        const performanceRating = player ? ratingsByPlayer.get(player.id) : undefined;
         return (
           <div
             key={slot.id}
@@ -97,6 +100,15 @@ function MiniPitch({ team, flipped }: { team: LeagueTeam, flipped?: boolean }) {
                 >
                   {Math.floor(player.rating * getPositionModifier(player.positions, slot.role).modifier)}
                 </div>
+                {performanceRating !== undefined && (
+                  <div
+                    className="mt-px rounded bg-slate-950/80 px-1 text-[7px] font-black text-amber-300 leading-tight"
+                    style={{ transform: flipped ? "scaleY(-1)" : undefined }}
+                    title="Match rating"
+                  >
+                    {performanceRating.toFixed(1)}
+                  </div>
+                )}
                 <div
                   className="mt-px text-[7px] font-bold text-white/80 truncate max-w-[36px] text-center leading-none"
                   style={{ transform: flipped ? "scaleY(-1)" : undefined }}
@@ -123,6 +135,7 @@ function FixtureCard({ fixture, teams, isRecent }: { fixture: Fixture, teams: Le
   const away = teams.find(t => t.id === fixture.awayTeamId);
   if (!home || !away) return null;
   const isUserMatch = home.isUser || away.isUser;
+  const playerRatings = new Map(fixture.result?.playerRatings.map(rating => [rating.playerId, rating.rating]) ?? []);
 
   return (
     <div className={`rounded-xl overflow-hidden border transition-all ${isUserMatch ? 'border-indigo-500/40 bg-indigo-900/20' : 'border-white/5 bg-slate-800/40'}`}>
@@ -208,17 +221,17 @@ function FixtureCard({ fixture, teams, isRecent }: { fixture: Fixture, teams: Le
             </div>
           )}
 
-          {lineupTab === 'events' && <EventList events={fixture.result.events} />}
+          {lineupTab === 'events' && <EventList events={fixture.result.events} homeTeamId={home.id} />}
 
           {lineupTab === 'lineups' && (
             <div className="grid grid-cols-2 gap-3 mt-1">
               <div>
                 <div className="text-[10px] font-black uppercase tracking-widest text-slate-600 mb-2 text-center">{home.name} ({home.formationId})</div>
-                <MiniPitch team={home} />
+                <MiniPitch team={home} ratingsByPlayer={playerRatings} />
               </div>
               <div>
                 <div className="text-[10px] font-black uppercase tracking-widest text-slate-600 mb-2 text-center">{away.name} ({away.formationId})</div>
-                <MiniPitch team={away} flipped />
+                <MiniPitch team={away} ratingsByPlayer={playerRatings} flipped />
               </div>
             </div>
           )}

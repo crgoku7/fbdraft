@@ -168,7 +168,6 @@ The simulation engine determines:
 Goals
 Assists
 Cards
-Injuries
 Winner
 ```
 

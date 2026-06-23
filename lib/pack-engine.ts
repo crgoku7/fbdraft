@@ -84,7 +84,7 @@ const AI_NAMES = [
 
 type AITier = "ELITE" | "GOOD" | "AVERAGE";
 
-export function generateAITeams(allPlayers: Player[], count: number, excludePlayerIds: Set<number>) {
+export function generateAITeams(allPlayers: Player[], count: number, excludePlayerIds: Set<number>, teamSize:number = 11) {
   const teams: { id: string; name: string; isUser: boolean; roster: { player: Player; slotId: string }[]; formationId: string; budget: number }[] = [];
   const usedIds = new Set(excludePlayerIds);
   const shuffledNames = shuffle(AI_NAMES);
@@ -122,6 +122,26 @@ export function generateAITeams(allPlayers: Player[], count: number, excludePlay
       const chosen = candidates[pickIdx];
 
       roster.push({ player: chosen, slotId: slot.id });
+      usedIds.add(chosen.id);
+    }
+
+    while (roster.length < teamSize) {
+      // Find remaining unused players for general bench filler
+      const benchAvailable = allPlayers.filter(p => !usedIds.has(p.id));
+      
+      let candidates = benchAvailable;
+      if (tier === "ELITE") candidates = benchAvailable.filter(p => p.rating >= 82);
+      if (tier === "GOOD") candidates = benchAvailable.filter(p => p.rating >= 78);
+      
+      if (candidates.length === 0) candidates = benchAvailable;
+      if (candidates.length === 0) candidates = allPlayers; // Absolute backup fallback
+
+      candidates.sort((a, b) => b.rating - a.rating);
+      const pickIdx = Math.floor(Math.random() * Math.min(5, candidates.length));
+      const chosen = candidates[pickIdx];
+
+      // Add as bench player (slotId is null, matching the behavior seen in shared-ui.tsx)
+      roster.push({ player: chosen, slotId: null });
       usedIds.add(chosen.id);
     }
 

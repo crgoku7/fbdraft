@@ -35,6 +35,7 @@ export type DraftOptions = {
   userTeamId?: number;
   seed?: number;
   rosterTarget?: Record<PlayerRole, number>;
+  rosterSize?: number;
 };
 
 export type UserPickStrategy = (state: DraftState) => Player | undefined;

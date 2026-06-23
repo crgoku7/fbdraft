@@ -26,7 +26,7 @@ export default function PackDraftPage() {
   const [currentPack, setCurrentPack] = useState<Player[]>([]);
   
   // Dnd state (for adjusting post-draft)
-  const isPostDraft = draftState?.roster.length === 11;
+  const isPostDraft = draftState?.roster.length === settings.teamSize;
 
   useEffect(() => {
     setPlayers(loadPlayers());
@@ -112,7 +112,7 @@ export default function PackDraftPage() {
 
     // Build AI teams
     const usedIds = new Set(draftState.roster.map(r => r.player.id));
-    const aiTeams = generateAITeams(players, settings.aiCount, usedIds);
+    const aiTeams = generateAITeams(players, settings.aiCount, usedIds, settings.teamSize);
 
     const leagueTeams = [userTeam, ...aiTeams];
     localStorage.setItem("fbdraft_league_teams", JSON.stringify(leagueTeams));

@@ -6,6 +6,10 @@ import { FORMATIONS, getPositionModifier } from "../lib/formation-utils";
 import { getCountryFlag } from "../lib/country-flags";
 import { ratingGradient } from "./draft-ui";
 import { getTeamStrengthRatings } from "../lib/match-engine";
+import { getTeamV3PreviewRatings } from "../lib/match-engine-v3";
+
+// Temporary comparison aid while the legacy display model is evaluated against V3.
+export const SHOW_V3_TEAM_RATING_PREVIEW = true;
 
 // ── Shared Game Settings Form ───────────────────────────────────────
 export type GameSettings = {
@@ -155,6 +159,11 @@ export function TeamLineupModal({ team, onClose }: { team: LeagueTeam; onClose: 
     roster: starters.map(r => ({ player: r.player, slotId: r.slotId })),
     formationId: team.formationId,
   }) : null;
+  const v3Ratings = SHOW_V3_TEAM_RATING_PREVIEW && starters.length >= 11 ? getTeamV3PreviewRatings({
+    id: team.id as number,
+    roster: starters.map(r => ({ player: r.player, slotId: r.slotId })),
+    formationId: team.formationId,
+  }) : null;
 
   return (
     <div className="fixed inset-0 bg-black/70 backdrop-blur-sm z-[100] flex items-center justify-center p-4" onClick={onClose}>
@@ -172,19 +181,30 @@ export function TeamLineupModal({ team, onClose }: { team: LeagueTeam; onClose: 
             <button onClick={onClose} className="w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 flex items-center justify-center text-slate-400 hover:text-white transition-colors font-bold">✕</button>
           </div>
           {teamRatings && (
-            <div className="flex gap-1.5 mt-3 text-[10px]">
-              {[
-                { label: 'ATT', val: teamRatings.attack, color: 'text-red-400' },
-                { label: 'MID', val: teamRatings.midfield, color: 'text-emerald-400' },
-                { label: 'DEF', val: teamRatings.defense, color: 'text-blue-400' },
-                { label: 'GK', val: teamRatings.gk, color: 'text-amber-400' },
-                { label: 'OVR', val: teamRatings.overall, color: 'text-white' },
-              ].map(r => (
-                <div key={r.label} className="flex flex-col items-center bg-slate-800/60 px-2.5 py-1 rounded-lg border border-white/5">
-                  <span className="text-slate-500 font-black leading-none">{r.label}</span>
-                  <span className={`${r.color} font-black text-sm leading-none mt-0.5`}>{r.val}</span>
-                </div>
-              ))}
+            <div className="mt-3 space-y-2 text-[10px]">
+              <RatingRow
+                title="Legacy preview"
+                ratings={[
+                  { label: 'ATT', val: teamRatings.attack, color: 'text-red-400' },
+                  { label: 'MID', val: teamRatings.midfield, color: 'text-emerald-400' },
+                  { label: 'DEF', val: teamRatings.defense, color: 'text-blue-400' },
+                  { label: 'GK', val: teamRatings.gk, color: 'text-amber-400' },
+                  { label: 'OVR', val: teamRatings.overall, color: 'text-white' },
+                ]}
+              />
+              {v3Ratings && (
+                <RatingRow
+                  title="V3 simulation"
+                  ratings={[
+                    { label: 'BLD', val: v3Ratings.buildUp, color: 'text-cyan-400' },
+                    { label: 'CRT', val: v3Ratings.chanceCreation, color: 'text-violet-400' },
+                    { label: 'FIN', val: v3Ratings.finishing, color: 'text-red-400' },
+                    { label: 'RES', val: v3Ratings.defensiveResistance, color: 'text-blue-400' },
+                    { label: 'GK', val: v3Ratings.gkQuality, color: 'text-amber-400' },
+                    { label: 'OVR', val: v3Ratings.overall, color: 'text-white' },
+                  ]}
+                />
+              )}
             </div>
           )}
         </div>
@@ -261,6 +281,22 @@ export function TeamLineupModal({ team, onClose }: { team: LeagueTeam; onClose: 
             })}
           </div>
         </div>
+      </div>
+    </div>
+  );
+}
+
+function RatingRow({ title, ratings }: { title: string; ratings: { label: string; val: number; color: string }[] }) {
+  return (
+    <div>
+      <div className="text-[9px] uppercase tracking-widest font-black text-slate-500 mb-1">{title}</div>
+      <div className="flex flex-wrap gap-1.5">
+        {ratings.map(r => (
+          <div key={r.label} className="flex flex-col items-center bg-slate-800/60 px-2.5 py-1 rounded-lg border border-white/5">
+            <span className="text-slate-500 font-black leading-none">{r.label}</span>
+            <span className={`${r.color} font-black text-sm leading-none mt-0.5`}>{r.val}</span>
+          </div>
+        ))}
       </div>
     </div>
   );

@@ -67,6 +67,15 @@ type TeamV3Ratings = {
   discipline: number;
 };
 
+export type TeamV3PreviewRatings = {
+  buildUp: number;
+  chanceCreation: number;
+  finishing: number;
+  defensiveResistance: number;
+  gkQuality: number;
+  overall: number;
+};
+
 export type TeamInput = {
   id: number;
   roster: { player: Player; slotId?: string }[];
@@ -74,6 +83,13 @@ export type TeamInput = {
 };
 
 export type EffectivePlayer = Player & { effectiveRating: number; role: string };
+
+type MatchState = {
+  activePlayers: Map<number, Set<number>>;
+  yellowCounts: Map<number, number>;
+  sentOffPlayers: Set<number>;
+  cardMinuteGuard: Set<string>;
+};
 
 // ── Role classification ──────────────────────────────────────────────
 
@@ -90,7 +106,7 @@ function isDefender(role: string) { return DEF_ROLES.includes(role); }
 const GOAL_ROLE_WEIGHT: Record<string, number> = {
   ST: 1.60, CF: 1.40, LW: 1.20, RW: 1.20,
   CAM: 1.10, CM: 0.60, LM: 0.80, RM: 0.80,
-  CDM: 0.30, CB: 0.15, LB: 0.10, RB: 0.10, LWB: 0.10, RWB: 0.10, GK: 0.01,
+  CDM: 0.30, CB: 0.15, LB: 0.10, RB: 0.10, LWB: 0.15, RWB: 0.15, GK: 0.01,
 };
 
 const ASSIST_ROLE_WEIGHT: Record<string, number> = {
@@ -232,7 +248,7 @@ function extractV3Ratings(roster: EffectivePlayer[]): TeamV3Ratings {
   defRes *= defTraitBonus;
 
   // 5. GK Quality
-  let gkQuality = gkPlayer ? gkPlayer.effectiveRating * getGkTraitBonus(gkPlayer) : 40;
+  const gkQuality = gkPlayer ? gkPlayer.effectiveRating * getGkTraitBonus(gkPlayer) : 40;
 
   // 6. Discipline (Higher = worse discipline, 1.0 is neutral)
   let discipline = 1.0;
@@ -245,6 +261,25 @@ function extractV3Ratings(roster: EffectivePlayer[]): TeamV3Ratings {
   return { buildUp, chanceCreation, finishing, defensiveResistance: defRes, gkQuality, discipline };
 }
 
+/** Display-only view of the same base attributes used by the V3 match loop. */
+export function getTeamV3PreviewRatings(team: TeamInput): TeamV3PreviewRatings {
+  const ratings = extractV3Ratings(getEffectiveRoster(team));
+  return {
+    buildUp: Math.round(ratings.buildUp),
+    chanceCreation: Math.round(ratings.chanceCreation),
+    finishing: Math.round(ratings.finishing),
+    defensiveResistance: Math.round(ratings.defensiveResistance),
+    gkQuality: Math.round(ratings.gkQuality),
+    overall: Math.round(
+      ratings.buildUp * 0.20
+      + ratings.chanceCreation * 0.25
+      + ratings.finishing * 0.25
+      + ratings.defensiveResistance * 0.20
+      + ratings.gkQuality * 0.10,
+    ),
+  };
+}
+
 // ── V3: Match Loop ───────────────────────────────────────────────────
 
 function weightedPick<T>(pool: T[], weightFn: (item: T) => number): T {
@@ -255,12 +290,141 @@ function weightedPick<T>(pool: T[], weightFn: (item: T) => number): T {
   return pool[pool.length - 1];
 }
 
+function createMatchState(homeTeam: TeamInput, awayTeam: TeamInput): MatchState {
+  return {
+    activePlayers: new Map([
+      [homeTeam.id, new Set(getEffectiveRoster(homeTeam).map(player => player.id))],
+      [awayTeam.id, new Set(getEffectiveRoster(awayTeam).map(player => player.id))],
+    ]),
+    yellowCounts: new Map(),
+    sentOffPlayers: new Set(),
+    cardMinuteGuard: new Set(),
+  };
+}
+
+function getActiveRoster(teamId: number, roster: EffectivePlayer[], state: MatchState) {
+  const activeIds = state.activePlayers.get(teamId) ?? new Set<number>();
+  return roster.filter(player => activeIds.has(player.id));
+}
+
+function getDismissalImpact(teamId: number, state: MatchState) {
+  const activeCount = state.activePlayers.get(teamId)?.size ?? 11;
+  const dismissals = Math.max(0, 11 - activeCount);
+  return {
+    buildUp: Math.pow(0.92, dismissals),
+    chanceCreation: Math.pow(0.94, dismissals),
+    defensiveResistance: Math.pow(0.88, dismissals),
+  };
+}
+
+function applyCard(
+  minute: number,
+  teamId: number,
+  roster: EffectivePlayer[],
+  state: MatchState,
+  events: MatchEvent[],
+) {
+  const activeRoster = getActiveRoster(teamId, roster, state);
+  if (!activeRoster.length) return;
+
+  const player = weightedPick(activeRoster, candidate => CARD_ROLE_WEIGHT[candidate.role] ?? 0.6);
+  const guardKey = `${minute}:${player.id}`;
+  if (state.cardMinuteGuard.has(guardKey) || state.sentOffPlayers.has(player.id)) return;
+
+  state.cardMinuteGuard.add(guardKey);
+  const yellowCount = state.yellowCounts.get(player.id) ?? 0;
+  if (yellowCount === 1) {
+    state.sentOffPlayers.add(player.id);
+    state.activePlayers.get(teamId)?.delete(player.id);
+    events.push({ minute, type: "RED_CARD", teamId, playerId: player.id, playerName: player.name });
+    return;
+  }
+
+  state.yellowCounts.set(player.id, yellowCount + 1);
+  events.push({ minute, type: "YELLOW_CARD", teamId, playerId: player.id, playerName: player.name });
+}
+
+function tryGenerateCard(
+  minute: number,
+  defendingTeamId: number,
+  defendingRoster: EffectivePlayer[],
+  defendingStrength: TeamV3Ratings,
+  attackingChanceCreation: number,
+  defendingGoals: number,
+  attackingGoals: number,
+  state: MatchState,
+  events: MatchEvent[],
+) {
+  // Cards arise while defending. A team under sustained attacking pressure or chasing
+  // the score is likelier to make a late challenge; role weights choose the offender.
+  const pressure = Math.min(1.35, Math.max(0.75, attackingChanceCreation / defendingStrength.defensiveResistance));
+  const scorePressure = defendingGoals < attackingGoals ? 1.18 : defendingGoals > attackingGoals ? 0.88 : 1;
+  const yellowChance = 0.024 * defendingStrength.discipline * pressure * scorePressure;
+  const directRedChance = 0.00045 * defendingStrength.discipline * pressure * scorePressure;
+
+  if (Math.random() < directRedChance) {
+    const activeRoster = getActiveRoster(defendingTeamId, defendingRoster, state);
+    const player = activeRoster.length
+      ? weightedPick(activeRoster, candidate => CARD_ROLE_WEIGHT[candidate.role] ?? 0.6)
+      : undefined;
+    if (player && !state.sentOffPlayers.has(player.id)) {
+      const guardKey = `${minute}:${player.id}`;
+      if (!state.cardMinuteGuard.has(guardKey)) {
+        state.cardMinuteGuard.add(guardKey);
+        state.sentOffPlayers.add(player.id);
+        state.activePlayers.get(defendingTeamId)?.delete(player.id);
+        events.push({ minute, type: "RED_CARD", teamId: defendingTeamId, playerId: player.id, playerName: player.name });
+      }
+    }
+  } else if (Math.random() < yellowChance) {
+    applyCard(minute, defendingTeamId, defendingRoster, state, events);
+  }
+}
+
+export function validateMatchEvents(events: MatchEvent[]): string[] {
+  const errors: string[] = [];
+  const sentOffPlayers = new Set<number>();
+  const yellowCounts = new Map<number, number>();
+  const cardMinuteGuard = new Set<string>();
+
+  for (const event of events) {
+    if ((event.type as string) === "INJURY") {
+      errors.push(`Injury event emitted for player ${event.playerId}.`);
+    }
+    if (sentOffPlayers.has(event.playerId)) {
+      errors.push(`Player ${event.playerId} received an event after being sent off.`);
+    }
+    if (event.assistPlayerId !== undefined && sentOffPlayers.has(event.assistPlayerId)) {
+      errors.push(`Sent-off player ${event.assistPlayerId} registered an assist.`);
+    }
+
+    if (event.type === "YELLOW_CARD" || event.type === "RED_CARD") {
+      const guardKey = `${event.minute}:${event.playerId}`;
+      if (cardMinuteGuard.has(guardKey)) errors.push(`Multiple card events for player ${event.playerId} in minute ${event.minute}.`);
+      cardMinuteGuard.add(guardKey);
+    }
+
+    if (event.type === "YELLOW_CARD") {
+      const count = (yellowCounts.get(event.playerId) ?? 0) + 1;
+      yellowCounts.set(event.playerId, count);
+      if (count > 1) errors.push(`Player ${event.playerId} received more than one yellow instead of a dismissal.`);
+    }
+    if (event.type === "RED_CARD") {
+      if (sentOffPlayers.has(event.playerId)) errors.push(`Player ${event.playerId} received more than one red card.`);
+      sentOffPlayers.add(event.playerId);
+    }
+  }
+
+  return errors;
+}
+
 export function simulateMatchV3(homeTeam: TeamInput, awayTeam: TeamInput, requiresWinner: boolean = false): MatchResult {
   const homeRoster = getEffectiveRoster(homeTeam);
   const awayRoster = getEffectiveRoster(awayTeam);
 
   const hStr = extractV3Ratings(homeRoster);
   const aStr = extractV3Ratings(awayRoster);
+  const matchState = createMatchState(homeTeam, awayTeam);
 
   // State
   let homeGoals = 0, awayGoals = 0;
@@ -268,7 +432,7 @@ export function simulateMatchV3(homeTeam: TeamInput, awayTeam: TeamInput, requir
   let homeShots = 0, awayShots = 0;
   let homeSOT = 0, awaySOT = 0;
   let homeBC = 0, awayBC = 0;
-  let homePossTicks = 0, awayPossTicks = 0;
+  let homePossTicks = 0;
   
   const events: MatchEvent[] = [];
   const TOTAL_TICKS = 100;
@@ -279,18 +443,17 @@ export function simulateMatchV3(homeTeam: TeamInput, awayTeam: TeamInput, requir
     // Late game trait modifiers
     let hFin = hStr.finishing, aFin = aStr.finishing;
     let hCC = hStr.chanceCreation, aCC = aStr.chanceCreation;
+    let hRetain = hStr.buildUp * getDismissalImpact(homeTeam.id, matchState).buildUp;
+    let aRetain = aStr.buildUp * getDismissalImpact(awayTeam.id, matchState).buildUp;
 
     if (minute >= 75) {
       if (homeRoster.some(p => p.traits.includes("Gamechanger"))) { hFin *= 1.1; hCC *= 1.1; }
       if (awayRoster.some(p => p.traits.includes("Gamechanger"))) { aFin *= 1.1; aCC *= 1.1; }
-      if (homeRoster.some(p => p.traits.includes("Relentless"))) { hStr.buildUp *= 1.05; hStr.defensiveResistance *= 1.05; }
-      if (awayRoster.some(p => p.traits.includes("Relentless"))) { aStr.buildUp *= 1.05; aStr.defensiveResistance *= 1.05; }
+      if (homeRoster.some(p => p.traits.includes("Relentless"))) { hRetain *= 1.05; }
+      if (awayRoster.some(p => p.traits.includes("Relentless"))) { aRetain *= 1.05; }
     }
 
     // Score state modifiers
-    let hRetain = hStr.buildUp;
-    let aRetain = aStr.buildUp;
-    
     // Team leading plays safer, trailing plays riskier
     if (homeGoals > awayGoals) {
       hRetain *= 1.1; // easier to keep ball
@@ -309,23 +472,38 @@ export function simulateMatchV3(homeTeam: TeamInput, awayTeam: TeamInput, requir
     const isHomePos = Math.random() < homeBallChance;
     
     if (isHomePos) homePossTicks++;
-    else awayPossTicks++;
 
-    const atk = isHomePos ? hStr : aStr;
     const atkFin = isHomePos ? hFin : aFin;
-    const atkCC = isHomePos ? hCC : aCC;
+    const attackingImpact = getDismissalImpact(isHomePos ? homeTeam.id : awayTeam.id, matchState);
+    const defendingImpact = getDismissalImpact(isHomePos ? awayTeam.id : homeTeam.id, matchState);
+    const atkCC = (isHomePos ? hCC : aCC) * attackingImpact.chanceCreation;
     const def = isHomePos ? aStr : hStr;
+    const defensiveResistance = def.defensiveResistance * defendingImpact.defensiveResistance;
     const teamId = isHomePos ? homeTeam.id : awayTeam.id;
-    const roster = isHomePos ? homeRoster : awayRoster;
+    const roster = getActiveRoster(teamId, isHomePos ? homeRoster : awayRoster, matchState);
+    const defendingTeamId = isHomePos ? awayTeam.id : homeTeam.id;
+    const defendingRoster = isHomePos ? awayRoster : homeRoster;
+
+    tryGenerateCard(
+      minute,
+      defendingTeamId,
+      defendingRoster,
+      def,
+      atkCC,
+      isHomePos ? awayGoals : homeGoals,
+      isHomePos ? homeGoals : awayGoals,
+      matchState,
+      events,
+    );
 
     // Phase 2: Advance to Final Third?
     // Baseline 45% chance to advance, modified by CC vs DefRes
-    const advanceChance = 0.45 * (atkCC / def.defensiveResistance);
+    const advanceChance = Math.min(0.85, 0.45 * (atkCC / defensiveResistance));
     if (Math.random() > advanceChance) continue; // possession dies in midfield
 
     // Phase 3: Create Shot?
     // Baseline 45% chance to shoot once in final third
-    const shotChance = 0.45 * (atkCC / def.defensiveResistance);
+    const shotChance = Math.min(0.85, 0.45 * (atkCC / defensiveResistance));
     if (Math.random() > shotChance) continue; // defended or bad pass
 
     // We have a shot!
@@ -335,7 +513,7 @@ export function simulateMatchV3(homeTeam: TeamInput, awayTeam: TeamInput, requir
     let shotXg = 0.05;
     const r = Math.random();
     // Big Chance (10% base, scales with CC/DefRes ratio)
-    const bcThreshold = 0.10 * (atkCC / def.defensiveResistance);
+    const bcThreshold = Math.min(0.25, 0.10 * (atkCC / defensiveResistance));
     
     if (r < bcThreshold) {
       shotXg = 0.35 + (Math.random() * 0.2); // Big Chance (0.35 - 0.55)
@@ -358,7 +536,7 @@ export function simulateMatchV3(homeTeam: TeamInput, awayTeam: TeamInput, requir
     // Phase 5: Shot Execution (Goal or Save/Miss)
     // Conversion check: shotXg * Finisher multiplier vs GK multiplier
     // Base conversion rate is literally just xG. We modify it by finisher vs GK gap.
-    const finMult = scorer.effectiveRating / 80; // ~1.0 for average
+    const finMult = (scorer.effectiveRating / 80) * (atkFin / 80); // individual + team finishing quality
     const gkMult = def.gkQuality / 80;
     
     const goalProb = Math.min(0.95, shotXg * (finMult / gkMult));
@@ -378,7 +556,7 @@ export function simulateMatchV3(homeTeam: TeamInput, awayTeam: TeamInput, requir
       if (Math.random() < 0.40) {
         if (isHomePos) homeSOT++; else awaySOT++;
         // Log a save for the GK
-        const defRoster = isHomePos ? awayRoster : homeRoster;
+        const defRoster = getActiveRoster(defendingTeamId, defendingRoster, matchState);
         const gk = defRoster.find(p => p.role === "GK");
         if (gk) {
           events.push({
@@ -395,32 +573,11 @@ export function simulateMatchV3(homeTeam: TeamInput, awayTeam: TeamInput, requir
     }
   }
 
-  // Cards (Simplified generation mapped across 100 ticks)
-  for (let tick = 1; tick <= TOTAL_TICKS; tick++) {
-    const minute = Math.floor((tick / TOTAL_TICKS) * 90) || 1;
-    
-    // Yellows
-    if (Math.random() < 0.035 * hStr.discipline) {
-      const player = weightedPick(homeRoster, p => CARD_ROLE_WEIGHT[p.role] ?? 0.6);
-      events.push({ minute, type: "YELLOW_CARD", teamId: homeTeam.id, playerId: player.id, playerName: player.name });
-    }
-    if (Math.random() < 0.035 * aStr.discipline) {
-      const player = weightedPick(awayRoster, p => CARD_ROLE_WEIGHT[p.role] ?? 0.6);
-      events.push({ minute, type: "YELLOW_CARD", teamId: awayTeam.id, playerId: player.id, playerName: player.name });
-    }
-
-    // Reds
-    if (Math.random() < 0.0008 * hStr.discipline) {
-      const player = weightedPick(homeRoster, p => CARD_ROLE_WEIGHT[p.role] ?? 0.6);
-      events.push({ minute, type: "RED_CARD", teamId: homeTeam.id, playerId: player.id, playerName: player.name });
-    }
-    if (Math.random() < 0.0008 * aStr.discipline) {
-      const player = weightedPick(awayRoster, p => CARD_ROLE_WEIGHT[p.role] ?? 0.6);
-      events.push({ minute, type: "RED_CARD", teamId: awayTeam.id, playerId: player.id, playerName: player.name });
-    }
-  }
-
   events.sort((a, b) => a.minute - b.minute);
+  const eventErrors = validateMatchEvents(events);
+  if (eventErrors.length > 0) {
+    throw new Error(`Invalid V3 match timeline: ${eventErrors.join(" ")}`);
+  }
 
   // Ratings calculation
   const homeWin = homeGoals > awayGoals;
@@ -438,7 +595,8 @@ export function simulateMatchV3(homeTeam: TeamInput, awayTeam: TeamInput, requir
       r -= events.filter(e => e.type === "MISS" && e.teamId === tId && e.playerId === p.id).length * 0.1;
 
       if (oppGoals === 0 && (p.role === "GK" || isDefender(p.role))) r += 1.0;
-      if (p.role === "GK" && oppGoals <= 1 && oppGoals > 0) r += 0.4;
+      if (p.role === "GK" && oppGoals === 1 && homeWin ) r += 0.4;
+      if (p.role === "GK") {r -= oppGoals * 0.5; }
       
       r -= events.filter(e => e.type === "YELLOW_CARD" && e.teamId === tId && e.playerId === p.id).length * 0.5;
       r -= events.filter(e => e.type === "RED_CARD" && e.teamId === tId && e.playerId === p.id).length * 1.5;
@@ -462,7 +620,7 @@ export function simulateMatchV3(homeTeam: TeamInput, awayTeam: TeamInput, requir
   // Penalties if needed
   let homePenalties, awayPenalties;
   if (requiresWinner && homeGoals === awayGoals) {
-    const sd = (hRoster: EffectivePlayer[], aRoster: EffectivePlayer[]) => {
+    const sd = () => {
       let hScore = 0, aScore = 0;
       for (let i=0; i<5; i++) {
         if (Math.random() < 0.75) hScore++;
@@ -476,7 +634,7 @@ export function simulateMatchV3(homeTeam: TeamInput, awayTeam: TeamInput, requir
       }
       return { home: hScore, away: aScore };
     };
-    const sdr = sd(homeRoster, awayRoster);
+    const sdr = sd();
     homePenalties = sdr.home; awayPenalties = sdr.away;
   }
 
