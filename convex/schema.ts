@@ -17,6 +17,7 @@ export default defineSchema({
         name: v.string(),
         isReady: v.boolean(),
         isHost: v.boolean(),
+        lastHeartbeat: v.optional(v.number()),
       })
     ),
   }).index("by_code", ["code"]),
@@ -32,7 +33,7 @@ export default defineSchema({
     basePrice: v.number(),
     
     availablePlayers: v.array(v.any()),
-    sub81Players: v.array(v.any()),
+    sub81Players: v.optional(v.array(v.any())),
     
     teams: v.array(v.object({
       id: v.string(),
@@ -45,7 +46,8 @@ export default defineSchema({
 
   leagues: defineTable({
     roomId: v.id("rooms"),
-    teams: v.array(v.any()),
-    matches: v.array(v.any()),
+    state: v.optional(v.any()), // LeagueState object
+    teams: v.optional(v.array(v.any())),
+    matches: v.optional(v.array(v.any())),
   }).index("by_room", ["roomId"]),
 });

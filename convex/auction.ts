@@ -40,27 +40,30 @@ function buildBucketedPlayerOrder(players: any[]): any[] {
   return order;
 }
 
+function applyGracePeriod(auction: any, teamSize: number) {
+  let nextTeams = [...auction.teams];
+  let pool = [...(auction.sub81Players || [])];
+  for (let i = 0; i < nextTeams.length; i++) {
+    const team = nextTeams[i];
+    const missing = teamSize - team.roster.length;
+    if (missing > 0) {
+      const assigned = pool.slice(0, missing);
+      pool = pool.slice(missing);
+      nextTeams[i] = {
+        ...team,
+        roster: [...team.roster, ...assigned.map((p: any) => ({ player: p, slotId: null }))]
+      };
+    }
+  }
+  return { ...auction, status: "completed", currentPlayer: null, teams: nextTeams, sub81Players: pool };
+}
+
 function setupNextPlayer(auction: any, teamSize: number): any {
   const allFull = auction.teams.every((t: any) => t.roster.length >= teamSize);
 
   if (allFull || auction.availablePlayers.length === 0) {
     if (!allFull) {
-      // grace period logic
-      let nextTeams = [...auction.teams];
-      let pool = [...auction.sub81Players];
-      for (let i = 0; i < nextTeams.length; i++) {
-        const team = nextTeams[i];
-        const missing = teamSize - team.roster.length;
-        if (missing > 0) {
-          const assigned = pool.slice(0, missing);
-          pool = pool.slice(missing);
-          nextTeams[i] = {
-            ...team,
-            roster: [...team.roster, ...assigned.map((p: any) => ({ player: p, slotId: null }))]
-          };
-        }
-      }
-      return { ...auction, status: "completed", currentPlayer: null, teams: nextTeams, sub81Players: pool };
+      return applyGracePeriod(auction, teamSize);
     }
     return { ...auction, status: "completed", currentPlayer: null };
   }
@@ -69,13 +72,13 @@ function setupNextPlayer(auction: any, teamSize: number): any {
   const maxBudget = Math.max(...teamsNeedingPlayers.map((t: any) => t.budget), 0);
 
   if (maxBudget < 50) {
-    return { ...auction, status: "completed", currentPlayer: null };
+    return applyGracePeriod(auction, teamSize);
   }
 
   const affordablePlayerIndex = auction.availablePlayers.findIndex((p: any) => getBasePrice(p.rating) <= maxBudget);
 
   if (affordablePlayerIndex === -1) {
-    return { ...auction, status: "completed", currentPlayer: null };
+    return applyGracePeriod(auction, teamSize);
   }
 
   const nextPlayer = auction.availablePlayers[affordablePlayerIndex];
@@ -114,7 +117,7 @@ export const initAuction = mutation({
     const initialTeams = room.players.map((p) => ({
       id: p.id,
       name: p.name,
-      budget: room.settings.draftType === "auction" ? 1000 : 0, // adjust later if needed
+      budget: room.settings.draftType === "auction" ? 1500 : 0, // adjust later if needed
       roster: [],
       hasWithdrawnFromCurrent: false,
     }));
@@ -214,9 +217,8 @@ export const withdraw = mutation({
 
     // Check if everyone except one (or all) have withdrawn
     const activeTeams = newTeams.filter((t) => !t.hasWithdrawnFromCurrent);
-    if (activeTeams.length <= 1) {
-      // Timer drops to 0 instantly if 1 or 0 people are left active
-      // Wait, let's just let the client call resolveRound when timer drops, but we can fast forward
+    if (activeTeams.length === 0 || (activeTeams.length === 1 && auction.highestBidderId !== null)) {
+      // Timer drops to 0 instantly if 0 people are left, or 1 person is left and someone (them) already bid.
       await ctx.db.patch(args.auctionId, { timerEnd: Date.now() });
     }
   },
@@ -305,6 +307,44 @@ export const updateSlot = mutation({
       mr[occupiedIdx] = { ...mr[occupiedIdx], slotId: tempSlot || null };
     } else {
       mr[playerIdx] = { ...mr[playerIdx], slotId: args.slotId };
+    }
+
+    nt[mi] = { ...nt[mi], roster: mr };
+    await ctx.db.patch(args.auctionId, { teams: nt });
+  },
+});
+
+export const updateSlots = mutation({
+  args: {
+    auctionId: v.id("auctions"),
+    teamId: v.string(),
+    assignments: v.array(v.object({
+      playerId: v.number(),
+      slotId: v.union(v.string(), v.null()),
+    })),
+  },
+  handler: async (ctx, args) => {
+    const auction = await ctx.db.get(args.auctionId);
+    if (!auction) return;
+
+    const nt = [...auction.teams];
+    const mi = nt.findIndex((t) => t.id === args.teamId);
+    if (mi === -1) return;
+
+    const mr = [...nt[mi].roster];
+
+    for (const assignment of args.assignments) {
+      const playerIdx = mr.findIndex((r) => r.player.id === assignment.playerId);
+      if (playerIdx === -1) continue;
+
+      const occupiedIdx = assignment.slotId ? mr.findIndex((r) => r.slotId === assignment.slotId) : -1;
+      if (occupiedIdx !== -1) {
+        const tempSlot = mr[playerIdx].slotId;
+        mr[playerIdx] = { ...mr[playerIdx], slotId: assignment.slotId };
+        mr[occupiedIdx] = { ...mr[occupiedIdx], slotId: tempSlot || null };
+      } else {
+        mr[playerIdx] = { ...mr[playerIdx], slotId: assignment.slotId };
+      }
     }
 
     nt[mi] = { ...nt[mi], roster: mr };

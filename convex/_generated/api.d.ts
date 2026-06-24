@@ -9,6 +9,7 @@
  */
 
 import type * as auction from "../auction.js";
+import type * as league from "../league.js";
 import type * as pack from "../pack.js";
 import type * as rooms from "../rooms.js";
 
@@ -20,6 +21,7 @@ import type {
 
 declare const fullApi: ApiFromModules<{
   auction: typeof auction;
+  league: typeof league;
   pack: typeof pack;
   rooms: typeof rooms;
 }>;

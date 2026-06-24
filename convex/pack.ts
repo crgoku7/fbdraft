@@ -9,6 +9,8 @@ export const submitTeam = mutation({
       name: v.string(),
       roster: v.array(v.any()),
       formationId: v.string(),
+      budget: v.optional(v.number()),
+      isUser: v.optional(v.boolean()),
     }),
   },
   handler: async (ctx, args) => {
@@ -34,8 +36,9 @@ export const submitTeam = mutation({
     }
 
     // Check if team already submitted
-    const existingIdx = league!.teams.findIndex((t: any) => t.id === args.team.id);
-    let newTeams = [...league!.teams];
+    const teamsList = league!.teams || [];
+    const existingIdx = teamsList.findIndex((t: any) => t.id === args.team.id);
+    let newTeams = [...teamsList];
     
     if (existingIdx !== -1) {
       newTeams[existingIdx] = args.team;

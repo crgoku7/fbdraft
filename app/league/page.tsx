@@ -1,7 +1,9 @@
 "use client";
 
-import { useState, useEffect, useMemo } from "react";
-import { useRouter } from "next/navigation";
+import { useState, useEffect, useMemo, Suspense } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useQuery, useMutation } from "convex/react";
+import { api } from "../../convex/_generated/api";
 import {
   createLeagueSession,
   simulateNextRound,
@@ -143,18 +145,37 @@ function FixtureCard({ fixture, teams, isRecent }: { fixture: Fixture, teams: Le
 
 
 // ── Main ────────────────────────────────────────────────────────────
-export default function LeaguePage() {
+function LeaguePageContent() {
   const router = useRouter();
-  const [leagueState, setLeagueState] = useState<LeagueState | null>(null);
+  const searchParams = useSearchParams();
+  const roomCode = searchParams.get("room");
+
+  const [localLeagueState, setLocalLeagueState] = useState<LeagueState | null>(null);
   const [activeTab, setActiveTab] = useState<'standings' | 'fixtures' | 'stats'>('standings');
   const [selectedTeam, setSelectedTeam] = useState<LeagueTeam | null>(null);
+  const [playerId, setPlayerId] = useState<string | null>(null);
+
+  // Convex Queries & Mutations
+  const room = useQuery(api.rooms.getRoom, roomCode ? { code: roomCode } : "skip");
+  const convexLeague = useQuery(api.league.getLeague, room?._id ? { roomId: room._id } : "skip");
+  const simNextRound = useMutation(api.league.simulateNextRound);
+  const simRemainingRounds = useMutation(api.league.simulateRemainingRounds);
 
   useEffect(() => {
-    const data = localStorage.getItem("fbdraft_league_teams");
-    if (!data) { router.push("/"); return; }
-    const teams: LeagueTeam[] = JSON.parse(data);
-    setLeagueState(createLeagueSession(teams));
-  }, [router]);
+    setPlayerId(sessionStorage.getItem("playerId"));
+  }, []);
+
+  useEffect(() => {
+    if (!roomCode) {
+      // Singleplayer mode fallback
+      const data = localStorage.getItem("fbdraft_league_teams");
+      if (!data) { router.push("/"); return; }
+      const teams: LeagueTeam[] = JSON.parse(data);
+      setLocalLeagueState(createLeagueSession(teams));
+    }
+  }, [router, roomCode]);
+
+  const leagueState = (roomCode ? convexLeague?.state : localLeagueState) as LeagueState | null;
 
   // Collect all match results from completed rounds
   const allResults = useMemo((): MatchResult[] => {
@@ -216,18 +237,39 @@ export default function LeaguePage() {
 
         {!leagueState.completed && (
           <div className="flex gap-2">
-            <button
-              onClick={() => setLeagueState(simulateNextRound(leagueState))}
-              className="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white font-black rounded-xl transition-all hover:-translate-y-0.5 text-sm"
-            >
-              ▶ Play Round {leagueState.currentRoundIndex + 1}
-            </button>
-            <button
-              onClick={() => setLeagueState(simulateRemainingRounds(leagueState))}
-              className="px-5 py-2.5 bg-slate-700 hover:bg-slate-600 text-slate-300 font-bold rounded-xl transition-all text-sm"
-            >
-              ⏭ Simulate All
-            </button>
+            {(!roomCode || room?.hostId === playerId) ? (
+              <>
+                <button
+                  onClick={async () => {
+                    if (roomCode && room) {
+                      await simNextRound({ roomId: room._id, hostId: playerId! });
+                    } else {
+                      setLocalLeagueState(simulateNextRound(leagueState));
+                    }
+                  }}
+                  className="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white font-black rounded-xl transition-all hover:-translate-y-0.5 text-sm"
+                >
+                  ▶ Play Round {leagueState.currentRoundIndex + 1}
+                </button>
+                <button
+                  onClick={async () => {
+                    if (roomCode && room) {
+                      await simRemainingRounds({ roomId: room._id, hostId: playerId! });
+                    } else {
+                      setLocalLeagueState(simulateRemainingRounds(leagueState));
+                    }
+                  }}
+                  className="px-5 py-2.5 bg-slate-700 hover:bg-slate-600 text-slate-300 font-bold rounded-xl transition-all text-sm"
+                >
+                  ⏭ Simulate All
+                </button>
+              </>
+            ) : (
+              <div className="px-5 py-2.5 bg-slate-800 text-slate-400 font-bold rounded-xl text-sm flex items-center gap-2">
+                <span className="w-4 h-4 border-2 border-slate-500 border-t-transparent rounded-full animate-spin"></span>
+                Waiting for host to simulate...
+              </div>
+            )}
           </div>
         )}
         {leagueState.completed && (
@@ -473,5 +515,13 @@ export default function LeaguePage() {
 
       {selectedTeam && <TeamLineupModal team={selectedTeam} onClose={() => setSelectedTeam(null)} />}
     </div>
+  );
+}
+
+export default function LeaguePage() {
+  return (
+    <Suspense fallback={<div className="h-screen flex items-center justify-center bg-[#0a0e1a] text-white">LOADING...</div>}>
+      <LeaguePageContent />
+    </Suspense>
   );
 }

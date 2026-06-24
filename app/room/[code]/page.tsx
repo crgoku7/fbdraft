@@ -19,6 +19,7 @@ export default function RoomLobbyPage({ params }: { params: Promise<{ code: stri
   const toggleReady = useMutation(api.rooms.toggleReady);
   const startDraft = useMutation(api.rooms.startDraft);
   const initAuction = useMutation(api.auction.initAuction);
+  const sendHeartbeat = useMutation(api.rooms.heartbeat);
 
   const [playerId, setPlayerId] = useState<string | null>(null);
   const [playersData, setPlayersData] = useState<any[]>([]);
@@ -50,6 +51,14 @@ export default function RoomLobbyPage({ params }: { params: Promise<{ code: stri
       }
     }
   }, [room, router]);
+
+  useEffect(() => {
+    if (!playerId) return;
+    const interval = setInterval(() => {
+      sendHeartbeat({ code, playerId }).catch(console.error);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [playerId, code, sendHeartbeat]);
 
   if (room === undefined || !playerId) {
     return (

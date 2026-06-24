@@ -156,3 +156,77 @@ export const getRoom = query({
       .first();
   },
 });
+
+export const finishDraft = mutation({
+  args: {
+    code: v.string(),
+    hostId: v.string(),
+  },
+  handler: async (ctx, args) => {
+    const room = await ctx.db
+      .query("rooms")
+      .withIndex("by_code", (q) => q.eq("code", args.code))
+      .first();
+
+    if (!room) throw new Error("Room not found");
+    if (room.hostId !== args.hostId) throw new Error("Only the host can finish the draft");
+
+    await ctx.db.patch(room._id, { status: "finished" });
+  },
+});
+
+export const heartbeat = mutation({
+  args: {
+    code: v.string(),
+    playerId: v.string(),
+  },
+  handler: async (ctx, args) => {
+    const room = await ctx.db
+      .query("rooms")
+      .withIndex("by_code", (q) => q.eq("code", args.code))
+      .first();
+
+    if (!room) return;
+
+    const now = Date.now();
+    let playersChanged = false;
+
+    // Filter out inactive players and update heartbeat for caller
+    let activePlayers = room.players.map((p) => {
+      if (p.id === args.playerId) {
+        return { ...p, lastHeartbeat: now };
+      }
+      return p;
+    }).filter((p) => {
+      // Allow 15 seconds of inactivity. If lastHeartbeat is undefined, they just joined, let them stay until first heartbeat.
+      if (p.lastHeartbeat !== undefined && now - p.lastHeartbeat > 15000) {
+        playersChanged = true;
+        return false;
+      }
+      return true;
+    });
+
+    if (playersChanged || activePlayers.length !== room.players.length) {
+      if (activePlayers.length === 0) {
+        // Room is empty, but we can just leave it as is or handle it later
+      } else {
+        // Re-assign host if the host was removed
+        const hostStillExists = activePlayers.some((p) => p.isHost && p.id === room.hostId);
+        let newHostId = room.hostId;
+        if (!hostStillExists) {
+          activePlayers[0].isHost = true;
+          newHostId = activePlayers[0].id;
+        }
+
+        await ctx.db.patch(room._id, { 
+          players: activePlayers,
+          hostId: newHostId,
+        });
+      }
+    } else {
+      // Just update the caller's heartbeat without triggering a massive change if possible
+      // Actually, updating the document always triggers a change, but it's fine for small lobbies
+      await ctx.db.patch(room._id, { players: activePlayers });
+    }
+  },
+});

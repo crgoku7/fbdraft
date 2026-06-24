@@ -20,7 +20,7 @@ const playSound = (src: string) => {
 export default function MultiplayerAuction({ roomCode }: { roomCode: string }) {
   const router = useRouter();
   const room = useQuery(api.rooms.getRoom, { code: roomCode });
-  const auction = useQuery(api.auction.getAuction, { roomId: room?._id as any });
+  const auction = useQuery(api.auction.getAuction, room?._id ? { roomId: room._id } : "skip");
   
   const placeBid = useMutation(api.auction.placeBid);
   const withdraw = useMutation(api.auction.withdraw);
@@ -28,6 +28,10 @@ export default function MultiplayerAuction({ roomCode }: { roomCode: string }) {
   const startBidding = useMutation(api.auction.startBidding);
   const advanceToNextPlayer = useMutation(api.auction.advanceToNextPlayer);
   const updateSlot = useMutation(api.auction.updateSlot);
+  const updateSlots = useMutation(api.auction.updateSlots);
+  const finishDraft = useMutation(api.rooms.finishDraft);
+  const sendHeartbeat = useMutation(api.rooms.heartbeat);
+  const initLeague = useMutation(api.league.initLeague);
 
   const [playerId, setPlayerId] = useState<string | null>(null);
   const [formationId, setFormationId] = useState(FORMATIONS[0].id);
@@ -37,10 +41,32 @@ export default function MultiplayerAuction({ roomCode }: { roomCode: string }) {
   const [countdownDisplay, setCountdownDisplay] = useState(3);
   
   const [draftHistory, setDraftHistory] = useState<any[]>([]);
+  const previousRosterLength = useRef(0);
+  const countdownAudioRef = useRef<HTMLAudioElement | null>(null);
+
+  const stopCountdown = () => {
+    if (countdownAudioRef.current) {
+      countdownAudioRef.current.pause();
+      countdownAudioRef.current.currentTime = 0;
+      countdownAudioRef.current = null;
+    }
+  };
+
+  useEffect(() => {
+    return () => stopCountdown();
+  }, []);
 
   useEffect(() => {
     setPlayerId(sessionStorage.getItem("playerId"));
   }, []);
+
+  useEffect(() => {
+    if (!playerId || !roomCode) return;
+    const interval = setInterval(() => {
+      sendHeartbeat({ code: roomCode, playerId }).catch(console.error);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [playerId, roomCode, sendHeartbeat]);
 
   // Tick the clock for countdown
   useEffect(() => {
@@ -70,7 +96,10 @@ export default function MultiplayerAuction({ roomCode }: { roomCode: string }) {
 
       // Play sound near end
       if (sLeft === 3 && msLeft > 2900 && msLeft < 3000) {
-        playSound("/audio/countdown.wav");
+        if (!countdownAudioRef.current && typeof Audio !== "undefined") {
+          countdownAudioRef.current = new Audio("/audio/countdown.wav");
+          countdownAudioRef.current.play().catch(() => {});
+        }
       }
 
       // Auto resolve if we are host and it hits 0
@@ -80,6 +109,13 @@ export default function MultiplayerAuction({ roomCode }: { roomCode: string }) {
     }, 100);
     return () => clearInterval(interval);
   }, [auction?.status, auction?.timerEnd, room?.hostId, playerId, auction, resolveRound, room?.settings.teamSize]);
+
+  // Stop countdown if timer resets above 3 or status changes
+  useEffect(() => {
+    if (auction?.status !== "bidding" || timerDisplay > 3) {
+      stopCountdown();
+    }
+  }, [auction?.status, timerDisplay]);
 
   // Auto advance from Sold
   useEffect(() => {
@@ -107,27 +143,52 @@ export default function MultiplayerAuction({ roomCode }: { roomCode: string }) {
   useEffect(() => {
     const currentTeam = auction?.teams?.find((t: any) => t.id === playerId);
     if (!currentTeam || !playerId || !auction) return;
-    const formation = FORMATIONS.find(f => f.id === formationId) || FORMATIONS[0];
-    const unassigned = currentTeam.roster.filter((r: any) => !r.slotId);
     
-    unassigned.forEach((u: any) => {
-      // Find a slot that is empty
-      const emptySlot = formation.slots.find(s => {
-        const isOccupied = currentTeam.roster.some((r: any) => r.slotId === s.id);
-        if (isOccupied) return false;
-        return true;
-      });
+    // Only auto-assign if the roster size has grown (e.g. we won a new player)
+    if (currentTeam.roster.length > previousRosterLength.current) {
+      const formation = FORMATIONS.find(f => f.id === formationId) || FORMATIONS[0];
+      const unassigned = currentTeam.roster.filter((r: any) => !r.slotId);
+      
+      let occupiedSlots = new Set(currentTeam.roster.map((r: any) => r.slotId).filter(Boolean));
+      const assignments: {playerId: number, slotId: string}[] = [];
+      
+      unassigned.forEach((u: any) => {
+        // Find best empty slot based on preferred position
+        let chosenSlot = formation.slots.find(s => {
+          if (occupiedSlots.has(s.id)) return false;
+          const modifier = getPositionModifier(u.player.positions, s.role);
+          return modifier.modifier === 1; // "perfect" fit
+        });
+        
+        // Otherwise, any empty slot
+        if (!chosenSlot) {
+          chosenSlot = formation.slots.find(s => !occupiedSlots.has(s.id));
+        }
 
-      if (emptySlot) {
-        updateSlot({
+        if (chosenSlot) {
+          occupiedSlots.add(chosenSlot.id);
+          assignments.push({ playerId: u.player.id, slotId: chosenSlot.id });
+        }
+      });
+      
+      if (assignments.length > 0) {
+        updateSlots({
           auctionId: auction._id,
           teamId: playerId,
-          playerId: u.player.id,
-          slotId: emptySlot.id
+          assignments
         });
       }
-    });
-  }, [auction?.teams, formationId, playerId, auction?._id, updateSlot]);
+    }
+
+    previousRosterLength.current = currentTeam.roster.length;
+  }, [auction?.teams, formationId, playerId, auction?._id, updateSlots]);
+
+  // Wait for host to finish the draft, then redirect to league
+  useEffect(() => {
+    if (room?.status === "finished") {
+      router.push(`/league?room=${roomCode}`);
+    }
+  }, [room?.status, roomCode, router]);
 
   if (!room || !auction || !playerId) {
     return <div className="min-h-screen bg-[#0a0e1a] text-white flex items-center justify-center font-bold tracking-widest animate-pulse">CONNECTING TO LOBBY...</div>;
@@ -239,6 +300,29 @@ export default function MultiplayerAuction({ roomCode }: { roomCode: string }) {
             <p className="text-slate-400 text-lg">
               Set your formation, then start the league!
             </p>
+            {room.hostId === playerId && (
+              <button
+                onClick={async () => {
+                  playSound("/audio/click.wav");
+                  const leagueTeams = auction.teams.map((t: any) => ({
+                    id: t.id,
+                    name: t.name,
+                    isUser: true,
+                    roster: t.roster,
+                    formationId: t.id === playerId ? formationId : "4-3-3", 
+                    budget: t.budget
+                  }));
+                  await initLeague({ roomId: room._id, teams: leagueTeams });
+                  await finishDraft({ code: roomCode, hostId: playerId });
+                }}
+                className="mt-6 px-8 py-3 bg-emerald-500 hover:bg-emerald-400 text-black font-black uppercase tracking-widest text-lg rounded-xl shadow-[0_0_20px_rgba(16,185,129,0.3)] transition-all hover:scale-105"
+              >
+                START LEAGUE
+              </button>
+            )}
+            {room.hostId !== playerId && (
+              <p className="text-emerald-400 text-sm mt-4 animate-pulse">Waiting for host to start...</p>
+            )}
           </div>
         ) : currentAuctionPlayer && (
           <div className="flex flex-col items-center w-full max-w-md gap-6">
