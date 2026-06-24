@@ -105,18 +105,16 @@ export default function MultiplayerAuction({ roomCode }: { roomCode: string }) {
 
   // Auto-assign unassigned players to an available position matching their role
   useEffect(() => {
-    if (!myTeam || !playerId) return;
+    const currentTeam = auction?.teams?.find((t: any) => t.id === playerId);
+    if (!currentTeam || !playerId || !auction) return;
     const formation = FORMATIONS.find(f => f.id === formationId) || FORMATIONS[0];
-    const unassigned = myTeam.roster.filter((r: any) => !r.slotId);
+    const unassigned = currentTeam.roster.filter((r: any) => !r.slotId);
     
     unassigned.forEach((u: any) => {
       // Find a slot that is empty
       const emptySlot = formation.slots.find(s => {
-        const isOccupied = myTeam.roster.some((r: any) => r.slotId === s.id);
+        const isOccupied = currentTeam.roster.some((r: any) => r.slotId === s.id);
         if (isOccupied) return false;
-        // Check if role matches
-        // For simplicity, just place them in the first empty slot to ensure they appear on pitch
-        // You could enforce strict roles here if needed
         return true;
       });
 
@@ -129,7 +127,7 @@ export default function MultiplayerAuction({ roomCode }: { roomCode: string }) {
         });
       }
     });
-  }, [myTeam?.roster.length, formationId]);
+  }, [auction?.teams, formationId, playerId, auction?._id, updateSlot]);
 
   if (!room || !auction || !playerId) {
     return <div className="min-h-screen bg-[#0a0e1a] text-white flex items-center justify-center font-bold tracking-widest animate-pulse">CONNECTING TO LOBBY...</div>;
