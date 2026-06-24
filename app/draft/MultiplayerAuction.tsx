@@ -27,6 +27,7 @@ export default function MultiplayerAuction({ roomCode }: { roomCode: string }) {
   const resolveRound = useMutation(api.auction.resolveRound);
   const startBidding = useMutation(api.auction.startBidding);
   const advanceToNextPlayer = useMutation(api.auction.advanceToNextPlayer);
+  const updateSlot = useMutation(api.auction.updateSlot);
 
   const [playerId, setPlayerId] = useState<string | null>(null);
   const [formationId, setFormationId] = useState(FORMATIONS[0].id);
@@ -102,6 +103,34 @@ export default function MultiplayerAuction({ roomCode }: { roomCode: string }) {
     }
   }, [auction?.status]); // intentionally shallow
 
+  // Auto-assign unassigned players to an available position matching their role
+  useEffect(() => {
+    if (!myTeam || !playerId) return;
+    const formation = FORMATIONS.find(f => f.id === formationId) || FORMATIONS[0];
+    const unassigned = myTeam.roster.filter((r: any) => !r.slotId);
+    
+    unassigned.forEach((u: any) => {
+      // Find a slot that is empty
+      const emptySlot = formation.slots.find(s => {
+        const isOccupied = myTeam.roster.some((r: any) => r.slotId === s.id);
+        if (isOccupied) return false;
+        // Check if role matches
+        // For simplicity, just place them in the first empty slot to ensure they appear on pitch
+        // You could enforce strict roles here if needed
+        return true;
+      });
+
+      if (emptySlot) {
+        updateSlot({
+          auctionId: auction._id,
+          teamId: playerId,
+          playerId: u.player.id,
+          slotId: emptySlot.id
+        });
+      }
+    });
+  }, [myTeam?.roster.length, formationId]);
+
   if (!room || !auction || !playerId) {
     return <div className="min-h-screen bg-[#0a0e1a] text-white flex items-center justify-center font-bold tracking-widest animate-pulse">CONNECTING TO LOBBY...</div>;
   }
@@ -130,12 +159,19 @@ export default function MultiplayerAuction({ roomCode }: { roomCode: string }) {
   };
 
   const handleDragEnd = (event: DragEndEvent) => {
-    // Only local drag drop for UI, but wait!
-    // Since myRoster is driven by server state, if we mutate it locally it will be overwritten.
-    // So we need a mutation to update positions.
-    // For now, in multiplayer auction, we can just assign positions locally in state
-    // But since it's an MVP, I'll let them drag and drop if I add a `updateSlot` mutation later.
-    // Let's keep it simple: we don't have updateSlot yet, so I will add one.
+    const { active, over } = event;
+    if (!over || !auction || !playerId) return;
+
+    const draggedPlayerId = parseInt(String(active.id).split('-')[1]);
+    const overId = String(over.id);
+    const slotId = overId === "bench" ? null : overId;
+
+    updateSlot({
+      auctionId: auction._id,
+      teamId: playerId,
+      playerId: draggedPlayerId,
+      slotId: slotId
+    });
   };
 
   return (
@@ -153,45 +189,47 @@ export default function MultiplayerAuction({ roomCode }: { roomCode: string }) {
           </select>
         </div>
 
-        <div className="relative w-full aspect-[2/3] rounded-2xl overflow-hidden shadow-2xl border border-white/5"
-          style={{ background: "linear-gradient(180deg, #2d6a2d 0%, #1e5c1e 50%, #2d6a2d 100%)" }}>
-          <div className="absolute inset-[6px] border border-white/20 rounded-xl pointer-events-none" />
-          <div className="absolute top-1/2 left-0 right-0 h-px bg-white/20 pointer-events-none" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 rounded-full border border-white/20 pointer-events-none" />
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-36 h-20 border border-t-0 border-white/20 pointer-events-none" />
-          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-36 h-20 border border-b-0 border-white/20 pointer-events-none" />
-          {formation.slots.map(slot => {
-            const rosterEntry = myRoster.find((r: any) => r.slotId === slot.id);
-            return (
-              <PitchSlot key={slot.id} id={slot.id} x={slot.x} y={slot.y} role={slot.role}>
-                {rosterEntry && (
-                  <DraggablePlayer
-                    id={`player-${rosterEntry.player.id}`}
-                    player={rosterEntry.player}
-                    modifier={getPositionModifier(rosterEntry.player.positions, slot.role)}
-                    slotY={slot.y}
-                  />
-                )}
-              </PitchSlot>
-            );
-          })}
-        </div>
-
-        <div>
-          <div className="text-[10px] font-black uppercase tracking-widest text-slate-500 mb-1.5">
-            Bench / Unassigned ({myRoster.filter((r: any) => !r.slotId).length})
+        <DndContext onDragEnd={handleDragEnd}>
+          <div className="relative w-full aspect-[2/3] rounded-2xl overflow-hidden shadow-2xl border border-white/5"
+            style={{ background: "linear-gradient(180deg, #2d6a2d 0%, #1e5c1e 50%, #2d6a2d 100%)" }}>
+            <div className="absolute inset-[6px] border border-white/20 rounded-xl pointer-events-none" />
+            <div className="absolute top-1/2 left-0 right-0 h-px bg-white/20 pointer-events-none" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 rounded-full border border-white/20 pointer-events-none" />
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-36 h-20 border border-t-0 border-white/20 pointer-events-none" />
+            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-36 h-20 border border-b-0 border-white/20 pointer-events-none" />
+            {formation.slots.map(slot => {
+              const rosterEntry = myRoster.find((r: any) => r.slotId === slot.id);
+              return (
+                <PitchSlot key={slot.id} id={slot.id} x={slot.x} y={slot.y} role={slot.role}>
+                  {rosterEntry && (
+                    <DraggablePlayer
+                      id={`player-${rosterEntry.player.id}`}
+                      player={rosterEntry.player}
+                      modifier={getPositionModifier(rosterEntry.player.positions, slot.role)}
+                      slotY={slot.y}
+                    />
+                  )}
+                </PitchSlot>
+              );
+            })}
           </div>
-          <BenchArea>
-            {myRoster.filter((r: any) => !r.slotId).map((rosterEntry: any) => (
-              <DraggablePlayer
-                key={rosterEntry.player.id}
-                id={`player-${rosterEntry.player.id}`}
-                player={rosterEntry.player}
-                modifier={{ modifier: 1, colorClass: "bg-slate-700", label: "Favourable" as const }}
-              />
-            ))}
-          </BenchArea>
-        </div>
+
+          <div>
+            <div className="text-[10px] font-black uppercase tracking-widest text-slate-500 mb-1.5">
+              Bench / Unassigned ({myRoster.filter((r: any) => !r.slotId).length})
+            </div>
+            <BenchArea>
+              {myRoster.filter((r: any) => !r.slotId).map((rosterEntry: any) => (
+                <DraggablePlayer
+                  key={rosterEntry.player.id}
+                  id={`player-${rosterEntry.player.id}`}
+                  player={rosterEntry.player}
+                  modifier={{ modifier: 1, colorClass: "bg-slate-700", label: "Favourable" as const }}
+                />
+              ))}
+            </BenchArea>
+          </div>
+        </DndContext>
       </div>
 
       {/* ── CENTER: Auction ───────────────────────────────── */}

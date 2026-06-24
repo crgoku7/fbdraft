@@ -32,6 +32,7 @@ export default defineSchema({
     basePrice: v.number(),
     
     availablePlayers: v.array(v.any()),
+    sub81Players: v.array(v.any()),
     
     teams: v.array(v.object({
       id: v.string(),

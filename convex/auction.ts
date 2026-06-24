@@ -45,8 +45,22 @@ function setupNextPlayer(auction: any, teamSize: number): any {
 
   if (allFull || auction.availablePlayers.length === 0) {
     if (!allFull) {
-      // grace period logic would go here, but for multiplayer we might just complete
-      return { ...auction, status: "completed", currentPlayer: null };
+      // grace period logic
+      let nextTeams = [...auction.teams];
+      let pool = [...auction.sub81Players];
+      for (let i = 0; i < nextTeams.length; i++) {
+        const team = nextTeams[i];
+        const missing = teamSize - team.roster.length;
+        if (missing > 0) {
+          const assigned = pool.slice(0, missing);
+          pool = pool.slice(missing);
+          nextTeams[i] = {
+            ...team,
+            roster: [...team.roster, ...assigned.map((p: any) => ({ player: p, slotId: null }))]
+          };
+        }
+      }
+      return { ...auction, status: "completed", currentPlayer: null, teams: nextTeams, sub81Players: pool };
     }
     return { ...auction, status: "completed", currentPlayer: null };
   }
@@ -114,6 +128,7 @@ export const initAuction = mutation({
       highestBidderId: null,
       basePrice: 0,
       availablePlayers: premiumPlayers,
+      sub81Players: sub81Players,
       teams: initialTeams,
     };
 
@@ -260,5 +275,39 @@ export const advanceToNextPlayer = mutation({
 
     const nextState = setupNextPlayer(auction, args.teamSize);
     await ctx.db.patch(args.auctionId, nextState);
+  },
+});
+
+export const updateSlot = mutation({
+  args: {
+    auctionId: v.id("auctions"),
+    teamId: v.string(),
+    playerId: v.number(),
+    slotId: v.union(v.string(), v.null()),
+  },
+  handler: async (ctx, args) => {
+    const auction = await ctx.db.get(args.auctionId);
+    if (!auction) return;
+
+    const nt = [...auction.teams];
+    const mi = nt.findIndex((t) => t.id === args.teamId);
+    if (mi === -1) return;
+
+    const mr = [...nt[mi].roster];
+    const playerIdx = mr.findIndex((r) => r.player.id === args.playerId);
+    if (playerIdx === -1) return;
+
+    const occupiedIdx = args.slotId ? mr.findIndex((r) => r.slotId === args.slotId) : -1;
+    if (occupiedIdx !== -1) {
+      // Swap
+      const tempSlot = mr[playerIdx].slotId;
+      mr[playerIdx] = { ...mr[playerIdx], slotId: args.slotId };
+      mr[occupiedIdx] = { ...mr[occupiedIdx], slotId: tempSlot || null };
+    } else {
+      mr[playerIdx] = { ...mr[playerIdx], slotId: args.slotId };
+    }
+
+    nt[mi] = { ...nt[mi], roster: mr };
+    await ctx.db.patch(args.auctionId, { teams: nt });
   },
 });
