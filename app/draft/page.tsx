@@ -14,7 +14,9 @@ import {
 } from "../../lib/auction-engine";
 import { loadPlayers, type Player } from "../../lib/player-data";
 import { FORMATIONS, getPositionModifier, type PositionModifierResult } from "../../lib/formation-utils";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
+import { Suspense } from "react";
+import MultiplayerAuction from "./MultiplayerAuction";
 import { optimizeTeamFormation } from "../../lib/ai-formation";
 import { AuctionCard, DraggablePlayer, PitchSlot, BenchArea } from "../../components/draft-ui";
 import { GameSettingsForm, type GameSettings, DEFAULT_SETTINGS } from "../../components/shared-ui";
@@ -31,8 +33,15 @@ const playSound = (src: string) => {
 };
 
 // ── Main Page ──────────────────────────────────────────────────────
-export default function DraftPage() {
+function DraftPageContent() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const roomCode = searchParams.get("room");
+
+  if (roomCode) {
+    return <MultiplayerAuction roomCode={roomCode} />;
+  }
+
   const [players, setPlayers] = useState<Player[]>([]);
   const [draftState, setDraftState] = useState<AuctionState | null>(null);
   const [phase, setPhase] = useState<'countdown' | 'bidding' | 'sold'>('countdown');
@@ -573,5 +582,13 @@ export default function DraftPage() {
 
       </div>
     </div>
+  );
+}
+
+export default function DraftPage() {
+  return (
+    <Suspense fallback={<div className="h-screen bg-[#0a0e1a] text-white flex items-center justify-center font-bold">LOADING...</div>}>
+      <DraftPageContent />
+    </Suspense>
   );
 }

@@ -23,7 +23,7 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6 w-full max-w-4xl">
+        <div className="grid md:grid-cols-3 gap-6 w-full max-w-5xl">
           <Link href="/draft" className="group" onClick={playClick}>
             <div className="glass-panel p-8 rounded-3xl h-full flex flex-col items-center text-center space-y-4 hover-lift border-2 border-transparent hover:border-indigo-500/30 transition-all">
               <div className="w-16 h-16 bg-indigo-100 dark:bg-indigo-900/30 rounded-2xl flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
@@ -48,6 +48,20 @@ export default function Home() {
               <h2 className="text-2xl font-bold text-slate-900 dark:text-white">Pack Draft</h2>
               <p className="text-slate-500 dark:text-slate-400">
                 Open packs, pick 1 of 5 players per position, and assemble your ultimate squad.
+              </p>
+            </div>
+          </Link>
+
+          <Link href="/multiplayer" className="group" onClick={playClick}>
+            <div className="glass-panel p-8 rounded-3xl h-full flex flex-col items-center text-center space-y-4 hover-lift border-2 border-transparent hover:border-cyan-500/30 transition-all">
+              <div className="w-16 h-16 bg-cyan-100 dark:bg-cyan-900/30 rounded-2xl flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
+                <svg className="w-8 h-8 text-cyan-600 dark:text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                </svg>
+              </div>
+              <h2 className="text-2xl font-bold text-slate-900 dark:text-white">Multiplayer</h2>
+              <p className="text-slate-500 dark:text-slate-400">
+                Create a lobby with up to 12 friends and draft your teams together.
               </p>
             </div>
           </Link>

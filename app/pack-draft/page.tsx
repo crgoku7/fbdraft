@@ -1,7 +1,10 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
+import { Suspense } from "react";
+import { useQuery, useMutation } from "convex/react";
+import { api } from "../../convex/_generated/api";
 import { loadPlayers, type Player } from "../../lib/player-data";
 import { FORMATIONS, getPositionModifier } from "../../lib/formation-utils";
 import { generatePack, generateAITeams } from "../../lib/pack-engine";
@@ -14,8 +17,16 @@ type PackDraftState = {
   roster: { player: Player; slotId: string | null }[];
 };
 
-export default function PackDraftPage() {
+function PackDraftPageContent() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const roomCode = searchParams.get("room");
+  
+  const room = useQuery(api.rooms.getRoom, roomCode ? { code: roomCode } : "skip");
+  const submitTeamMutation = useMutation(api.pack.submitTeam);
+  
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [hasSubmitted, setHasSubmitted] = useState(false);
   const [players, setPlayers] = useState<Player[]>([]);
   const [draftState, setDraftState] = useState<PackDraftState | null>(null);
   const [settings, setSettings] = useState<GameSettings>({ ...DEFAULT_SETTINGS, budget: 0 });
@@ -28,6 +39,13 @@ export default function PackDraftPage() {
   
   // Dnd state (for adjusting post-draft)
   const isPostDraft = draftState?.roster.length === settings.teamSize;
+
+  useEffect(() => {
+    if (room) {
+      setSettings(prev => ({ ...prev, teamSize: room.settings.teamSize }));
+      setShowSettings(false);
+    }
+  }, [room]);
 
   useEffect(() => {
     setPlayers(loadPlayers());
@@ -47,7 +65,7 @@ export default function PackDraftPage() {
     }
   }, [draftState, currentSlotIndex, isPostDraft, players]);
 
-  if (players.length === 0) return null;
+  if (players.length === 0 || (roomCode && room === undefined)) return <div className="min-h-screen bg-[#0a0e1a] text-white flex items-center justify-center font-bold tracking-widest animate-pulse">LOADING...</div>;
 
   // 0. Settings Screen
   if (showSettings) {
@@ -106,19 +124,33 @@ export default function PackDraftPage() {
     setCurrentSlotIndex(prev => prev + 1);
   };
 
-  const handleStartTournament = () => {
+  const handleStartTournament = async () => {
     if (!isPostDraft) return;
-    // Build user team
+
+    const playerId = sessionStorage.getItem("playerId") || "unknown";
+    const playerName = room ? (room.players.find((p: any) => p.id === playerId)?.name || "Player") : "Your Squad";
+
     const userTeam = {
-      id: "pack_user_team",
-      name: "Your Squad",
+      id: roomCode ? playerId : "pack_user_team",
+      name: playerName,
       isUser: true,
       roster: draftState.roster,
       formationId: draftState.formationId,
       budget: 0
     };
 
-    // Build AI teams
+    if (roomCode && room) {
+      setIsSubmitting(true);
+      await submitTeamMutation({
+        roomId: room._id,
+        team: userTeam,
+      });
+      setHasSubmitted(true);
+      setIsSubmitting(false);
+      return;
+    }
+
+    // Singleplayer: Build AI teams
     const usedIds = new Set(draftState.roster.map(r => r.player.id));
     const aiTeams = generateAITeams(players, settings.aiCount, usedIds, settings.teamSize);
 
@@ -275,16 +307,32 @@ export default function PackDraftPage() {
               <p className="text-slate-400 text-lg max-w-md">
                 You have assembled your squad. You can drag and drop players on the pitch to adjust positions.
               </p>
-              <button
-                onClick={handleStartTournament}
-                className="mt-8 px-10 py-5 bg-gradient-to-r from-emerald-600 to-teal-500 hover:from-emerald-500 hover:to-teal-400 text-white font-black text-xl rounded-2xl shadow-xl hover:shadow-emerald-500/25 transition-all hover:scale-105 active:scale-95"
-              >
-                {settings.tournamentType === "KNOCKOUT" ? "START KNOCKOUT TOURNAMENT" : "START LEAGUE SEASON"}
-              </button>
+              {hasSubmitted ? (
+                <div className="mt-8 p-6 bg-slate-900 border border-emerald-500/30 rounded-2xl">
+                  <h3 className="text-xl font-bold text-emerald-400 mb-2">Team Submitted!</h3>
+                  <p className="text-slate-400">Waiting for other players to finish their drafts. The host can start the league once everyone is ready.</p>
+                </div>
+              ) : (
+                <button
+                  onClick={handleStartTournament}
+                  disabled={isSubmitting}
+                  className="mt-8 px-10 py-5 bg-gradient-to-r from-emerald-600 to-teal-500 hover:from-emerald-500 hover:to-teal-400 text-white font-black text-xl rounded-2xl shadow-xl hover:shadow-emerald-500/25 transition-all hover:scale-105 active:scale-95 disabled:opacity-50"
+                >
+                  {isSubmitting ? "SUBMITTING..." : (roomCode ? "SUBMIT SQUAD" : (settings.tournamentType === "KNOCKOUT" ? "START KNOCKOUT TOURNAMENT" : "START LEAGUE SEASON"))}
+                </button>
+              )}
             </div>
           )}
         </div>
       </main>
     </div>
+  );
+}
+
+export default function PackDraftPage() {
+  return (
+    <Suspense fallback={<div className="h-screen bg-[#0a0e1a] text-white flex items-center justify-center font-bold">LOADING...</div>}>
+      <PackDraftPageContent />
+    </Suspense>
   );
 }

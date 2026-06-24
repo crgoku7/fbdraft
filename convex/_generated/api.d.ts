@@ -8,13 +8,21 @@
  * @module
  */
 
+import type * as auction from "../auction.js";
+import type * as pack from "../pack.js";
+import type * as rooms from "../rooms.js";
+
 import type {
   ApiFromModules,
   FilterApi,
   FunctionReference,
 } from "convex/server";
 
-declare const fullApi: ApiFromModules<{}>;
+declare const fullApi: ApiFromModules<{
+  auction: typeof auction;
+  pack: typeof pack;
+  rooms: typeof rooms;
+}>;
 
 /**
  * A utility for referencing Convex functions in your app's public API.
