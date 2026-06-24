@@ -34,8 +34,8 @@ export const submitTeam = mutation({
     }
 
     // Check if team already submitted
-    const existingIdx = league.teams.findIndex((t: any) => t.id === args.team.id);
-    let newTeams = [...league.teams];
+    const existingIdx = league!.teams.findIndex((t: any) => t.id === args.team.id);
+    let newTeams = [...league!.teams];
     
     if (existingIdx !== -1) {
       newTeams[existingIdx] = args.team;
@@ -43,7 +43,7 @@ export const submitTeam = mutation({
       newTeams.push(args.team);
     }
 
-    await ctx.db.patch(league._id, { teams: newTeams });
+    await ctx.db.patch(league!._id, { teams: newTeams });
     
     // Check if all players have submitted
     if (newTeams.length >= room.players.length) {
