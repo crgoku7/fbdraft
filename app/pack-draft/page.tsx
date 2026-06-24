@@ -24,12 +24,15 @@ export default function PackDraftPage() {
   // Drafting flow state
   const [currentSlotIndex, setCurrentSlotIndex] = useState(0);
   const [currentPack, setCurrentPack] = useState<Player[]>([]);
+  const [availableFormations, setAvailableFormations] = useState<typeof FORMATIONS>([]);
   
   // Dnd state (for adjusting post-draft)
   const isPostDraft = draftState?.roster.length === settings.teamSize;
 
   useEffect(() => {
     setPlayers(loadPlayers());
+    const shuffled = [...FORMATIONS].sort(() => 0.5 - Math.random());
+    setAvailableFormations(shuffled.slice(0, 4));
   }, []);
 
   // Generate a pack when moving to a new slot
@@ -69,7 +72,7 @@ export default function PackDraftPage() {
           Select Formation
         </h1>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl">
-          {FORMATIONS.map(f => (
+          {availableFormations.map(f => (
             <button
               key={f.id}
               onClick={() => {

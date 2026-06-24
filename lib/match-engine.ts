@@ -291,6 +291,8 @@ function calculateStrengthsInternal(roster: EffectivePlayer[], formationId: stri
   if (formationId === "5-3-2") defBonus = 1.06;
   if (formationId === "4-4-2") { attBonus = 1.02; defBonus = 1.02; }
   if (formationId === "3-4-3") attBonus = 1.06;
+  if (formationId === "4-1-4-1") midBonus = 1.05;
+  if (formationId === "3-4-2-1") { attBonus = 1.04; midBonus = 1.02; }
 
   return {
     attack: Math.max(avgAttack * attBonus * combined, 1),

@@ -195,18 +195,16 @@ export function TeamLineupModal({ team, onClose }: { team: LeagueTeam; onClose: 
                   { label: 'MID', val: teamRatings.midfield, color: 'text-emerald-400' },
                   { label: 'DEF', val: teamRatings.defense, color: 'text-blue-400' },
                   { label: 'GK', val: teamRatings.gk, color: 'text-amber-400' },
-                  { label: 'OVR', val: teamRatings.overall, color: 'text-white' },
                 ]}
               />
               {v3Ratings && (
                 <RatingRow
-                  title="V3 simulation"
+                  title=""
                   ratings={[
                     { label: 'BLD', val: v3Ratings.buildUp, color: 'text-cyan-400' },
                     { label: 'CRT', val: v3Ratings.chanceCreation, color: 'text-violet-400' },
                     { label: 'FIN', val: v3Ratings.finishing, color: 'text-red-400' },
                     { label: 'RES', val: v3Ratings.defensiveResistance, color: 'text-blue-400' },
-                    { label: 'GK', val: v3Ratings.gkQuality, color: 'text-amber-400' },
                     { label: 'OVR', val: v3Ratings.overall, color: 'text-white' },
                   ]}
                 />
